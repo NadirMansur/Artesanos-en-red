@@ -1,0 +1,62 @@
+.productos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.producto {
+  display: flex;
+  justify-content: center;
+}
+.fotos {
+  display: flex;
+  flex-direction: row;
+}
+.imagen {
+  height: 250px;
+  width: 300px;
+}
+.fotoChiquita img {
+  height: 120px;
+  width: 150px;
+}
+.foto {
+  position: relative;
+  width: 300px;
+  /* Ajusta el ancho deseado */
+  height: 250px;
+}
+.foto:hover .imagenFondo {
+  transform: perspective(300px) rotateX(30deg);
+  -webkit-transform: perspective(300px) rotateX(30deg);
+  -moz-transform: perspective(300px) rotateX(30deg);
+  -ms-transform: perspective(300px) rotateX(30deg);
+  -o-transform: perspective(300px) rotateX(30deg);
+  filter: grayscale(60%);
+  transition: all 2s;
+  -webkit-filter: grayscale(80%);
+}
+.foto:hover .imagenNoFondo {
+  opacity: 1;
+}
+.imagenNoFondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 60px 60px -60px rgba(9, 9, 9, 0.5);
+  opacity: 0;
+  transition: all 1s;
+}
+.imagenFondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 60px 60px -60px rgba(9, 9, 9, 0.5);
+  border-radius: 50px;
+  transition: all 2s;
+}

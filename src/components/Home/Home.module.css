@@ -1,0 +1,36 @@
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contenedorImagen {
+  width: 250px;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+  /* Posicionamos el contenedor como relativo */
+}
+.imagen {
+  width: 300px;
+  height: 500px;
+}
+.imagen:hover {
+  width: 350px;
+  height: 550px;
+  filter: blur(5px);
+  transition: all 0.5s ease-in-out;
+}
+.texto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 1;
+  /* Incluimos el relleno dentro del ancho del texto */
+  visibility: visible;
+}

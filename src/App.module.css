@@ -1,0 +1,12 @@
+.box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.app {
+  background-color: #faf4de;
+  display: flex;
+  flex-direction: column;
+}
