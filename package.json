@@ -1,9 +1,10 @@
 {
-  "name": "esc.del.mar",
+  "name": "artesanos.en.red",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build": "next build",
     "start": "serve build -s -p 4000",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
