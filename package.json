@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev", 
-    "start": "serve build -s -l 3000",
+    "start": "serve build -l 3000",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   }, 
