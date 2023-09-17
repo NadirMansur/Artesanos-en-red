@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const Landing = ()=>{
     return(
         <div className={style.landing}>
-            
          <div className={style.in}>
                 <div>
                     <h3>Bienvenido a Moniguetes Juegos! aqui podras encontrar distintos juegos didacticos e informacion sobre las artesanias</h3>
