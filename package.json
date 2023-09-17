@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "start": "serve build -s -L -p $PORT",
+    "start": "serve build -s -L -p 4000",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
