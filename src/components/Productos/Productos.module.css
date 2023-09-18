@@ -5,6 +5,12 @@
   gap: 15px;
   width: 100%;
 }
+.nav{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .producto {
   display: flex;
   justify-content: center;

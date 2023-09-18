@@ -23,6 +23,8 @@
   width: 100%;
 }
 .nav{
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 @media (min-width: 320px) and (max-width: 480px) {

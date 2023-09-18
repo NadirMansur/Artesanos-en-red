@@ -11,7 +11,9 @@ import Footer from "./Footer";
 const Productos = () => {
   return (
     <div className={style.productos}>
-      <HomeNav></HomeNav>
+      <div className={style.nav}>
+        <HomeNav></HomeNav>
+      </div>
       <div>
         <a href='https://postimg.cc/QFqGt3VV' target='_blank'>
           <img
