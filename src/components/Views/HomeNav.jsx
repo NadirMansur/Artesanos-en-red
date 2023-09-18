@@ -19,7 +19,7 @@ const HomeNav = () => {
       <div>
         <div className={style.contenedorImagen}>
           <div className={style.texto}>
-            <h2>Productos</h2>
+            <h2>Prod.</h2>
           </div>
           <Link to='/productos'>
             <img className={style.imagen} src={productos} alt='productos'></img>

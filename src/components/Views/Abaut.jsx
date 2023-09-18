@@ -35,7 +35,7 @@ const Abaut = () => {
             alt='banner-2'
           />
         </a>
-        <h1>ABOUT:</h1>
+        <h1 clasName={style.tituloh1}>ABOUT:</h1>
         <div className={style.texto}>
           <div>
             <h2>Historia del Artesano:</h2>

@@ -27,13 +27,13 @@
   width: 100px; 
   height: 100px;
 }
-h1 {
+.tituloh1 {
   text-decoration: none;
   font-family:Arial, Helvetica, sans-serif;
   color: rgba(242, 146, 43, 0.984);
-  transition: text-shadow 300ms ease-out;
   font-size: 60px;
+  transition: text-shadow 300ms ease-out;
 }
-h1:hover {
+.tituloh1:hover {
   text-shadow: 30px 30px 0px rgba(0, 0, 0, 0.3);
 }

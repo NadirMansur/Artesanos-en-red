@@ -3,6 +3,10 @@
   flex-direction: column;
   justify-content: center;
   gap: 15px;
+  text-decoration: none;
+  font-family:Arial, Helvetica, sans-serif;
+  color: rgba(242, 146, 43, 0.984);
+  font-size: 40px;
 }
 
 .texto {
@@ -10,9 +14,10 @@
   color: rgba(143, 88, 29, 0.984);
 }
 
-.parrafo{
-    width: 50%
+.parrafo {
+  width: 50%;
 }
-.image{
-    width: 100%;
+
+.image {
+  width: 100%;
 }

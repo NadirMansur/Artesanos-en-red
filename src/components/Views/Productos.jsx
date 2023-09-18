@@ -21,7 +21,7 @@ const Productos = () => {
             alt='banner-2'
           />
         </a>
-        <h1>PRODUCTOS:</h1>
+        <h1 className={style.tituloh1}>PRODUCTOS:</h1>
         {/* ACA IRIA UN MAP DE LOS PRODUCTOS */}
         <div className={style.producto}>
           <div className={style.foto}>

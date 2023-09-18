@@ -8,7 +8,7 @@ export default function LogoYNombre(){
                 <div className={style.cont}>
                     <img className={style.imagen} src={logo} alt='logo' />
                 </div>
-                <div>
+                <div className={style.tituloh1}>
                     <h1>
                         Moniguetes Juegos
                     </h1>
