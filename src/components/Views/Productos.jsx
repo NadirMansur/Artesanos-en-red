@@ -8,7 +8,15 @@ import p6 from "./p6.png";
 import p7 from "./p7.jpg";
 import HomeNav from "./HomeNav";
 import Footer from "./Footer";
+import WhatsAppButton from "../WsButton/WhatsAppButton";
+const producto = "algunproducto";
+import db from "../../dbMock";
+
 const Productos = () => {
+  const number = 542235481529;
+  const mensaje =
+    "Hola!%20he%20visitado%20tu%20pagina,%20y%20me%20interesa%20este%20prodcuto:%20";
+
   return (
     <div className={style.productos}>
       <div className={style.nav}>
@@ -24,65 +32,53 @@ const Productos = () => {
           />
         </a>
         <h1 className={style.tituloh1}>PRODUCTOS:</h1>
-        {/* ACA IRIA UN MAP DE LOS PRODUCTOS */}
-        <div className={style.producto}>
-          <div className={style.foto}>
-            <img className={style.imagen} src={p1} alt='producto 1'></img>
-          </div>
-          <div className={style.fotoEinfo}>
-            <div className={style.fotos}>
-              <div className={style.fotoChiquita}>
-                <img className={style.imagen} src={p2} alt='producto 1'></img>
+        {
+          db.map((juego) => (
+            <div className={style.producto} key={juego.info.name}>
+              <div className={style.foto}>
+                <img
+                  className={style.imagenFondo}
+                  src={juego.imgs[1]}
+                  alt='img1'
+                ></img>
+                <img
+                  className={style.imagenNoFondo}
+                  src={juego.imgs[0]}
+                  alt='img1SinFodo'
+                ></img>
               </div>
-              <div className={style.fotoChiquita}>
-                <img className={style.imagen} src={p3} alt='producto 1'></img>
-              </div>
-              <div className={style.fotoChiquita}>
-                <img className={style.imagen} src={p4} alt='producto 1'></img>
-              </div>
-              <div className={style.fotoChiquita}>
-                <img className={style.imagen} src={p5} alt='producto 1'></img>
-              </div>
-            </div>
-            <div className={style.info}>
-              <spam>
-                INFO: ACA VA TODA LA INFO DEL PRODUCTO, PRECIO, Y LINK DE COMPRA
-              </spam>
-            </div>
-          </div>
-        </div>
-        {/**PRODUCTO 2 DE PRUBA */}
-        <div className={style.producto}>
-          <div className={style.foto}>
-            <img
-              className={style.imagenFondo}
-              src={p7}
-              alt='foto de fondo P7'
-            ></img>
-            <img className={style.imagenNoFondo} src={p6} alt='foto p6'></img>
-          </div>
-          <div className={style.fotoEinfo}>
-            <div className={style.fotos}>
-              <div className={style.fotoChiquita}>
-                <img className={style.imagen} src={p2} alt='producto 1'></img>
-              </div>
-              <div className={style.fotoChiquita}>
-                <img className={style.imagen} src={p3} alt='producto 1'></img>
-              </div>
-              <div className={style.fotoChiquita}>
-                <img className={style.imagen} src={p4} alt='producto 1'></img>
-              </div>
-              <div className={style.fotoChiquita}>
-                <img className={style.imagen} src={p5} alt='producto 1'></img>
+              <div className={style.fotoEinfo}>
+                {juego.imgs[2].imagenesPequeñas.map((linkFoto) => (
+                  <div className={style.fotos} key={linkFoto}>
+                    <div className={style.fotoChiquita}>
+                      <img
+                        className={style.imagen}
+                        src={linkFoto}
+                        alt='fotoChiquita'
+                      ></img>
+                    </div>
+                  </div>
+                ))}
+                <div className={style.info}>
+                  <spam>
+                    <div>{juego.info.description}</div>
+                    <div>
+                      <div>Instrucciones:</div>
+                    <div>{juego.info.instucciones}</div>
+                    </div>
+                    <div>
+                      <WhatsAppButton
+                        number={number}
+                        mensaje={mensaje}
+                        producto={juego.info.name}
+                      ></WhatsAppButton>
+                    </div>
+                  </spam>
+                </div>
               </div>
             </div>
-            <div className={style.info}>
-              <spam>
-                INFO: ACA VA TODA LA INFO DEL PRODUCTO, PRECIO, Y LINK DE COMPRA
-              </spam>
-            </div>
-          </div>
-        </div>
+          )) /* ACA IRIA UN MAP DE LOS PRODUCTOS */
+        }
       </div>
       <Footer></Footer>
     </div>
