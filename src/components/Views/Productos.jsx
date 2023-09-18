@@ -48,17 +48,17 @@ const Productos = () => {
                 ></img>
               </div>
               <div className={style.fotoEinfo}>
+                  <div className={style.fotos} >
                 {juego.imgs[2].imagenesPequeñas.map((linkFoto) => (
-                  <div className={style.fotos} key={linkFoto}>
-                    <div className={style.fotoChiquita}>
+                    <div className={style.fotoChiquita} key={linkFoto}>
                       <img
                         className={style.imagen}
                         src={linkFoto}
                         alt='fotoChiquita'
                       ></img>
                     </div>
-                  </div>
                 ))}
+                  </div>
                 <div className={style.info}>
                   <spam>
                     <div>{juego.info.description}</div>
@@ -72,12 +72,13 @@ const Productos = () => {
                         mensaje={mensaje}
                         producto={juego.info.name}
                       ></WhatsAppButton>
+                      <br></br>
                     </div>
                   </spam>
                 </div>
               </div>
             </div>
-          )) /* ACA IRIA UN MAP DE LOS PRODUCTOS */
+          ))
         }
       </div>
       <Footer></Footer>

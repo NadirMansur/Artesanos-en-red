@@ -1,7 +1,7 @@
 const db = [
   {
     imgs: [
-      "https://scontent.fmdq3-1.fna.fbcdn.net/v/t1.6435-9/118049909_1716197775206036_7873349362069552337_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=YL57KqV6BPIAX-k9Fzl&_nc_ht=scontent.fmdq3-1.fna&oh=00_AfAYsV50q6KeB66e5bSZrpJDzc4ygev8yOKIKZl1UAGqCg&oe=652FD966",
+      "https://i.ibb.co/DGnj2Yd/118049909-1716197775206036-7873349362069552337-n-removebg-preview.png",
       "https://scontent.fmdq3-1.fna.fbcdn.net/v/t1.6435-9/118083688_1716197801872700_6387123095700351776_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=MZmr38P2tOYAX8IpJI1&_nc_ht=scontent.fmdq3-1.fna&oh=00_AfAzz0Jwl_LwnFEl06FbvzI3cQn6USU2pnT3TdF1YIPcxw&oe=65300564",
       {
         imagenesPequeñas: [
@@ -85,20 +85,20 @@ const db = [
         "1. Coloca el rompecabezas en una superficie plana y accesible para el niño.\n2. Invita al niño a observar las diferentes piezas y el animal que representan.\n3. Explícale que el objetivo es encontrar la forma de encajar cada pieza en su lugar correspondiente.\n4. Toma una pieza y muestra al niño cómo encajarla en su lugar, resaltando la forma y el color del animal.\n5. Anima al niño a intentar colocar las piezas por sí mismo, brindándole apoyo y aliento.\n6. Celebra cada logro y fomenta la exploración y el juego libre con el rompecabezas.",
     },
   },
-//   {
-//     imgs: [
-//       "",
-//       "",
-//       {
-//         imagenesPequeñas: [],
-//       },
-//     ],
-//     info: {
-//       name: "",
-//       description: "",
-//       instucciones: "",
-//     },
-//   },
+  //   {
+  //     imgs: [
+  //       "",
+  //       "",
+  //       {
+  //         imagenesPequeñas: [],
+  //       },
+  //     ],
+  //     info: {
+  //       name: "",
+  //       description: "",
+  //       instucciones: "",
+  //     },
+  //   },
 ];
 
 export default db;

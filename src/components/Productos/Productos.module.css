@@ -15,10 +15,13 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  gap: 20px
 }
 .fotos {
   display: flex;
   flex-direction: row;
+  border-radius: 30px;
+  overflow: hidden;
 }
 .imagen {
   height: 250px;
@@ -78,4 +81,8 @@
   font-family:Arial, Helvetica, sans-serif;
   color: rgba(242, 146, 43, 0.984);
   font-size: 40px;
+}
+
+.info{
+  width: 600px
 }
