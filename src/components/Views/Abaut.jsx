@@ -25,7 +25,9 @@ import style from "./About.module.css";
 const Abaut = () => {
   return (
     <div className={style.about}>
-      <HomeNav></HomeNav>
+      <div className={style.nav}>
+        <HomeNav></HomeNav>
+      </div>
       <div>
         <a href='https://postimg.cc/QFqGt3VV' target='_blank'>
           <img
