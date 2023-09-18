@@ -3,10 +3,12 @@
   flex-direction: column;
   justify-content: center;
   gap: 15px;
+  width: 100%;
 }
 .producto {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 .fotos {
   display: flex;
