@@ -5,17 +5,17 @@
   gap: 15px;
   width: 100%;
 }
-.nav{
+.nav {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 .tituloh1 {
   text-decoration: none;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: rgba(242, 146, 43, 0.984);
   font-size: 40px;
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
@@ -23,7 +23,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  gap: 20px
+  gap: 20px;
 }
 .fotos {
   display: flex;
@@ -35,7 +35,7 @@
   height: 250px;
   width: 300px;
 }
-.image{
+.image {
   width: 100%;
 }
 .fotoChiquita img {
@@ -84,13 +84,18 @@
   transition: all 2s;
 }
 
-
-.info{
-  width: 600px
+.info {
+  width: 600px;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
   .producto {
-    width: 480px;
+    width: 23rem;
+  }
+  .foto {
+    display: none;
+  }
+  .info {
+    width: 23rem;
   }
 }
