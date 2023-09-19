@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 150px;  
+  height: 150px;
   width: 400px;
   border-radius: 30px;
   overflow: hidden;
@@ -39,4 +39,11 @@
   z-index: 1;
   /* Incluimos el relleno dentro del ancho del texto */
   visibility: visible;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .contenedor {
+    height: 9rem;
+    width: 23rem;
+  }
 }
