@@ -23,7 +23,7 @@ const Productos = () => {
         <HomeNav></HomeNav>
       </div>
       <div>
-        <a href='https://postimg.cc/QFqGt3VV' target='_blank'>
+        <a>
           <img
             className={style.image}
             src='https://i.postimg.cc/VkxYKs89/banner-2.jpg'
@@ -31,55 +31,55 @@ const Productos = () => {
             alt='banner-2'
           />
         </a>
-        <h1 className={style.tituloh1}>PRODUCTOS:</h1>
-        {
-          db.map((juego) => (
-            <div className={style.producto} key={juego.info.name}>
-              <div className={style.foto}>
-                <img
-                  className={style.imagenFondo}
-                  src={juego.imgs[1]}
-                  alt='img1'
-                ></img>
-                <img
-                  className={style.imagenNoFondo}
-                  src={juego.imgs[0]}
-                  alt='img1SinFodo'
-                ></img>
-              </div>
-              <div className={style.fotoEinfo}>
-                  <div className={style.fotos} >
+        <div className={style.tituloh1}>
+          <h1>PRODUCTOS:</h1>
+        </div>
+        {db.map((juego) => (
+          <div className={style.producto} key={juego.info.name}>
+            <div className={style.foto}>
+              <img
+                className={style.imagenFondo}
+                src={juego.imgs[1]}
+                alt='img1'
+              ></img>
+              <img
+                className={style.imagenNoFondo}
+                src={juego.imgs[0]}
+                alt='img1SinFodo'
+              ></img>
+            </div>
+            <div className={style.fotoEinfo}>
+              <div className={style.fotos}>
                 {juego.imgs[2].imagenesPequeñas.map((linkFoto) => (
-                    <div className={style.fotoChiquita} key={linkFoto}>
-                      <img
-                        className={style.imagen}
-                        src={linkFoto}
-                        alt='fotoChiquita'
-                      ></img>
-                    </div>
-                ))}
+                  <div className={style.fotoChiquita} key={linkFoto}>
+                    <img
+                      className={style.imagen}
+                      src={linkFoto}
+                      alt='fotoChiquita'
+                    ></img>
                   </div>
-                <div className={style.info}>
-                  <spam>
-                    <div>{juego.info.description}</div>
-                    <div>
-                      <div>Instrucciones:</div>
+                ))}
+              </div>
+              <div className={style.info}>
+                <spam>
+                  <div>{juego.info.description}</div>
+                  <div>
+                    <div>Instrucciones:</div>
                     <div>{juego.info.instucciones}</div>
-                    </div>
-                    <div>
-                      <WhatsAppButton
-                        number={number}
-                        mensaje={mensaje}
-                        producto={juego.info.name}
-                      ></WhatsAppButton>
-                      <br></br>
-                    </div>
-                  </spam>
-                </div>
+                  </div>
+                  <div>
+                    <WhatsAppButton
+                      number={number}
+                      mensaje={mensaje}
+                      producto={juego.info.name}
+                    ></WhatsAppButton>
+                    <br></br>
+                  </div>
+                </spam>
               </div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
       <Footer></Footer>
     </div>

@@ -10,6 +10,14 @@
   flex-direction: column;
   width: 100%;
 }
+.tituloh1 {
+  text-decoration: none;
+  font-family:Arial, Helvetica, sans-serif;
+  color: rgba(242, 146, 43, 0.984);
+  font-size: 40px;
+  display:flex;
+  justify-content: center;
+}
 
 .producto {
   display: flex;
@@ -76,12 +84,6 @@
   transition: all 2s;
 }
 
-.tituloh1 {
-  text-decoration: none;
-  font-family:Arial, Helvetica, sans-serif;
-  color: rgba(242, 146, 43, 0.984);
-  font-size: 40px;
-}
 
 .info{
   width: 600px

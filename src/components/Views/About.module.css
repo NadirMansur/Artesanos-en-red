@@ -10,13 +10,9 @@
   width: 100%;
 }
 
-.texto {
-  font-family: Arial, Helvetica, sans-serif;
-  color: rgba(143, 88, 29, 0.984);
-}
 
 .parrafo {
-  width: 50%;
+  width: 80%;
 }
 
 .image {
@@ -26,6 +22,69 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:15px;
+}
+.tablaFila{
+  display: flex;
+  justify-content: center;
+}
+
+.tabla{
+  display: flex;
+  flex-direction: column;
+  border-width: 4px;
+  border-style: solid;
+  border-color: rgba(172, 0, 0, 0.302);
+  border-radius: 30px;
+  width: 1000px;
+  gap: 15px;
+  justify-content: space-evenly;
+  /* background-color: rgb(251, 12, 12); */
+}
+
+.fila0{
+  display: flex;
+  gap : 15px;
+  justify-content: space-evenly;
+  background-color: rgb(221, 12, 12);
+}
+
+.fila1{
+  display: flex;
+  gap : 15px;
+  justify-content: space-evenly;
+}
+
+.historia{
+  border-width: 4px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 30px;
+  width: 470px;
+  background-color: rgba(255, 255, 255, 0.528);
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(143, 88, 29, 0.984);
+}
+
+.fila2{
+  display: flex;
+  gap : 15px;
+  justify-content: space-evenly;
+}
+.fila3{
+  display: flex;
+  gap : 15px;
+  justify-content: space-evenly;
+}
+.titulo{
+  font-weight: bold;
+  color:rgba(188, 111, 28, 0.984);
 }
 @media (min-width: 320px) and (max-width: 480px) {
   .parrafo {
