@@ -103,6 +103,6 @@
     flex-direction: column;
   }
   .tabla{
-    height: 80rem;
+    width: 80rem;
   }
 }
