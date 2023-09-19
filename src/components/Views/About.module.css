@@ -42,7 +42,7 @@
   border-style: solid;
   border-color: rgba(172, 0, 0, 0.302);
   border-radius: 30px;
-  width: 1000px;
+  width: 62rem;
   gap: 15px;
   justify-content: space-evenly;
   /* background-color: rgb(251, 12, 12); */
@@ -102,7 +102,7 @@
     display: flex;
     flex-direction: column;
   }
-  /* .historia{
-    height: 25rem;
-  } */
+  .tabla{
+    height: 100rem;
+  }
 }
