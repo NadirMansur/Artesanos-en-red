@@ -6,7 +6,7 @@ const Footer = () => {
     <div className={style.footer}>
       <div className={style.artesano}>
         <h3 className={style.artesan}>Artesana/o</h3>
-        <div>
+        <div className={style.textos}>
           <h6>Contacto</h6>
         </div>
         <a href='https://wa.link/v8i029'>

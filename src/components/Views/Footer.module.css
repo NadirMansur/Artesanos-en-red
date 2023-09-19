@@ -18,3 +18,9 @@
 .artesan{
     color:#f9a36a
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .textos {
+    font-size:small;
+  }
+}
