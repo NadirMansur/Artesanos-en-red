@@ -23,4 +23,8 @@
   .textos {
     font-size:small;
   }
+  .footer{
+    display: flex;
+    flex-direction: column;
+  }
 }
