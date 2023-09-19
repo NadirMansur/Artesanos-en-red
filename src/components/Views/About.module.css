@@ -4,12 +4,11 @@
   justify-content: center;
   gap: 15px;
   text-decoration: none;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: rgba(242, 146, 43, 0.984);
   font-size: 40px;
   width: 100%;
 }
-
 
 .parrafo {
   width: 80%;
@@ -18,7 +17,7 @@
 .image {
   width: 100%;
 }
-.nav{
+.nav {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -28,14 +27,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap:15px;
+  gap: 15px;
 }
-.tablaFila{
+.tablaFila {
   display: flex;
   justify-content: center;
 }
 
-.tabla{
+.tabla {
   display: flex;
   flex-direction: column;
   border-width: 4px;
@@ -48,20 +47,20 @@
   /* background-color: rgb(251, 12, 12); */
 }
 
-.fila0{
+.fila0 {
   display: flex;
-  gap : 15px;
+  gap: 15px;
   justify-content: space-evenly;
   background-color: rgb(221, 12, 12);
 }
 
-.fila1{
+.fila1 {
   display: flex;
-  gap : 15px;
+  gap: 15px;
   justify-content: space-evenly;
 }
 
-.historia{
+.historia {
   border-width: 4px;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0);
@@ -72,40 +71,38 @@
   color: rgba(143, 88, 29, 0.984);
 }
 
-.fila2{
+.fila2 {
   display: flex;
-  gap : 15px;
+  gap: 15px;
   justify-content: space-evenly;
 }
-.fila3{
+.fila3 {
   display: flex;
-  gap : 15px;
+  gap: 15px;
   justify-content: space-evenly;
 }
-.titulo{
+.titulo {
   font-weight: bold;
-  color:rgba(188, 111, 28, 0.984);
+  color: rgba(188, 111, 28, 0.984);
 }
 @media (min-width: 320px) and (max-width: 480px) {
   .parrafo {
-    width: 100%;
+    width: 90%;
   }
-  .fila1{
+  .fila1 {
     display: flex;
     flex-direction: column;
-    width: 0.8em;
   }
-  .fila2{
+  .fila2 {
     display: flex;
     flex-direction: column;
-    width: 0.7em;
   }
-  .fila3{
+  .fila3 {
     display: flex;
     flex-direction: column;
-    width: 0.7em;
   }
-  .tabla{
-    width: 0.8rem;
+  .historia {
+    width: 25rem;
+    height: auto !important;
   }
 }
