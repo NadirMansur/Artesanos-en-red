@@ -93,16 +93,19 @@
   .fila1{
     display: flex;
     flex-direction: column;
+    width: 0.8em;
   }
   .fila2{
     display: flex;
     flex-direction: column;
+    width: 0.7em;
   }
   .fila3{
     display: flex;
     flex-direction: column;
+    width: 0.7em;
   }
   .tabla{
-    width: 80rem;
+    width: 0.8rem;
   }
 }
