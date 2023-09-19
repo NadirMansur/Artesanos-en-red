@@ -1,5 +1,5 @@
 .button {
-    --color: #e3d3c8;
+    --color: #ce6a42;
     padding: 0.8em 1.7em;
     background-color: transparent;
     border-radius: 0.3em;
@@ -42,7 +42,7 @@
     width: 410px;
   }
   .button:hover {
-    color: #917969;
+    color: #ffffff;
   }
   .button:active {
     filter: brightness(0.8);
