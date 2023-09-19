@@ -88,3 +88,9 @@
 .info{
   width: 600px
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .producto {
+    width: 100%;
+  }
+}
