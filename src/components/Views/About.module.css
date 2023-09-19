@@ -86,20 +86,31 @@
   color: rgba(188, 111, 28, 0.984);
 }
 @media (min-width: 320px) and (max-width: 480px) {
+  .tabla{
+    width: 23rem;
+  }
   .parrafo {
     width: 90%;
+  }
+  .fila0 {
+    display: flex;
+    flex-direction: column;
+    width: 22rem;
   }
   .fila1 {
     display: flex;
     flex-direction: column;
+    width: 22rem;
   }
   .fila2 {
     display: flex;
     flex-direction: column;
+    width: 22rem;
   }
   .fila3 {
     display: flex;
     flex-direction: column;
+    width: 22rem;
   }
   .historia {
     width: 25rem;
