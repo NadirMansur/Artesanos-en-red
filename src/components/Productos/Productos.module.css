@@ -91,6 +91,6 @@
 
 @media (min-width: 320px) and (max-width: 480px) {
   .producto {
-    width: 100%;
+    width: 480px;
   }
 }
