@@ -1,0 +1,26 @@
+.contenedor {
+  display: flex;
+  width: 4.5rem;
+  height: 2rem;
+  padding: 6px 6px 7px 6px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background: hsla(300, 1%, 84%, 0.577);
+  margin-top: 0.7rem; 
+}
+
+.text {
+  font-size: 0.35em;
+  width: 70px;
+  text-align: center;
+  color: #fffefe;
+  font-weight: 700;
+  letter-spacing: 0;
+  font-family: "Inter-Bold", Helvetica;
+  line-height: normal;  
+}
+
+.contenedor:hover .text {
+  color: #c321f0;
+}
