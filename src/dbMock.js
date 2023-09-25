@@ -6,7 +6,7 @@ const db = [
       {
         imagenesPequeñas: [
           "https://scontent.fmdq3-1.fna.fbcdn.net/v/t1.6435-9/118049909_1716197775206036_7873349362069552337_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=YL57KqV6BPIAX-k9Fzl&_nc_ht=scontent.fmdq3-1.fna&oh=00_AfAYsV50q6KeB66e5bSZrpJDzc4ygev8yOKIKZl1UAGqCg&oe=652FD966",
-          "https://scontent.fmdq3-1.fna.fbcdn.net/v/t1.6435-9/117889686_1712482502244230_5559515812932910205_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=LbyEKcvmfSEAX8ft9bX&_nc_ht=scontent.fmdq3-1.fna&oh=00_AfD-V-s7uZ31NXqS_Bx1Q08tOjd8kFhGicvbaXSydgpP9w&oe=652FF475    ",
+          "https://scontent.fmdq3-1.fna.fbcdn.net/v/t1.6435-9/117889686_1712482502244230_5559515812932910205_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=LbyEKcvmfSEAX8ft9bX&_nc_ht=scontent.fmdq3-1.fna&oh=00_AfD-V-s7uZ31NXqS_Bx1Q08tOjd8kFhGicvbaXSydgpP9w&oe=652FF475",
           "https://scontent.fmdq3-1.fna.fbcdn.net/v/t1.6435-9/118083688_1716197801872700_6387123095700351776_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=MZmr38P2tOYAX8IpJI1&_nc_ht=scontent.fmdq3-1.fna&oh=00_AfAzz0Jwl_LwnFEl06FbvzI3cQn6USU2pnT3TdF1YIPcxw&oe=65300564",
           "https://scontent.fmdq3-1.fna.fbcdn.net/v/t1.6435-9/118049909_1716197775206036_7873349362069552337_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=YL57KqV6BPIAX-k9Fzl&_nc_ht=scontent.fmdq3-1.fna&oh=00_AfAYsV50q6KeB66e5bSZrpJDzc4ygev8yOKIKZl1UAGqCg&oe=652FD966",
         ],

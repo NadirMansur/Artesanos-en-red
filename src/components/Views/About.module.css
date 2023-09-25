@@ -41,6 +41,7 @@
   justify-content: space-evenly;
   align-items: space-evenly;
   gap: 15px;
+  
 }
 
 .filaAbout {
@@ -48,6 +49,7 @@
   justify-content: space-evenly;
   align-items: space-evenly;
   gap: 15px;
+  margin-top: 15px;
 }
 
 .contenedor {
@@ -92,6 +94,7 @@
   gap: 15px;
   justify-content: space-evenly;
   align-items: center;
+  margin-bottom: 15px;
 }
 .titulo {
   font-weight: bold;
