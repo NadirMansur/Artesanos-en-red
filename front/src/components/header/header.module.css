@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
+  align-items: center !important;   
+  height: 25rem;
+  overflow: hidden !important;
+}
+
+
+@media screen and (max-width: 767px) {
+  /* Estilos para dispositivos móviles */
+  .container {
+      height: 9rem;
+    }
+}

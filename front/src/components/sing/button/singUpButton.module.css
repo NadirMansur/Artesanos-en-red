@@ -1,0 +1,18 @@
+.button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  outline: none;
+}
+
+@media screen and (max-width: 767px) {
+  /* Estilos para dispositivos móviles */
+  .button {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.7rem;
+  }
+}

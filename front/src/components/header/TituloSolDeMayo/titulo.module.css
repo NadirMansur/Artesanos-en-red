@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.titulo {
+  color: white;
+}
+
+.photo-profile-container {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 5rem;
+  border: 0.1rem solid;
+  border-color: aliceblue;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 767px) {
+  /* Estilos para dispositivos móviles */
+  /* Por ejemplo: */
+
+  .photo-profile-container {
+    height: 5rem;
+    width: 5rem;
+  }
+  /* Otros ajustes necesarios para la adaptabilidad en dispositivos móviles */
+}
