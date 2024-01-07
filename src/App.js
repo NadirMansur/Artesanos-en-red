@@ -10,9 +10,9 @@ import { error } from "jquery";
 import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import Landing from "./components/Views/Landing";
-import Home from "./components/Views/HomeNav";
 import Abaut from "./components/Views/Abaut";
 import Productos from "./components/Views/Productos";
+import ContactPage from "./components/pruebas/ContactPage/ContactPage";
 
 
 function App() {
@@ -21,7 +21,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing></Landing>}></Route>
         <Route path='/productos' element={<Productos></Productos>}></Route>
-        <Route path='/abaut' element={<Abaut></Abaut>}></Route>
+        {/* <Route path='/abaut' element={<Abaut></Abaut>}></Route> */}
+        <Route path='/contactanos' element={<ContactPage></ContactPage>}></Route>
       </Routes>
     </div>
   );

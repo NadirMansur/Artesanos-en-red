@@ -20,7 +20,7 @@ const Landing = () => {
           <div>
             <h3>¡A por ello!</h3>
           </div>
-          <Link to='/abaut'>
+          <Link to='/productos'>
             <button className={style.button}> Entrar!</button>
           </Link>
         </div>

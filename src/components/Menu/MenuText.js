@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./MenuText.module.css";
-import { FaHeart } from 'react-icons/fa';
 
 const MenuText = ({ text }) => {
   return (

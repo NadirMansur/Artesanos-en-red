@@ -7,20 +7,24 @@
   align-items: center;
   border-radius: 30px;
   background: hsla(300, 1%, 84%, 0.577);
-  margin-top: 0.7rem; 
+  margin-top: 0.7rem;
+  background-color: rgba(137, 43, 226, 0.767);
 }
 
 .text {
-  font-size: 0.35em;
+  font-size: 1em;
   width: 70px;
   text-align: center;
   color: #fffefe;
   font-weight: 700;
   letter-spacing: 0;
   font-family: "Inter-Bold", Helvetica;
-  line-height: normal;  
+  line-height: normal;
 }
 
 .contenedor:hover .text {
-  color: #c321f0;
+  color: #f5e8e8;
+}
+.contenedor:hover {
+  background-color: rgba(137, 43, 226, 0.767);
 }

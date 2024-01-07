@@ -39,6 +39,9 @@ const Footer = () => {
           <h6>Discord: Atahualpa_Estudio#0463</h6>
         </div>
       </div>
+      <Link to='/contactanos'>
+        <h6>Escríbenos</h6>
+      </Link>
     </div>
   );
 };

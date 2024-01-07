@@ -1,11 +1,7 @@
 import Footer from "./Footer";
-import HomeNav from "./HomeNav";
 import MenuFotos from "../Menu/Menu";
 import style from "./About.module.css";
-import MenuText from "../Menu/MenuText";
 import TituloTexto from "../tituloTexto/tituloTexto";
-import Boton from "../Menu/Boton/Boton"
-
 const Abaut = () => {
   const titulosTextos = [
     {
