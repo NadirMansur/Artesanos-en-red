@@ -3,6 +3,7 @@ import { Button, Popover } from "keep-react";
 import SingIn from "../singIn/SingIn";  
 import React from "react";
 import button from "./singUpButton.module.css";
+import GoogleButtonComponent from "./GoogleButtonComponent";
 const SignUpButton = ({ onClick, onClickIngresar }) => {
   return (
     <div>
@@ -16,6 +17,7 @@ const SignUpButton = ({ onClick, onClickIngresar }) => {
           <button className={button["button"]} onClick={onClick}>
             crear
           </button>
+          <GoogleButtonComponent/>
         </Popover.Container>
         <Popover.Action>
           <button className={button["button"]} onClick={onClick}>

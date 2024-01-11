@@ -9,7 +9,6 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home />}></Route>
         <Route exact path = "/detail/:id" element={<Art/>}></Route>
-
       </Routes>
     </div>
   );
