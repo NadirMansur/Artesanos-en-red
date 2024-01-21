@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import { composeWithDevTools } from "@redux-devtools/extension";
 import userReducer from "./ducks/userDuck";
+import artReducer from "./ducks/artDuck";
 import * as thunk from "redux-thunk";
 //import * as thunk from "redux-thunk";
 //import thunk from 'redux-thunk/dist/redux-thunk.mjs';
@@ -11,6 +12,7 @@ import * as thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
   user: userReducer,
+  art: artReducer,
 });
 
 const store = configureStore(

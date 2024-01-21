@@ -1,4 +1,4 @@
-import sing from "../singUp/singUp.module.css";
+import sing from "../singUp.module.css";
 
 import React, { useState } from "react";
 

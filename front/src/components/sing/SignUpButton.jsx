@@ -1,6 +1,6 @@
 "use client";
 import { Button, Popover } from "keep-react";
-import SingIn from "../singIn/SingIn";  
+import SingIn from "./singUpArt/singIn/SingIn";  
 import React from "react";
 import button from "./singUpButton.module.css";
 import GoogleButtonComponent from "./button/GoogleButtonComponent";

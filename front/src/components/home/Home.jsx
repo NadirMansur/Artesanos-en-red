@@ -2,7 +2,7 @@ import Header from "../header/Header";
 import TituloSolDeMayo from "../header/TituloSolDeMayo/TituloSolDeMayo";
 import Cards from "../cards/Cards";
 import home from "./home.module.css";
-import SignUpButton from "../sing/button/SignUpButton";
+import SignUpButton from "../sing/SignUpButton";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import UserButton from "../user/userButton";
