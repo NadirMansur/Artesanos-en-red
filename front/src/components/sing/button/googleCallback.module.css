@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.sesion-info {
+  border: 2px solid #3498db;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: rgba(240, 248, 255, 0.235);
+  border-radius: 2rem;
+  width: 40rem;
+}
+
+.usuario-seccion {
+  margin-top: 10px;
+}

@@ -1,16 +1,58 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center !important;
-  align-items: center !important;   
-  height: 25rem;
-  overflow: hidden !important;
+.header-container {
+  height: 30rem;
+  overflow: hidden;
+  position: relative;
 }
 
+.bgimg-1 {
+  
+  /* position: relative; */
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background: url("https://i.ibb.co/LS2fwYP/Artesanos-en-Red-Portada-1.png") top
+    center;
+  min-height: 100vh;
+  content: "";
+  /* position: absolute; */
+  width: 100%;
+  overflow: hidden;
+  /* height: 30rem; */
+  height: 30rem;
+}
+
+.caption {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.caption-none {
+  display: none;
+}
+
+.fixed-caption {
+  z-index: 1;
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.border {
+  font-size: 11vw;
+  font-weight: 700;
+  letter-spacing: 8px;
+  color: #fff;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3),
+    10px 10px 70px rgba(255, 255, 255, 0.5);
+}
 
 @media screen and (max-width: 767px) {
-  /* Estilos para dispositivos móviles */
-  .container {
-      height: 9rem;
-    }
+  .header-container {
+    height: 9rem;
+  }
 }
