@@ -7,8 +7,8 @@ const Menu = (props) => {
     <div className={menu["bar"]}>
       {text.map((text, i) => {
         return (
-          <Link to={link[i]}>
-            <button className={menu["button"]}>{text}</button>
+          <Link to={link[i]} key={`link_${i}`}>
+            <button className={menu["button"]} key={`button_${i}`}>{text}</button>
           </Link>
         );
       })}

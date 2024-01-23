@@ -9,9 +9,9 @@ const Galeria = (props) => {
     <div className={gal["row"]}>
       {galeria.map((columna, i) => {
         return (
-          <div className={gal["column"]}>
+          <div className={gal["column"]} key={`column_${i}`}>
             {columna.map((img, i) => {
-              return <img src={img}></img>;
+              return <img src={img} key={`img${i}`}></img>;
             })}
           </div>
         );
