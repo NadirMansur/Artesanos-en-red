@@ -1,0 +1,17 @@
+img {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  width: 50%;
+}
+
+.column {
+  flex: 25%;
+  padding: 5px;
+}

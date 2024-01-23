@@ -8,7 +8,7 @@ const GoogleButtonComponent = () => {
     window.location.href = "http://localhost:3001/auth/google";
   };
   return (
-    <GoogleButton label='ingresa con Google' onClick={redirectToGoogleLogin} />
+    <GoogleButton label='Cómo Cliente' onClick={redirectToGoogleLogin} />
   );
 };
 

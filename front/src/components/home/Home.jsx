@@ -26,7 +26,6 @@ const Home = () => {
 
   return (
     <div className={home["container"]}>
-      <Header></Header>
       <div className={home["logo-singup"]}>
         <TituloSolDeMayo></TituloSolDeMayo>
         {userInfo ? (
@@ -36,7 +35,7 @@ const Home = () => {
             photo={userInfo.photo}
           />
         ) : (
-          <GoogleButtonComponent />
+          <SignUpButton />
         )}
       </div>
       <Cards></Cards>

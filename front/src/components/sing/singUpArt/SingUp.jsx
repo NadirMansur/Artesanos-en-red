@@ -1,5 +1,18 @@
-import singUp from "./singUp.module.css";
+import sing from "./singUp.module.css";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Header from "../../header/Header";
+import Galeria from "../../galeria/Galeria";
+import Menu from "../../menu/Menu"
+import img1 from "../../../assets/galeriaLogin/1.jpg";
+import img2 from "../../../assets/galeriaLogin/2.jpg";
+import img3 from "../../../assets/galeriaLogin/3.jpg";
+import img4 from "../../../assets/galeriaLogin/4.jpg";
+import img5 from "../../../assets/galeriaLogin/5.jpg";
+import img6 from "../../../assets/galeriaLogin/6.jpg";
+import img7 from "../../../assets/galeriaLogin/7.jpg";
+import img8 from "../../../assets/galeriaLogin/8.jpg";
+import img9 from "../../../assets/galeriaLogin/9.jpg";
 
 const SignInUpComponent = () => {
   const [signUpData, setSignUpData] = useState({
@@ -43,7 +56,6 @@ const SignInUpComponent = () => {
       console.error("Error de red:", error);
     }
     //////////////////////logica de envio de formulario///////////////////////
-
   };
 
   const handleFileChange = (event) => {
@@ -54,50 +66,79 @@ const SignInUpComponent = () => {
   const handleFileUpload = async () => {};
 
   return (
-    <div  className={singUp["container"]}>
-      <h2>Crear Usuario Emprendedor</h2>
-      <form onSubmit={handleSignUpSubmit}>
-        <input
-          type='text'
-          name='signUpName'
-          placeholder='Nombre de Usuario'
-          value={signUpData.signUpName}
-          onChange={handleSignUpChange}
-        />
-        <input
-          type='email'
-          name='signUpEmail'
-          placeholder='Email'
-          value={signUpData.signUpEmail}
-          onChange={handleSignUpChange}
-        />
-        <input
-          type='password'
-          name='signUpPassword'
-          placeholder='Password'
-          value={signUpData.signUpPassword}
-          onChange={handleSignUpChange}
-        />
-        <input
-          type='text'
-          name='tel'
-          placeholder='tel'
-          value={signUpData.tel}
-          onChange={handleSignUpChange}
-        />
-        <input
-          type='text'
-          name='intro'
-          placeholder='Introduccion a tu perfil'
-          value={signUpData.intro}
-          onChange={handleSignUpChange}
-        />
-        <h1>Subir imagen</h1>
-        <input type='file' onChange={handleFileChange} />
-        <button onClick={handleFileUpload}>Subir</button>
-        <button type='submit'>Sign Up</button>
-      </form>
-    </div>
+      <div className={sing["fila"]}>
+          <Galeria
+            galeria={[
+              [img1, img2, img3],
+              [img4, img5, img6],
+              [img7, img8, img9],
+            ]}
+          />
+        <div className={sing["container-buttons"]}>
+          <Menu
+          link={["/","/login"]}
+          text={["Home", "Login"]}
+          />
+          <div className={sing["container"]}>
+            <span className={sing["span"]}>
+              Si no tienes usuario emprendedor puedes crearte una aquí. El
+              usuario debe ser dado de alta para publicar y poder ser mostrado
+              en l pagina principal.
+            </span>
+            <h2 className={sing["h2"]}>Crear Usuario Emprendedor</h2>
+            <form onSubmit={handleSignUpSubmit} className={sing["form"]}>
+              <input
+                className={sing["input"]}
+                type='text'
+                name='signUpName'
+                placeholder='Nombre de Usuario'
+                value={signUpData.signUpName}
+                onChange={handleSignUpChange}
+              />
+              <input
+                className={sing["input"]}
+                type='email'
+                name='signUpEmail'
+                placeholder='Email'
+                value={signUpData.signUpEmail}
+                onChange={handleSignUpChange}
+              />
+              <input
+                className={sing["input"]}
+                type='password'
+                name='signUpPassword'
+                placeholder='Password'
+                value={signUpData.signUpPassword}
+                onChange={handleSignUpChange}
+              />
+              <input
+                className={sing["input"]}
+                type='text'
+                name='tel'
+                placeholder='tel'
+                value={signUpData.tel}
+                onChange={handleSignUpChange}
+              />
+              <input
+                className={sing["input"]}
+                type='text'
+                name='intro'
+                placeholder='Introduccion a tu perfil'
+                value={signUpData.intro}
+                onChange={handleSignUpChange}
+              />
+              <h1>Subir imagen</h1>
+              <input
+                type='file'
+                onChange={handleFileChange}
+                className={sing["input"]}
+              />
+              <button onClick={handleFileUpload}>Subir</button>
+              <button type='submit'>Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
   );
 };
 
