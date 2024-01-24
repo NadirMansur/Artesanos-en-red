@@ -1,0 +1,43 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.upload {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+  }
+
+  .h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  
+  .button {
+    color: #007bff;
+    /* background-color: #fff; */
+    border: 2px solid #007bff;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    align-self: center;
+  }
+  
+  .file {
+    position: absolute;
+    display: none;
+  }
+  
+
+.button:hover {
+  color: #fff;
+  background-color: #007bff;
+}

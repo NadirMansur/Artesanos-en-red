@@ -1,24 +1,7 @@
-.span {
-  color: #333;
-  width: 20rem;
-  align-self: center;
-}
-
 .fila {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
-}
-
-.container {
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
-  /* margin-top: 5rem; */
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 .container-buttons {
@@ -27,57 +10,4 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-}
-
-.h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-.input {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.input[type="file"] {
-  margin-bottom: 20px;
-}
-
-.button {
-  color: #007bff;
-  background-color: #fff;
-  border: 2px solid #007bff;
-  padding: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.button:hover {
-  color: #fff;
-  background-color: #007bff;
-}
-
-/* Ajustes para los formularios de Sign In y Sign Up */
-/* form:nth-child(1) {
-  margin-right: 10px;
-} */
-
-/* Optional: Add more styles for a responsive design */
-@media (max-width: 600px) {
-  .container {
-    width: 90%;
-  }
-  .column {
-    flex: 100%;
-  }
 }
