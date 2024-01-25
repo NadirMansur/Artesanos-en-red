@@ -17,7 +17,7 @@ import img9 from "../../../../assets/galeriaLogin/9.jpg";
 
 const SignInUpComponent = () => {
   const [signInData, setSignInData] = useState({
-    signInEmail: "",
+    singInUsername: "",
     signInPassword: "",
   });
 
@@ -30,13 +30,18 @@ const SignInUpComponent = () => {
     e.preventDefault();
     try {
       //////////////////////logica de envio de formulario///////////////////////
-      const formData = new FormData();
-      formData.append("signUpEmail", signInData.signInEmail);
-      formData.append("signUpPassword", signInData.signInPassword);
+      console.log(signInData.singInUsername);
+      console.log(signInData.signInPassword);
+      console.log("signInData", signInData);
+
       const response = await fetch("http://localhost:3001/art/login", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signInData),
       });
+      console.log("response",response)
       if (response.ok) {
         console.log("Imagen enviada correctamente");
       } else {
@@ -67,11 +72,12 @@ const SignInUpComponent = () => {
           <form onSubmit={handleSignInSubmit} className={sing["form"]}>
             <input
               className={sing["input"]}
-              type='email'
-              name='signInEmail'
-              placeholder='Email'
-              value={signInData.signInEmail}
+              type='text'
+              name='singInUsername'
+              placeholder='Nombre'
+              value={signInData.singInUsername}
               onChange={handleSignInChange}
+              required
             />
             <input
               className={sing["input"]}
@@ -80,6 +86,7 @@ const SignInUpComponent = () => {
               placeholder='Password'
               value={signInData.signInPassword}
               onChange={handleSignInChange}
+              required
             />
             <button className={sing["button"]} type='submit'>
               Sign In
