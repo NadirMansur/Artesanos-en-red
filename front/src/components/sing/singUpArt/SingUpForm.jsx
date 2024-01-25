@@ -1,8 +1,11 @@
 import UpImg from "../../upImg/UpImg";
 import React, { useState } from "react";
 import sing from "./singUpForm.module.css";
+import { useNavigate } from "react-router-dom";
 
 const SingInUp = () => {
+  const navigate = useNavigate();
+
   const [signUpData, setSignUpData] = useState({
     signUpName: "",
     signUpEmail: "",
@@ -11,8 +14,11 @@ const SingInUp = () => {
     intro: "",
   });
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
+  const [statusRespose, setStatusRespose] = useState(null);
 
   const [errors, setErrors] = useState({
     signUpEmail: "",
@@ -62,6 +68,7 @@ const SingInUp = () => {
       return;
     }
     try {
+      setFormSubmitted(true);
       //////////////////////logica de envio de formulario///////////////////////
       const formData = new FormData();
       formData.append("signUpName", signUpData.signUpName);
@@ -78,9 +85,19 @@ const SingInUp = () => {
         method: "POST",
         body: formData,
       });
-
+      //console.log("response", response);
+      //console.log("responseheaders", response.headers);
+      //console.log("responseheaders.Headers", response.headers.Headers);
       if (response.ok) {
         //falta el redireccionamiento si la respuesta fue correcta
+        const { status, message, newArt } = await response.json();
+        //si la creacion del usuaruio tiene status true
+        console.log(status);
+        setStatusRespose(status);
+        console.log(newArt);
+        navigate("/login", { state: { newArt: newArt } });
+
+        console.log(message);
         console.log("Imagen enviada correctamente");
       }
     } catch (error) {
@@ -190,8 +207,8 @@ const SingInUp = () => {
         {errors.img != "" ? (
           <span className={sing["span-alert"]}>La imagen es requerida</span>
         ) : null}
-        <button className={sing["button"]} type='submit'>
-          Sign Up
+         <button className={sing["button"]} type='submit' disabled={formSubmitted}>
+          {formSubmitted ? "Enviando..." : "Sign Up"}
         </button>
       </form>
     </div>

@@ -4,6 +4,8 @@ import Galeria from "../../galeria/Galeria";
 import SingUpForm from "./SingUpForm";
 import Menu from "../../menu/Menu";
 
+import { useLocation } from 'react-router-dom';
+
 import img1 from "../../../assets/galeriaLogin/1.jpg";
 import img2 from "../../../assets/galeriaLogin/2.jpg";
 import img3 from "../../../assets/galeriaLogin/3.jpg";
@@ -14,7 +16,9 @@ import img7 from "../../../assets/galeriaLogin/7.jpg";
 import img8 from "../../../assets/galeriaLogin/8.jpg";
 import img9 from "../../../assets/galeriaLogin/9.jpg";
 
-const SignInUpComponent = () => {
+const Sign = () => {
+ // const location = useLocation();
+
   return (
     <div className={sing["fila"]}>
       <Galeria
@@ -32,4 +36,4 @@ const SignInUpComponent = () => {
   );
 };
 
-export default SignInUpComponent;
+export default Sign;

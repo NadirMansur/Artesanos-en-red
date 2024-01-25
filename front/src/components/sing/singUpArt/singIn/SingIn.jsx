@@ -1,9 +1,10 @@
 import sing from "../singUpForm.module.css";
 import React, { useState } from "react";
-import Header from "../../../header/Header";
-import SingUp from "../SingUp";
+import { useLocation } from "react-router-dom";
+
 import Menu from "../../../menu/Menu";
 import Galeria from "../../../galeria/Galeria";
+import SuccessLogin from "../success/SuccessLogin"
 import { Link } from "react-router-dom";
 import img1 from "../../../../assets/galeriaLogin/1.jpg";
 import img2 from "../../../../assets/galeriaLogin/2.jpg";
@@ -16,6 +17,8 @@ import img8 from "../../../../assets/galeriaLogin/8.jpg";
 import img9 from "../../../../assets/galeriaLogin/9.jpg";
 
 const SignInUpComponent = () => {
+  const location = useLocation();
+  console.log("location.state", location.state);
   const [signInData, setSignInData] = useState({
     singInUsername: "",
     signInPassword: "",
@@ -41,7 +44,7 @@ const SignInUpComponent = () => {
         },
         body: JSON.stringify(signInData),
       });
-      console.log("response",response)
+      console.log("response", response);
       if (response.ok) {
         console.log("Imagen enviada correctamente");
       } else {
@@ -67,6 +70,7 @@ const SignInUpComponent = () => {
           link={["/", "/singup"]}
           text={["Home", "Crear usuario Emprendedor"]}
         />
+        {location.state ? <SuccessLogin state={location.state.newArt} /> : null}
         <div className={sing["container"]}>
           <h2 className={sing["h2"]}>Ingresar como Emprendedor</h2>
           <form onSubmit={handleSignInSubmit} className={sing["form"]}>
