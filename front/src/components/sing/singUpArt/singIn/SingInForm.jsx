@@ -11,6 +11,8 @@ const SingInForm = () => {
     message: "",
   });
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const handleSignInChange = (e) => {
     const { name, value } = e.target;
     setSignInData({ ...signInData, [name]: value });
@@ -20,10 +22,10 @@ const SingInForm = () => {
     e.preventDefault();
     try {
       //////////////////////logica de envio de formulario///////////////////////
-      console.log(signInData.singInUsername);
-      console.log(signInData.signInPassword);
-      console.log("signInData", signInData);
-
+      //   console.log(signInData.singInUsername);
+      //   console.log(signInData.signInPassword);
+      //   console.log("signInData", signInData);
+      setFormSubmitted(true);
       const response = await fetch("http://localhost:3001/art/login", {
         method: "POST",
         headers: {
@@ -39,6 +41,11 @@ const SingInForm = () => {
           status: status,
           message: message,
         });
+
+        if(status){
+            //renderizar bienvenida
+        }
+
       } else {
         console.error("Error al iniciar secion");
       }
@@ -72,8 +79,12 @@ const SingInForm = () => {
         {!response.status ? (
           <span className={sing["span-alert"]}>{response.message}</span>
         ) : null}
-        <button className={sing["button"]} type='submit'>
-          Sign In
+        <button
+          className={sing["button"]}
+          type='submit'
+          disabled={formSubmitted}
+        >
+          {formSubmitted ? "Enviando..." : "Sign In"}
         </button>
       </form>
     </div>
