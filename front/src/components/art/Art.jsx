@@ -33,7 +33,7 @@ const Art = () => {
       </div>
       <div className={art["info"]}>
         <div className={art["photo-profile-container"]}>
-          <img src={perfil} className={art["photo-profile"]}></img>
+          <img src={perfil}></img>
         </div>
         <div>
           <Card.Container className='mb-3 mt-10 text-center'>

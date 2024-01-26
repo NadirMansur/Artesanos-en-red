@@ -1,0 +1,30 @@
+.photo-profile-container {
+  display: flex;
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  border: 0.1rem solid;
+  border-color: aliceblue;
+  overflow: hidden;
+}
+.photo-profile {
+  margin-top: 0px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-container-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.name {
+  display: inline-block;
+  color: #1a1a1d;
+}
+
+.rubro {
+  font-size: small;
+  color: #666e76;
+}

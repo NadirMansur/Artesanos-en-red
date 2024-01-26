@@ -6,6 +6,7 @@ import Art from "./components/art/Art";
 import GoogleCallback from "./components/sing/button/GoogleCallback";
 import User from "./components/user/user";
 import Sing from "./components/sing/singUpArt/Sing";
+import HomeArt from "./components/art/homeArt/HomeArt";
 import Header from "./components/header/Header";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/auth/google/callback' element={<GoogleCallback />} />
         <Route path='/user/:id' element={<User />} />
         <Route path='/login' element={<Sing />} />
+        <Route path='/homeart' element={<HomeArt />} />
       </Routes>
     </div>
   );

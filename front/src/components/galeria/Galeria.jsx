@@ -1,4 +1,3 @@
-import sing from "../sing/singUpArt/singUp.module.css";
 import gal from "./galeria.module.css";
 
 const Galeria = (props) => {

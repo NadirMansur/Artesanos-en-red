@@ -1,7 +1,10 @@
 import sing from "../singUpForm.module.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SingInForm = () => {
+  const navigate = useNavigate();
+
   const [signInData, setSignInData] = useState({
     singInUsername: "",
     signInPassword: "",
@@ -35,17 +38,17 @@ const SingInForm = () => {
       });
       console.log("response", response);
       if (response.ok) {
-        const { status, message } = await response.json();
-        console.log("status", status, "message", message);
+        const { status, message, art } = await response.json();
+        console.log("status", status, "message", message, "art", art);
         setResponse({
           status: status,
           message: message,
+          art: art,
         });
 
-        if(status){
-            //renderizar bienvenida
+        if (status) {
+          navigate("/homeart", { state: { art: art } });
         }
-
       } else {
         console.error("Error al iniciar secion");
       }

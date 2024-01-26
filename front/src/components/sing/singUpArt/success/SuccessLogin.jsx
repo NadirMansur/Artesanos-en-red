@@ -32,19 +32,3 @@ const SuccessLogin = (props) => {
 };
 
 export default SuccessLogin;
-
-const newArt = {
-  status: false,
-  id: 21,
-  username: "prueba9",
-  tel: "2235162544",
-  email: "nadirmansur89@gmail.com",
-  password: "$2b$10$VTPAjoeXlIVRz/WjkZjx0.zjHtHFTovUG38XYy.lb4/g/fhZedUDy",
-  img_perfil:
-    "https://res.cloudinary.com/df1h3xxj9/image/upload/v1706199456/ysoksvad7aye5jdpfa9q.jpg",
-  intro:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at risus neque. Suspendisse potenti. Suspendisse nec justo eu massa convallis sodales. Vestibulum ultrices, ex at tincidunt tincidunt, mauris justo commodo libero, non ullamcorper elit tortor non turpis. In hac habitasse platea dictumst.",
-  updatedAt: "2024-01-25T16:17:38.413Z",
-  createdAt: "2024-01-25T16:17:38.413Z",
-  deletedAt: null,
-};
