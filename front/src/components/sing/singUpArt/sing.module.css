@@ -1,0 +1,36 @@
+.fila {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.container-menu-comp {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.sing-in {
+  color: #fff;
+  background-color: #007bff;
+}
+.sing-in:hover {
+  color: #007bff;
+  border-color: #007bff;
+  background-color: #fff;
+}

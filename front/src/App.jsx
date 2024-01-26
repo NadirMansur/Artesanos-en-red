@@ -5,8 +5,7 @@ import Home from "./components/home/Home";
 import Art from "./components/art/Art";
 import GoogleCallback from "./components/sing/button/GoogleCallback";
 import User from "./components/user/user";
-import SingIn from "./components/sing/singUpArt/singIn/SingIn";
-import SingUp from "./components/sing/singUpArt/SingUp";
+import Sing from "./components/sing/singUpArt/Sing";
 import Header from "./components/header/Header";
 
 function App() {
@@ -22,8 +21,7 @@ function App() {
         <Route path='/auth/google' />
         <Route path='/auth/google/callback' element={<GoogleCallback />} />
         <Route path='/user/:id' element={<User />} />
-        <Route path='/login' element={<SingIn />} />
-        <Route path='/singup' element={<SingUp />} />
+        <Route path='/login' element={<Sing />} />
       </Routes>
     </div>
   );
