@@ -5,6 +5,7 @@ import CreateRubro from "../../createRubro/CreateRubro";
 import SelectRubro from "../../select/Select";
 import UpImg from "../../upImg/UpImg";
 import CargaProdForm from "../../cargaProdForm/CargaProdForm";
+import Menu from "../../menu/Menu";
 
 const HomeArt = (props) => {
   const location = useLocation();
@@ -65,6 +66,7 @@ const HomeArt = (props) => {
     <div>
       {art ? (
         <div>
+           <Menu link={["/"]} text={["Home"]} />
           <div className={emp["profile-card"]}>
             <div className={emp["basic-card"]}>
               <div className={emp["photo-profile-container"]}>

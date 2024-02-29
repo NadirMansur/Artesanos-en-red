@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "./selectRubro.module.css";
 
 const SelectRubro = (props) => {
-  const { art } = props;
+  // const { art } = props;
   const [rubros, setRubros] = useState([]);
   const endpoint = import.meta.env.VITE_GET_RUBROS_ENDPOINT;
   useEffect(() => {

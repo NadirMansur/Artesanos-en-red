@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import sing from "./singUpForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect } from "react";
+import SelectRubro from "../../select/Select";
 
 const SingInUp = () => {
-
   const endpoint = import.meta.env.VITE_CREATE_ART;
 
   const navigate = useNavigate();
@@ -169,6 +169,7 @@ const SingInUp = () => {
               onChange={handleSignUpChange}
               required
             />
+            <SelectRubro type='text' name='rubro'></SelectRubro>
             <input
               className={sing["input"]}
               type='email'
