@@ -2,8 +2,12 @@ import UpImg from "../../upImg/UpImg";
 import React, { useState } from "react";
 import sing from "./singUpForm.module.css";
 import { useNavigate } from "react-router-dom";
+import { useRef, useEffect } from "react";
 
 const SingInUp = () => {
+
+  const endpoint = import.meta.env.VITE_CREATE_ART;
+
   const navigate = useNavigate();
 
   const [signUpData, setSignUpData] = useState({
@@ -14,8 +18,8 @@ const SingInUp = () => {
     intro: "",
   });
 
+  const [statusResponse, setStatusResponse] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-
   const [selectedFile, setSelectedFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
   const [statusRespose, setStatusRespose] = useState(null);
@@ -28,6 +32,13 @@ const SingInUp = () => {
   });
 
   //console.log(errors);
+
+  const isMountedRef = useRef(null);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => (isMountedRef.current = false);
+  }, []);
 
   const handleSignUpChange = (e) => {
     const { name, value } = e.target;
@@ -81,27 +92,31 @@ const SingInUp = () => {
       //console.log(signUpData);
       //console.log(selectedFile);
 
-      const response = await fetch("http://localhost:3001/art", {
+      const response = await fetch(endpoint, {
         method: "POST",
         body: formData,
       });
       //console.log("response", response);
       //console.log("responseheaders", response.headers);
       //console.log("responseheaders.Headers", response.headers.Headers);
-      if (response.ok) {
-        //falta el redireccionamiento si la respuesta fue correcta
-        const { status, message, newArt } = await response.json();
-        //si la creacion del usuaruio tiene status true
-        console.log(status);
-        setStatusRespose(status);
-        console.log(newArt);
-        navigate("/login", { state: { newArt: newArt } });
+      if (isMountedRef.current) {
+        if (response.ok) {
+          //falta el redireccionamiento si la respuesta fue correcta
+          const { status, message, newArt } = await response.json();
+          //si la creacion del usuaruio tiene status true
+          console.log(status);
+          console.log(newArt);
+          setStatusResponse(true);
+          navigate("/login", { state: { newArt: newArt } });
 
-        console.log(message);
-        console.log("Imagen enviada correctamente");
+          console.log(message);
+          console.log("Imagen enviada correctamente");
+        }
       }
     } catch (error) {
-      console.error("Error de red:", error);
+      if (isMountedRef.current) {
+        console.error("Error de red:", error);
+      }
     }
     //////////////////////logica de envio de formulario///////////////////////
   };
@@ -135,83 +150,95 @@ const SingInUp = () => {
   };
 
   return (
-    <div className={sing["container"]}>
-      <span className={sing["span"]}>
-        Si no tienes usuario emprendedor puedes crearte una aquí. El usuario
-        debe ser dado de alta para publicar y poder ser mostrado en la pagina
-        principal.
-      </span>
-      <h2 className={sing["h2"]}>Crear Usuario Emprendedor</h2>
-      <form onSubmit={handleSignUpSubmit} className={sing["form"]}>
-        <input
-          className={sing["input"]}
-          type='text'
-          name='signUpName'
-          placeholder='Nombre de Usuario'
-          value={signUpData.signUpName}
-          onChange={handleSignUpChange}
-          required
-        />
-        <input
-          className={sing["input"]}
-          type='email'
-          name='signUpEmail'
-          placeholder='Email'
-          defaultValue={signUpData.signUpEmail}
-          onChange={handleSignUpChange}
-          required
-        />
-        {errors.signUpEmail != "" ? (
-          <span className={sing["span-alert"]}>
-            "ejemplo@ej.com" , "tu@ejemplo.com"
+    <>
+      {!statusResponse ? (
+        <div className={sing["container"]}>
+          <span className={sing["span"]}>
+            Si no tienes usuario emprendedor puedes crearte una aquí. El usuario
+            debe ser dado de alta para publicar y poder ser mostrado en la
+            pagina principal.
           </span>
-        ) : null}
-        <input
-          className={sing["input"]}
-          type='password'
-          name='signUpPassword'
-          placeholder='Password'
-          value={signUpData.signUpPassword}
-          onChange={handleSignUpChange}
-          required
-        />
-        <input
-          className={sing["input"]}
-          type='text'
-          name='tel'
-          placeholder='tel'
-          defaultValue={signUpData.tel}
-          onChange={handleSignUpChange}
-          required
-        />
-        {errors.tel != "" ? (
-          <span className={sing["span-alert"]}>
-            "El numero de telefono debe comenzar con 223, ej: 2235"
-          </span>
-        ) : null}
-        <input
-          className={sing["input"]}
-          type='text'
-          name='intro'
-          placeholder='Introduccion a tu perfil'
-          defaultValue={signUpData.intro}
-          onChange={handleSignUpChange}
-          required
-        />
-        {errors.intro != "" ? (
-          <span className={sing["span-alert"]}>
-            "La introduccion a tu perfil no puede estar vacia"
-          </span>
-        ) : null}
-        <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
-        {errors.img != "" ? (
-          <span className={sing["span-alert"]}>La imagen es requerida</span>
-        ) : null}
-         <button className={sing["button"]} type='submit' disabled={formSubmitted}>
-          {formSubmitted ? "Enviando..." : "Sign Up"}
-        </button>
-      </form>
-    </div>
+          <h2 className={sing["h2"]}>Crear Usuario Emprendedor</h2>
+          <form onSubmit={handleSignUpSubmit} className={sing["form"]}>
+            <input
+              className={sing["input"]}
+              type='text'
+              name='signUpName'
+              placeholder='Nombre de Usuario'
+              value={signUpData.signUpName}
+              onChange={handleSignUpChange}
+              required
+            />
+            <input
+              className={sing["input"]}
+              type='email'
+              name='signUpEmail'
+              placeholder='Email'
+              defaultValue={signUpData.signUpEmail}
+              onChange={handleSignUpChange}
+              required
+            />
+            {errors.signUpEmail != "" ? (
+              <span className={sing["span-alert"]}>
+                "ejemplo@ej.com" , "tu@ejemplo.com"
+              </span>
+            ) : null}
+            <input
+              className={sing["input"]}
+              type='password'
+              name='signUpPassword'
+              placeholder='Password'
+              value={signUpData.signUpPassword}
+              onChange={handleSignUpChange}
+              required
+            />
+            <input
+              className={sing["input"]}
+              type='text'
+              name='tel'
+              placeholder='tel'
+              defaultValue={signUpData.tel}
+              onChange={handleSignUpChange}
+              required
+            />
+            {errors.tel != "" ? (
+              <span className={sing["span-alert"]}>
+                "El numero de telefono debe comenzar con 223, ej: 2235"
+              </span>
+            ) : null}
+            <input
+              className={sing["input"]}
+              type='text'
+              name='intro'
+              placeholder='Introduccion a tu perfil'
+              defaultValue={signUpData.intro}
+              onChange={handleSignUpChange}
+              required
+            />
+            {errors.intro != "" ? (
+              <span className={sing["span-alert"]}>
+                "La introduccion a tu perfil no puede estar vacia"
+              </span>
+            ) : null}
+            <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
+            {errors.img != "" ? (
+              <span className={sing["span-alert"]}>La imagen es requerida</span>
+            ) : null}
+            <button
+              className={sing["button"]}
+              type='submit'
+              disabled={formSubmitted}
+            >
+              {!statusResponse
+                ? formSubmitted
+                  ? "Enviando..."
+                  : "Sign Up"
+                : "Usuario creado!"}
+            </button>
+          </form>
+        </div>
+      ) : null}
+    </>
   );
 };
 export default SingInUp;

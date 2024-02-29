@@ -1,0 +1,95 @@
+.container {
+  background-color: aliceblue;
+  border-radius: 2rem;
+  width: 20rem;
+  height: 28rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-image {
+  width: 20rem;
+  height: 12rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  overflow: hidden;
+  margin-top: 0px;
+  display: flex;
+}
+
+.prod-image {
+  margin-top: 0px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.title {
+  color: rgb(15, 12, 12);
+  font-size: larger;
+  font-weight: 700;
+}
+
+.description-container {
+  color: rgb(46, 39, 39);
+  width: 18rem;
+  text-align: center;
+}
+
+.ws-container {
+  width: 16rem;
+  padding: 0.3rem;
+}
+
+.tag {
+  color: rgb(124, 120, 146);
+}
+
+.tag-container {
+  background-color: rgb(200, 207, 233);
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+  font-size: smaller;
+  font-weight: 700;
+}
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 10rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  /* background-color: rgb(64, 0, 255); */
+}
+
+.nombre-rubro-container {
+  color: rgb(15, 12, 12);
+  display: flex;
+  flex-direction: column;
+  /* background-color: aqua; */
+  justify-content: center;
+  align-items: center;
+}
+.nombre {
+  font-size: medium;
+  font-weight: 700;
+}
+
+.tags-name-container {
+  display: flex;
+  width: 18rem;
+  justify-content: space-between;
+  /* background-color: brown; */
+  padding: 0.3rem;
+  margin-top: 0.1rem;
+}
+
+.title-description-container {
+  width: 18rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem;
+  /* background-color: blue; */
+}

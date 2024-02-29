@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 import art from "./art.module.css";
 import perfil from "../../assets/Club_Sol_de_mayo.png";
 import CartaProd from "../card/cartaProducto/CartaProd.jsx";
+import ProdCard from "../card/prodCard/ProdCard.jsx";
 const Art = () => {
+  "";
   const { id } = useParams();
 
   // useEffect(() => {
@@ -47,13 +49,13 @@ const Art = () => {
         </div>
       </div>
       <div className={art["prod"]}>
-        <CartaProd />
-        <CartaProd />
-        <CartaProd />
-        <CartaProd />
-        <CartaProd />
-        <CartaProd />
-        <CartaProd />
+        <ProdCard />
+        <ProdCard />
+        <ProdCard />
+        <ProdCard />
+        <ProdCard />
+        <ProdCard />
+        <ProdCard />
       </div>
       <Link to={`/`} /*className={styles.volver}*/>
         <div>VOLVER ATRAS</div>
