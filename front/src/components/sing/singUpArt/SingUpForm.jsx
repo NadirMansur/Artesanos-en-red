@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import SelectRubro from "../../select/Select";
 import { useDispatch, useSelector, connect } from "react-redux";
-import { setFormErrorsArtesano, cleanFormErrorsArtesano} from "../../../store/ducks/errorsDuck";
+import {
+  setFormErrorsArtesano,
+  cleanFormErrorsArtesano,
+} from "../../../store/ducks/errorsDuck";
+import { validate } from "../../../utils/validations";
 
 const SingInUp = () => {
   const dispatch = useDispatch();
@@ -39,42 +43,8 @@ const SingInUp = () => {
   }, []);
 
   const handleSignUpChange = (e) => {
-    //console.log("handleSignUpChange");
-    const { name, value } = e.target;
-    let isValid = true;
-    let error = "";
-    // console.log(name, value);
-    if (name === "signUpEmail") {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      isValid = emailRegex.test(value);
-      error = isValid ? "" : "ejemplo@ej.com tu@ejemplo.com";
-    } else if (name === "tel") {
-      const phoneRegex = /^223\d{7}$/;
-      isValid = phoneRegex.test(value);
-      error = isValid
-        ? ""
-        : "El numero de telefono debe comenzar con 223, ej: 2235";
-    } else if (name === "intro") {
-      const maxLength = 570;
-      isValid = value.trim() !== "" && value.length <= maxLength;
-      error = isValid
-        ? ""
-        : `La introducción no debe estar vacía y no debe superar los ${maxLength} caracteres.`;
-    } else if (name === "signUpPasswordRepeat") {
-      if (signUpData.signUpPassword !== value) {
-        isValid = false;
-        error = isValid ? "" : "Las contraseñas deben ser iguales";
-      }
-    }
-
     setSignUpData({ ...signUpData, [name]: value });
-
-    dispatch(
-      setFormErrorsArtesano({
-        ...errors,
-        [name]: error,
-      })
-    );
+    validate(e, signUpData.signUpPassword, dispatch, errors);
   };
 
   const handleSignUpSubmit = async (e) => {

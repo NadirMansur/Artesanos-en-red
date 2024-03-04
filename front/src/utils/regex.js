@@ -8,10 +8,12 @@ export const tel = {
   message: "El numero de telefono debe comenzar con 223, ej: 2235",
 };
 
+const introMaxLength = 570;
+
 export const intro = {
-  maxLength: 570,
-  validate: (value) => value.trim() !== "" && value.length <= intro.maxLength,
-  message: `La introducción no debe estar vacía y no debe superar los ${intro.maxLength} caracteres.`,
+  maxLength: introMaxLength,
+  validate: (value) => value.trim() !== "" && value.length <= introMaxLength,
+  message: `La introducción no debe estar vacía y no debe superar los ${introMaxLength} caracteres.`,
 };
 
 export const signUpPasswordRepeat = {
