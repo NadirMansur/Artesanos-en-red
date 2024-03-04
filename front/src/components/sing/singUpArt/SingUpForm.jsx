@@ -43,6 +43,7 @@ const SingInUp = () => {
   }, []);
 
   const handleSignUpChange = (e) => {
+    const { name, value } = e.target;
     setSignUpData({ ...signUpData, [name]: value });
     validate(e, signUpData.signUpPassword, dispatch, errors);
   };
@@ -51,6 +52,15 @@ const SingInUp = () => {
     e.preventDefault();
     const hasErrors = Object.values(errors).some((error) => error !== "");
     if (hasErrors) return;
+    if(!selectedFile){
+      dispatch(
+        setFormErrorsArtesano({
+          ...errors,
+          img: "Debes subir una imagen para continuar",
+        })
+      );
+      return
+    }
     try {
       setFormSubmitted(true);
       //////////////////////logica de envio de formulario///////////////////////

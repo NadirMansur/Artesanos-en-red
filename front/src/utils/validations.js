@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { setFormErrorsArtesano } from "../store/ducks/errorsDuck";
 import { email, tel, intro, signUpPasswordRepeat } from "./regex";
 
@@ -19,7 +18,7 @@ export const validate = (e, signUpPassword, dispatch, formErrorsArt) => {
       error = isValid ? "" : intro.message;
     } else if (name === "signUpPasswordRepeat") {
       isValid = signUpPasswordRepeat.validate(value, signUpPassword);
-      error = isValid ? "" : signUpPasswordRepeat.message;
+      error = !isValid ? "" : signUpPasswordRepeat.message;
     }
     dispatch(
       setFormErrorsArtesano({
