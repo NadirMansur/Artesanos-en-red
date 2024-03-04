@@ -4,8 +4,12 @@ import sing from "./singUpForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import SelectRubro from "../../select/Select";
+import { useDispatch, useSelector, connect } from "react-redux";
+import { setFormErrorsArtesano, cleanFormErrorsArtesano} from "../../../store/ducks/errorsDuck";
 
 const SingInUp = () => {
+  const dispatch = useDispatch();
+
   const endpoint = import.meta.env.VITE_CREATE_ART;
 
   const navigate = useNavigate();
@@ -14,6 +18,7 @@ const SingInUp = () => {
     signUpName: "",
     signUpEmail: "",
     signUpPassword: "",
+    signUpPasswordRepeat: "",
     tel: "",
     intro: "",
   });
@@ -22,62 +27,60 @@ const SingInUp = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
-  const [statusRespose, setStatusRespose] = useState(null);
 
-  const [errors, setErrors] = useState({
-    signUpEmail: "",
-    tel: "",
-    intro: "",
-    img: "Debes subir una imagen para continuar",
-  });
-
-  //console.log(errors);
-
+  const errors = useSelector((state) => state.rootReducer.errors.formErrorsArt);
   const isMountedRef = useRef(null);
 
   useEffect(() => {
     isMountedRef.current = true;
-    return () => (isMountedRef.current = false);
+    return () => (
+      dispatch(cleanFormErrorsArtesano({})), (isMountedRef.current = false)
+    );
   }, []);
 
   const handleSignUpChange = (e) => {
+    //console.log("handleSignUpChange");
     const { name, value } = e.target;
     let isValid = true;
     let error = "";
-    //console.log(name, value);
+    // console.log(name, value);
     if (name === "signUpEmail") {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       isValid = emailRegex.test(value);
-      error = isValid ? "" : "Eso no parece un email, coloca un email";
+      error = isValid ? "" : "ejemplo@ej.com tu@ejemplo.com";
     } else if (name === "tel") {
       const phoneRegex = /^223\d{7}$/;
       isValid = phoneRegex.test(value);
-      error = isValid ? "" : "El telefono debe comenzar con 223";
+      error = isValid
+        ? ""
+        : "El numero de telefono debe comenzar con 223, ej: 2235";
     } else if (name === "intro") {
       const maxLength = 570;
       isValid = value.trim() !== "" && value.length <= maxLength;
       error = isValid
         ? ""
         : `La introducción no debe estar vacía y no debe superar los ${maxLength} caracteres.`;
+    } else if (name === "signUpPasswordRepeat") {
+      if (signUpData.signUpPassword !== value) {
+        isValid = false;
+        error = isValid ? "" : "Las contraseñas deben ser iguales";
+      }
     }
 
-    setErrors({
-      ...errors,
-      [name]: error,
-    });
+    setSignUpData({ ...signUpData, [name]: value });
 
-    if (isValid) {
-      setSignUpData({ ...signUpData, [name]: value });
-    }
+    dispatch(
+      setFormErrorsArtesano({
+        ...errors,
+        [name]: error,
+      })
+    );
   };
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     const hasErrors = Object.values(errors).some((error) => error !== "");
-    if (hasErrors) {
-      console.log("Form has errors. Please fix them before submitting.");
-      return;
-    }
+    if (hasErrors) return;
     try {
       setFormSubmitted(true);
       //////////////////////logica de envio de formulario///////////////////////
@@ -125,17 +128,21 @@ const SingInUp = () => {
     const file = event.target.files[0];
     //console.log(file);
     if (!file) {
-      setErrors({
-        ...errors,
-        img: "Debes subir una imagen para continuar",
-      });
+      dispatch(
+        setFormErrorsArtesano({
+          ...errors,
+          img: "Debes subir una imagen para continuar",
+        })
+      );
     } else {
       setSelectedFile(file);
       generateThumbnail(file);
-      setErrors({
-        ...errors,
-        img: "",
-      });
+      dispatch(
+        setFormErrorsArtesano({
+          ...errors,
+          img: "",
+        })
+      );
     }
   };
 
@@ -180,9 +187,7 @@ const SingInUp = () => {
               required
             />
             {errors.signUpEmail != "" ? (
-              <span className={sing["span-alert"]}>
-                "ejemplo@ej.com" , "tu@ejemplo.com"
-              </span>
+              <span className={sing["span-alert"]}>{errors.signUpEmail}</span>
             ) : null}
             <input
               className={sing["input"]}
@@ -195,6 +200,20 @@ const SingInUp = () => {
             />
             <input
               className={sing["input"]}
+              type='password'
+              name='signUpPasswordRepeat'
+              placeholder='Repeti la Password'
+              value={signUpData.signUpPasswordRepeat}
+              onChange={handleSignUpChange}
+              required
+            />
+            {errors.signUpPasswordRepeat != "" ? (
+              <span className={sing["span-alert"]}>
+                {errors.signUpPasswordRepeat}
+              </span>
+            ) : null}
+            <input
+              className={sing["input"]}
               type='text'
               name='tel'
               placeholder='tel'
@@ -203,9 +222,7 @@ const SingInUp = () => {
               required
             />
             {errors.tel != "" ? (
-              <span className={sing["span-alert"]}>
-                "El numero de telefono debe comenzar con 223, ej: 2235"
-              </span>
+              <span className={sing["span-alert"]}>{errors.tel}</span>
             ) : null}
             <input
               className={sing["input"]}
@@ -217,13 +234,11 @@ const SingInUp = () => {
               required
             />
             {errors.intro != "" ? (
-              <span className={sing["span-alert"]}>
-                "La introduccion a tu perfil no puede estar vacia"
-              </span>
+              <span className={sing["span-alert"]}>{errors.intro}</span>
             ) : null}
             <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
             {errors.img != "" ? (
-              <span className={sing["span-alert"]}>La imagen es requerida</span>
+              <span className={sing["span-alert"]}>{errors.img}</span>
             ) : null}
             <button
               className={sing["button"]}
@@ -242,4 +257,4 @@ const SingInUp = () => {
     </>
   );
 };
-export default SingInUp;
+export default connect(null, { setFormErrorsArtesano })(SingInUp);

@@ -1,7 +1,7 @@
 // userDuck.js
 
 // Actions
-const SET_USER = "user/SET_USER";
+const SET_USER = "SET_USER";
 
 // Action Creators
 export const setUser = (user) => ({

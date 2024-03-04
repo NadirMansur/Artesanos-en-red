@@ -1,4 +1,4 @@
-// userDuck.js
+// artDuck.js
 
 // Actions
 const SET_ART = "user/SET_ART";
