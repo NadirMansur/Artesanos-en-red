@@ -28,12 +28,14 @@ export default function userReducer(state = initialState, action) {
   }
 }
 
+const endpointGetUserByGoogleId = import.meta.env.VITE_GET_USER_BY_GOOGLE_ID
+
 // Thunks (acciones asíncronas)
 export const fetchUserData = (googleId) => async (dispatch) => {
   console.log("ingrese a fetchUserData de thunks");
   try {
     const response = await fetch(
-      `http://localhost:3001/user/getByGoogleId?googleId=${googleId}`
+      `${endpointGetUserByGoogleId}googleId=${googleId}`
     );
     console.log("response", response);
     if (response.ok) {

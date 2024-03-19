@@ -39,11 +39,14 @@ export default function artReducer(state = initialState, action) {
   }
 }
 
+const endpointById = import.meta.env.VITE_GET_ART_BY_ID;
+const endpointLoginArt = import.meta.env.VITE_LOGIN_ART;
+
 // Thunks (acciones asíncronas)
 export const fetchArtData = (id) => async (dispatch) => {
   console.log("ingrese a fetchUserArt de thunks");
   try {
-    const response = await fetch(`http://localhost:3001/art/getById?id=${id}`);
+    const response = await fetch(`${endpointById}id=${id}`);
     console.log("response", response);
     if (response.ok) {
       const artData = await response.json();
@@ -66,7 +69,7 @@ export const fetchArtLogin = (username, password) => async (dispatch) => {
   try {
     const response = await fetch(
       //se esta realizando la ruta de Login art
-      `http://localhost:3001/art/login`,
+      endpointLoginArt,
       {
         method: "POST",
         headers: {

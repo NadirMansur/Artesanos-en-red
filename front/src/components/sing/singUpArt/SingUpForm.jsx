@@ -79,20 +79,12 @@ const SingInUp = () => {
         method: "POST",
         body: formData,
       });
-      //console.log("response", response);
-      //console.log("responseheaders", response.headers);
-      //console.log("responseheaders.Headers", response.headers.Headers);
+
       if (isMountedRef.current) {
         if (response.ok) {
-          //falta el redireccionamiento si la respuesta fue correcta
           const { status, message, newArt } = await response.json();
-          //si la creacion del usuaruio tiene status true
-          console.log(status);
-          console.log(newArt);
           setStatusResponse(true);
           navigate("/login", { state: { newArt: newArt } });
-
-          console.log(message);
           console.log("Imagen enviada correctamente");
         }
       }
@@ -101,12 +93,10 @@ const SingInUp = () => {
         console.error("Error de red:", error);
       }
     }
-    //////////////////////logica de envio de formulario///////////////////////
   };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    //console.log(file);
     if (!file) {
       dispatch(
         setFormErrorsArtesano({
