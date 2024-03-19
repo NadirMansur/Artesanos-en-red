@@ -7,7 +7,7 @@ export const validate = (e, signUpPassword, dispatch, formErrorsArt) => {
     const { name, value } = e.target;
     let isValid = true;
     let error = "";
-    if (name === "signUpEmail") {
+    if (name === "email") {
       isValid = email.regex.test(value);
       error = isValid ? "" : email.message;
     } else if (name === "tel") {
@@ -16,7 +16,7 @@ export const validate = (e, signUpPassword, dispatch, formErrorsArt) => {
     } else if (name === "intro") {
       isValid = intro.validate(value);
       error = isValid ? "" : intro.message;
-    } else if (name === "signUpPasswordRepeat") {
+    } else if (name === "passwordRepeat") {
       isValid = signUpPasswordRepeat.validate(value, signUpPassword);
       error = !isValid ? "" : signUpPasswordRepeat.message;
     }

@@ -19,10 +19,10 @@ const SingInUp = () => {
   const navigate = useNavigate();
 
   const [signUpData, setSignUpData] = useState({
-    signUpName: "",
-    signUpEmail: "",
-    signUpPassword: "",
-    signUpPasswordRepeat: "",
+    name: "",
+    email: "",
+    password: "",
+    passwordRepeat: "",
     tel: "",
     intro: "",
   });
@@ -65,9 +65,9 @@ const SingInUp = () => {
       setFormSubmitted(true);
       //////////////////////logica de envio de formulario///////////////////////
       const formData = new FormData();
-      formData.append("signUpName", signUpData.signUpName);
-      formData.append("signUpEmail", signUpData.signUpEmail);
-      formData.append("signUpPassword", signUpData.signUpPassword);
+      formData.append("signUpName", signUpData.name);
+      formData.append("signUpEmail", signUpData.email);
+      formData.append("signUpPassword", signUpData.password);
       formData.append("tel", signUpData.tel);
       formData.append("intro", signUpData.intro);
       formData.append("file", selectedFile);
@@ -140,9 +140,9 @@ const SingInUp = () => {
             <input
               className={sing["input"]}
               type='text'
-              name='signUpName'
+              name='name'
               placeholder='Nombre de Usuario'
-              value={signUpData.signUpName}
+              value={signUpData.name}
               onChange={handleSignUpChange}
               required
             />
@@ -150,36 +150,36 @@ const SingInUp = () => {
             <input
               className={sing["input"]}
               type='email'
-              name='signUpEmail'
+              name='email'
               placeholder='Email'
-              defaultValue={signUpData.signUpEmail}
+              defaultValue={signUpData.email}
               onChange={handleSignUpChange}
               required
             />
-            {errors.signUpEmail != "" ? (
-              <span className={sing["span-alert"]}>{errors.signUpEmail}</span>
+            {errors.email != "" ? (
+              <span className={sing["span-alert"]}>{errors.email}</span>
             ) : null}
             <input
               className={sing["input"]}
               type='password'
-              name='signUpPassword'
+              name='password'
               placeholder='Password'
-              value={signUpData.signUpPassword}
+              value={signUpData.password}
               onChange={handleSignUpChange}
               required
             />
             <input
               className={sing["input"]}
               type='password'
-              name='signUpPasswordRepeat'
+              name='passwordRepeat'
               placeholder='Repeti la Password'
-              value={signUpData.signUpPasswordRepeat}
+              value={signUpData.passwordRepeat}
               onChange={handleSignUpChange}
               required
             />
-            {errors.signUpPasswordRepeat != "" ? (
+            {errors.passwordRepeat != "" ? (
               <span className={sing["span-alert"]}>
-                {errors.signUpPasswordRepeat}
+                {errors.passwordRepeat}
               </span>
             ) : null}
             <input
