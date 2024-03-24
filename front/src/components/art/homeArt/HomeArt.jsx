@@ -1,18 +1,35 @@
-import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { useState, useEffect, useRef } from "react";
 import emp from "./homeArt.module.css";
 import { useLocation } from "react-router-dom";
 import CreateRubro from "../../createRubro/CreateRubro";
-import SelectRubro from "../../select/Select";
 import UpImg from "../../upImg/UpImg";
 import CargaProdForm from "../../cargaProdForm/CargaProdForm";
+import { validate } from "../../../utils/validations";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setFormErrorsArtesano,
+  cleanFormErrorsArtesano,
+} from "../../../store/ducks/errorsDuck";
 import Menu from "../../menu/Menu";
 
 const HomeArt = (props) => {
+  const dispatch = useDispatch();
+  const errors = useSelector((state) => state.rootReducer.errors.formErrorsArt);
+  const isMountedRef = useRef(null);
+
   const location = useLocation();
   const [art, setArt] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [thumbnail, setThumbnail] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    tel: "",
+    intro: "",
+  });
 
   useEffect(() => {
     if (location.state) {
@@ -20,23 +37,35 @@ const HomeArt = (props) => {
     } else if (props.name) {
       setArt(props);
     }
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => (
+      dispatch(cleanFormErrorsArtesano({})), (isMountedRef.current = false)
+    );
+    // eslint-disable-next-line
   }, []);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    //console.log(file);
     if (!file) {
-      setErrors({
-        ...errors,
-        img: "Debes subir una imagen para continuar",
-      });
+      dispatch(
+        setFormErrorsArtesano({
+          ...errors,
+          img: "Debes subir una imagen para continuar",
+        })
+      );
     } else {
       setSelectedFile(file);
-      generateThumbnail(file);
-      setErrors({
-        ...errors,
-        img: "",
-      });
+      generateThumbnail(file)
+      dispatch(
+        setFormErrorsArtesano({
+          ...errors,
+          img: "",
+        })
+      );
     }
   };
 
@@ -48,6 +77,12 @@ const HomeArt = (props) => {
     };
 
     reader.readAsDataURL(file);
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+    validate(e, null, dispatch, errors);
   };
 
   const handleEdit = () => {
@@ -66,7 +101,7 @@ const HomeArt = (props) => {
     <div>
       {art ? (
         <div>
-           <Menu link={["/"]} text={["Home"]} />
+          <Menu link={["/"]} text={["Home"]} />
           <div className={emp["profile-card"]}>
             <div className={emp["basic-card"]}>
               <div className={emp["photo-profile-container"]}>
@@ -92,7 +127,6 @@ const HomeArt = (props) => {
           <div>
             <CargaProdForm
               username={art.username}
-              rubro={art.rubro}
             ></CargaProdForm>
             <CreateRubro></CreateRubro>
           </div>
@@ -113,18 +147,11 @@ const HomeArt = (props) => {
                     className={emp["input"]}
                     type='text'
                     name='username'
-                    defaultValue={art.username}
+                    placeholder='nombre / marca'
+                    defaultValue={data.name}
+                    onChange={handleFormChange}
+                    required
                   />
-                </label>
-                <label>
-                  <p>Rubro:</p>
-                  <SelectRubro
-                    className={emp["input"]}
-                    type='text'
-                    name='rubro'
-                    defaultValue={art.rubro}
-                    art={art}
-                  ></SelectRubro>
                 </label>
                 <label>
                   <p>Telefono de contacto:</p>
@@ -132,8 +159,14 @@ const HomeArt = (props) => {
                     className={emp["input"]}
                     type='text'
                     name='tel'
-                    defaultValue={art.tel}
+                    placeholder='tel'
+                    defaultValue={data.tel}
+                    onChange={handleFormChange}
+                    required
                   />
+                  {errors.tel != "" ? (
+                    <span className={emp["span-alert"]}>{errors.tel}</span>
+                  ) : null}
                 </label>
                 <label>
                   <p>email:</p>
@@ -141,8 +174,14 @@ const HomeArt = (props) => {
                     className={emp["input"]}
                     type='text'
                     name='email'
-                    defaultValue={art.email}
+                    placeholder='email'
+                    defaultValue={data.email}
+                    onChange={handleFormChange}
+                    required
                   />
+                  {errors.email != "" ? (
+                    <span className={emp["span-alert"]}>{errors.email}</span>
+                  ) : null}
                 </label>
               </div>
               <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
@@ -151,9 +190,15 @@ const HomeArt = (props) => {
               <p>intro:</p>
               <textarea
                 className={emp["intro-input"]}
+                type='text'
                 name='intro'
-                defaultValue={art.intro}
+                defaultValue={data.intro}
+                onChange={handleFormChange}
+                required
               />
+              {errors.intro != "" ? (
+                <span className={emp["span-alert"]}>{errors.intro}</span>
+              ) : null}
             </label>
           </form>
           <div className={emp["form"]}>
@@ -171,3 +216,7 @@ const HomeArt = (props) => {
 };
 
 export default HomeArt;
+
+HomeArt.propTypes = {
+  name: PropTypes.string,
+};

@@ -118,3 +118,10 @@
   bottom: 10px;
   right: 10px;
 }
+
+.span-alert {
+  color: #f00d0d;
+  width: 20rem;
+  align-self: center;
+  padding: 0.5rem;
+}
