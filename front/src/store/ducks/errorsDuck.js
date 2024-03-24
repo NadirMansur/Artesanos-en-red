@@ -34,7 +34,15 @@ const initialState = {
     img: "Debes subir una imagen para continuar",
     signUpPasswordRepeat: "",
   },
-  formErrorsProd: null,
+  formErrorsProd: {
+    title: "",
+    description: "",
+    tag1: "",
+    tag2: "",
+    tag3: "",
+    tag4: "",
+    img: "Debes subir una imagen para continuar",
+  },
 };
 
 export default function errorsReducer(state = initialState, action) {
@@ -53,7 +61,15 @@ export default function errorsReducer(state = initialState, action) {
     case CLEAN_ERRORS_PROD:
       return {
         ...state,
-        formErrorsProd: action.payload,
+        formErrorsProd: {
+          title: "",
+          description: "",
+          tag1: "",
+          tag2: "",
+          tag3: "",
+          tag4: "",
+          img: "Debes subir una imagen para continuar",
+        },
       };
     case CLEAN_ERRORS_ART:
       return {
@@ -74,7 +90,13 @@ export default function errorsReducer(state = initialState, action) {
 // funciones
 export const setFormErrorsArtesano = (estado) => (dispatch) => {
   dispatch(setFormErrorsArt(estado));
-}
-export const cleanFormErrorsArtesano = (estado) => (dispatch) => {
+};
+export const setFormErrorsProducto = (estado) => (dispatch) => {
+  dispatch(setFormErrorsProd(estado));
+};
+export const cleanFormErrorsArtesano = () => (dispatch) => {
   dispatch(cleanErrorsArt());
-}
+};
+export const cleanFormErrorsProd = () => (dispatch) => {
+  dispatch(cleanErrorsProd());
+};
