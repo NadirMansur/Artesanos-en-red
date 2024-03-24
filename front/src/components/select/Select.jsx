@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { setRubro } from "../../store/ducks/rubroDuck";
+import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./selectRubro.module.css";
 
-const SelectRubro = (props) => {
-  // const { art } = props;
+const SelectRubro = () => {
+  const dispatch = useDispatch();
+
   const [rubros, setRubros] = useState([]);
   const endpoint = import.meta.env.VITE_GET_RUBROS_ENDPOINT;
+  const [selectedOption, setSelectedOption] = useState("");
+
   useEffect(() => {
     const fetchRubros = async () => {
       try {
@@ -16,14 +21,22 @@ const SelectRubro = (props) => {
         console.error("Hubo un error al obtener los rubros:", error);
       }
     };
-
     fetchRubros();
+    // eslint-disable-next-line
   }, []);
 
+
+  const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
+    dispatch(
+      setRubro(event.target.value)
+    );
+  };
+
   return (
-    <select className={styles.select}>
+    <select className={styles.select} value={selectedOption} onChange={handleSelectChange}>
       {rubros.map((rubro, index) => (
-        <option key={index} value={rubro.id} className={styles.option}>
+        <option key={index} value={rubro.name} className={styles.option}>
           {rubro.name}
         </option>
       ))}
