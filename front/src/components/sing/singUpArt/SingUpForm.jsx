@@ -1,9 +1,9 @@
 import UpImg from "../../upImg/UpImg";
-import React, { useState } from "react";
+import { useState } from "react";
 import sing from "./singUpForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect } from "react";
-import SelectRubro from "../../select/Select";
+import Message from "../../message/Message";
 import { useDispatch, useSelector, connect } from "react-redux";
 import {
   setFormErrorsArtesano,
@@ -13,6 +13,7 @@ import { validate } from "../../../utils/validations";
 
 const SingInUp = () => {
   const dispatch = useDispatch();
+  const errors = useSelector((state) => state.rootReducer.errors.formErrorsArt);
 
   const endpoint = import.meta.env.VITE_CREATE_ART;
 
@@ -32,7 +33,6 @@ const SingInUp = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
 
-  const errors = useSelector((state) => state.rootReducer.errors.formErrorsArt);
   const isMountedRef = useRef(null);
 
   useEffect(() => {
@@ -40,26 +40,27 @@ const SingInUp = () => {
     return () => (
       dispatch(cleanFormErrorsArtesano({})), (isMountedRef.current = false)
     );
+    // eslint-disable-next-line
   }, []);
 
   const handleSignUpChange = (e) => {
     const { name, value } = e.target;
     setSignUpData({ ...signUpData, [name]: value });
-    validate(e, signUpData.signUpPassword, dispatch, errors);
+    validate(e, signUpData.password, dispatch, errors);
   };
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     const hasErrors = Object.values(errors).some((error) => error !== "");
     if (hasErrors) return;
-    if(!selectedFile){
+    if (!selectedFile) {
       dispatch(
         setFormErrorsArtesano({
           ...errors,
           img: "Debes subir una imagen para continuar",
         })
       );
-      return
+      return;
     }
     try {
       setFormSubmitted(true);
@@ -83,9 +84,11 @@ const SingInUp = () => {
       if (isMountedRef.current) {
         if (response.ok) {
           const { status, message, newArt } = await response.json();
-          setStatusResponse(true);
+          if (status) {
+            <Message message={message} />;
+          }
+          setStatusResponse(status);
           navigate("/login", { state: { newArt: newArt } });
-          console.log("Imagen enviada correctamente");
         }
       }
     } catch (error) {
@@ -146,7 +149,6 @@ const SingInUp = () => {
               onChange={handleSignUpChange}
               required
             />
-            <SelectRubro type='text' name='rubro'></SelectRubro>
             <input
               className={sing["input"]}
               type='email'
