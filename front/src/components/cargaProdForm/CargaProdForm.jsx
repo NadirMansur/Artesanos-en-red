@@ -1,11 +1,25 @@
-import React, { useState } from "react";
-import { useRef, useEffect } from "react";
+import PropTypes from "prop-types";
+import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setFormErrorsProducto,
+  cleanFormErrorsProd,
+} from "../../../store/ducks/errorsDuck";
+import { validate } from "../../utils/validateProd";
+import Message from "../message/Message";
 import ProdCard from "../card/prodCard/ProdCard";
+import SelectRubro from "../select/Select";
 import styles from "./cargaProdFrom.module.css";
 
 const CargaProdForm = (props) => {
   const endpoint = import.meta.env.VITE_CREATE_PROD;
-   const { username, rubro } = props;
+  
+  const errors = useSelector((state) => state.rootReducer.errors.formErrorsProd);
+  const rubro = useSelector((state) => state.rootReducer.rubro.rubro);
+  const dispatch = useDispatch();
+
+  const { username } = props;
+
   const initialFormData = {
     title: "",
     description: "",
@@ -21,25 +35,17 @@ const CargaProdForm = (props) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
-  const [statusRespose, setStatusRespose] = useState(null);
-
-  const [errors, setErrors] = useState({
-    title: "",
-    description: "",
-    tag1: "",
-    tag2: "",
-    tag3: "",
-    tag4: "",
-    img: "Debes subir una imagen para continuar",
-  });
 
   const isMountedRef = useRef(null);
 
   useEffect(() => {
     isMountedRef.current = true;
-    return () => (isMountedRef.current = false);
+    return () => (
+      dispatch(cleanFormErrorsProd({})), (isMountedRef.current = false)
+    );
+    // eslint-disable-next-line
   }, []);
-
+  
   useEffect(() => {
     if (statusResponse) {
       setFormData(initialFormData);
@@ -47,61 +53,33 @@ const CargaProdForm = (props) => {
       setThumbnail(null);
       setFormSubmitted(false);
     }
+    // eslint-disable-next-line
   }, [statusResponse]);
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
-    let isValid = true;
-    let error = "";
-    //console.log(name, value);
-    if (name === "title") {
-      const maxLength = 17;
-      isValid = value.trim() !== "" && value.length <= maxLength;
-      error = isValid
-        ? ""
-        : `"El Título del Producto debe tener un maximo de ${maxLength} caractéres.`;
-    } else if (
-      name === "tag1" ||
-      name === "tag2" ||
-      name === "tag3" ||
-      name === "tag4"
-    ) {
-      const tag = /^#.{0,9}$/;
-      isValid = tag.test(value);
-      error = isValid
-        ? ""
-        : "El Tag debe comenzar con '#' y ser una palabra clave del producto de max 9 caractéres";
-    } else if (name === "description") {
-      const maxLength = 96;
-      isValid = value.trim() !== "" && value.length <= maxLength;
-      error = isValid
-        ? ""
-        : `"La descripción del Producto debe tener un maximo de ${maxLength} caractéres.`;
-    }
-
-    setErrors({
-      ...errors,
-      [name]: error,
-    });
-
     setFormData({ ...formData, [name]: value });
+    validate(e, dispatch, errors);
   };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    //console.log(file);
     if (!file) {
-      setErrors({
-        ...errors,
-        img: "Debes subir una imagen para continuar",
-      });
+      dispatch(
+        cleanFormErrorsProd({
+          ...errors,
+          img: "Debes subir una imagen para continuar",
+        })
+      );
     } else {
       setSelectedFile(file);
       generateThumbnail(file);
-      setErrors({
-        ...errors,
-        img: "",
-      });
+      dispatch(
+        cleanFormErrorsProd({
+          ...errors,
+          img: "",
+        })
+      );
     }
   };
 
@@ -122,42 +100,40 @@ const CargaProdForm = (props) => {
       console.log("Form has errors. Please fix them before submitting.");
       return;
     }
+    if (!selectedFile) {
+      dispatch(
+        setFormErrorsProducto({
+          ...errors,
+          img: "Debes subir una imagen para continuar",
+        })
+      );
+      return;
+    }
     try {
       setFormSubmitted(true);
       //////////////////////logica de envio de formulario///////////////////////
       const formData = new FormData();
-      formData.append("prod_name", signUpData.title);
-      formData.append("description", signUpData.description);
-      formData.append("signUpPassword", signUpData.tag1);
-      formData.append("tel", signUpData.tag2);
-      formData.append("intro", signUpData.tag3);
-      formData.append("intro", signUpData.tag4);
+      formData.append("prod_name", formData.title);
+      formData.append("description", formData.description);
+      formData.append("signUpPassword", formData.tag1);
+      formData.append("tel", formData.tag2);
+      formData.append("intro", formData.tag3);
+      formData.append("intro", formData.tag4);
+      formData.append("rubro", rubro);
       formData.append("file", selectedFile);
-      //console.log(formData);
-      //console.log(signUpData);
-      //console.log(selectedFile);
 
-      //   const response = await fetch(endpoint, {
-      //     method: "POST",
-      //     body: formData,
-      //   });
+      const response = await fetch(endpoint, {
+        method: "POST",
+        body: formData,
+      });
 
-      //console.log("response", response);
-      //console.log("responseheaders", response.headers);
-      //console.log("responseheaders.Headers", response.headers.Headers);
       if (isMountedRef.current) {
         if (response.ok) {
-          //falta el redireccionamiento si la respuesta fue correcta
-          const { status, message, newArt: newProd } = await response.json();
-          //si la creacion del usuaruio tiene status true
-          console.log(status);
-          console.log(newProd);
-          setStatusResponse(true);
-
-          //navigate("/login", { state: { newProd: newProd } });
-
-          console.log(message);
-          console.log("Imagen enviada correctamente");
+          const { status, message } = await response.json();
+          if (status) {
+            <Message message={message} />;
+          }
+          setStatusResponse(status);
         }
       }
     } catch (error) {
@@ -184,6 +160,10 @@ const CargaProdForm = (props) => {
           {errors.title != "" ? (
             <span className={styles["span-alert"]}>{errors.title}</span>
           ) : null}
+        </label>
+        <label htmlFor='combo' className={styles["label"]}>
+          Rubro
+          <SelectRubro />
         </label>
         <label htmlFor='description' className={styles["label"]}>
           Descripción del Producto
@@ -288,6 +268,11 @@ const CargaProdForm = (props) => {
       ></ProdCard>
     </div>
   );
+};
+
+CargaProdForm.propTypes = {
+  username: PropTypes.string.isRequired,
+  rubro: PropTypes.string.isRequired,
 };
 
 export default CargaProdForm;
