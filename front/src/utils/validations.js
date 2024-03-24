@@ -2,8 +2,6 @@ import { setFormErrorsArtesano } from "../store/ducks/errorsDuck";
 import { email, tel, intro, signUpPasswordRepeat } from "./regex";
 
 export const validate = (e, signUpPassword, dispatch, formErrorsArt) => {
-    console.log("validate")
-  
     const { name, value } = e.target;
     let isValid = true;
     let error = "";
