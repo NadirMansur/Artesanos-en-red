@@ -1,10 +1,10 @@
 import sing from "./sing.module.css";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import SingInForm from "./singIn/SingInForm";
 import SingUpForm from "./SingUpForm";
-import SuccessLogin from "./success/SuccessLogin";
+import ExportedSuccessCreate from "./success/SuccessLogin";
 import Galeria from "../../galeria/Galeria";
 import Menu from "../../menu/Menu";
 
@@ -22,7 +22,6 @@ const Sing = () => {
   const location = useLocation();
   //console.log("location.state", location.state);
   const [singIn, setSingIn] = useState(true);
-
   const handleClick = (boolean) => {
     setSingIn(boolean);
   };
@@ -38,7 +37,9 @@ const Sing = () => {
       />
       <div className={sing["container-menu-comp"]}>
         <Menu link={["/"]} text={["Home"]} />
-        {location.state ? <SuccessLogin state={location.state.newArt} /> : null}
+        {location.state && location.state.newArt && (
+          <ExportedSuccessCreate state={location.state.newArt} />
+        )}
         <div className={sing["container-options"]}>
           <div className={sing["container-buttons"]}>
             <button
