@@ -20,3 +20,21 @@ export const signUpPasswordRepeat = {
   validate: (value, signUpPassword) => signUpPassword !== value,
   message: "Las contraseñas deben ser iguales",
 };
+
+const titleMaxLength = 17;
+export const title = {
+  maxLength: titleMaxLength,
+  validate: (value) => value.trim() !== "" && value.length <= titleMaxLength,
+  message: `El titulo no debe estar vacío y no debe superar los ${titleMaxLength} caracteres.`,
+};
+
+export const tag = {
+  regex: /^#.{0,9}$/,
+  message: "El Tag debe comenzar con '#' y ser una palabra clave del producto de max 9 caractéres",
+};
+const descriptionMaxLength = 96
+export const description = {
+  maxLength: descriptionMaxLength,
+  validate: (value) => value.trim() !== "" && value.length <= descriptionMaxLength,
+  message: `La descripción del Producto debe tener un maximo de ${descriptionMaxLength} caracteres.`,
+};
