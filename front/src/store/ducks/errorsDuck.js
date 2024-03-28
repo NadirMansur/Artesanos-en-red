@@ -42,6 +42,7 @@ const initialState = {
     tag3: "",
     tag4: "",
     img: "Debes subir una imagen para continuar",
+    rubro: "",
   },
 };
 
@@ -69,6 +70,7 @@ export default function errorsReducer(state = initialState, action) {
           tag3: "",
           tag4: "",
           img: "Debes subir una imagen para continuar",
+          rubro: "",
         },
       };
     case CLEAN_ERRORS_ART:

@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
+import UpImg from "../upImg/UpImg";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setFormErrorsProducto,
   cleanFormErrorsProd,
-} from "../../../store/ducks/errorsDuck";
+} from "../../store/ducks/errorsDuck";
 import { validate } from "../../utils/validateProd";
 import Message from "../message/Message";
 import ProdCard from "../card/prodCard/ProdCard";
@@ -13,8 +14,11 @@ import styles from "./cargaProdFrom.module.css";
 
 const CargaProdForm = (props) => {
   const endpoint = import.meta.env.VITE_CREATE_PROD;
-  
-  const errors = useSelector((state) => state.rootReducer.errors.formErrorsProd);
+  const art = useSelector((state) => state.rootReducer.art.artLoginData);
+
+  const errors = useSelector(
+    (state) => state.rootReducer.errors.formErrorsProd
+  );
   const rubro = useSelector((state) => state.rootReducer.rubro.rubro);
   const dispatch = useDispatch();
 
@@ -40,12 +44,14 @@ const CargaProdForm = (props) => {
 
   useEffect(() => {
     isMountedRef.current = true;
+    console.log("art redfux");
+    console.log(art);
     return () => (
       dispatch(cleanFormErrorsProd({})), (isMountedRef.current = false)
     );
     // eslint-disable-next-line
   }, []);
-  
+
   useEffect(() => {
     if (statusResponse) {
       setFormData(initialFormData);
@@ -55,18 +61,18 @@ const CargaProdForm = (props) => {
     }
     // eslint-disable-next-line
   }, [statusResponse]);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     validate(e, dispatch, errors);
   };
 
-  const handleImageChange = (event) => {
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (!file) {
       dispatch(
-        cleanFormErrorsProd({
+        setFormErrorsProducto({
           ...errors,
           img: "Debes subir una imagen para continuar",
         })
@@ -75,7 +81,7 @@ const CargaProdForm = (props) => {
       setSelectedFile(file);
       generateThumbnail(file);
       dispatch(
-        cleanFormErrorsProd({
+        setFormErrorsProducto({
           ...errors,
           img: "",
         })
@@ -95,6 +101,21 @@ const CargaProdForm = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (rubro === null) {
+      dispatch(
+        setFormErrorsProducto({
+          ...errors,
+          rubro: "Debes seleccionar un rubro para continuar",
+        })
+      );
+    } else {
+      dispatch(
+        setFormErrorsProducto({
+          ...errors,
+          rubro: "",
+        })
+      );
+    }
     const hasErrors = Object.values(errors).some((error) => error !== "");
     if (hasErrors) {
       console.log("Form has errors. Please fix them before submitting.");
@@ -112,26 +133,43 @@ const CargaProdForm = (props) => {
     try {
       setFormSubmitted(true);
       //////////////////////logica de envio de formulario///////////////////////
-      const formData = new FormData();
-      formData.append("prod_name", formData.title);
-      formData.append("description", formData.description);
-      formData.append("signUpPassword", formData.tag1);
-      formData.append("tel", formData.tag2);
-      formData.append("intro", formData.tag3);
-      formData.append("intro", formData.tag4);
-      formData.append("rubro", rubro);
-      formData.append("file", selectedFile);
+      console.log(formData.title);
+      console.log(formData.description);
+      console.log(formData.tag1);
+      console.log(formData.tag2);
+      console.log(formData.tag3);
+      console.log(formData.tag4);
+      console.log(rubro);
+      console.log(art.id);
+      console.log(selectedFile);
 
+      const formDataBody = new FormData();
+      formDataBody.append("title", formData.title);
+      formDataBody.append("description", formData.description);
+      formDataBody.append("tag1", formData.tag1);
+      formDataBody.append("tag2", formData.tag2);
+      formDataBody.append("tag3", formData.tag3);
+      formDataBody.append("tag4", formData.tag4);
+      formDataBody.append("rubro", rubro);
+      formDataBody.append("id", art.id);
+      formDataBody.append("file", selectedFile);
+
+      console.log("formDataBody");
+      console.log(formDataBody);
+
+      for (var pair of formDataBody.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
       const response = await fetch(endpoint, {
         method: "POST",
-        body: formData,
+        body: formDataBody,
       });
 
       if (isMountedRef.current) {
         if (response.ok) {
           const { status, message } = await response.json();
           if (status) {
-            <Message message={message} />;
+            // <Message message={message} />;
           }
           setStatusResponse(status);
         }
@@ -164,6 +202,9 @@ const CargaProdForm = (props) => {
         <label htmlFor='combo' className={styles["label"]}>
           Rubro
           <SelectRubro />
+          {errors.rubro != "" ? (
+            <span className={styles["span-alert"]}>{errors.rubro}</span>
+          ) : null}
         </label>
         <label htmlFor='description' className={styles["label"]}>
           Descripción del Producto
@@ -234,19 +275,10 @@ const CargaProdForm = (props) => {
             <span className={styles["span-alert"]}>{errors.tag4}</span>
           ) : null}
         </label>
-        <label htmlFor='image' className={styles["label"]}>
-          Imagen
-          <input
-            type='file'
-            id='img'
-            name='img'
-            onChange={handleImageChange}
-            className={styles["input"]}
-          />
-          {errors.img != "" ? (
-            <span className={styles["span-alert"]}>La imagen es requerida</span>
-          ) : null}
-        </label>
+        <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
+        {errors.img != "" ? (
+          <span className={styles["span-alert"]}>{errors.img}</span>
+        ) : null}
         <button type='submit' className={styles["button"]}>
           {!statusResponse
             ? formSubmitted
@@ -272,7 +304,6 @@ const CargaProdForm = (props) => {
 
 CargaProdForm.propTypes = {
   username: PropTypes.string.isRequired,
-  rubro: PropTypes.string.isRequired,
 };
 
 export default CargaProdForm;

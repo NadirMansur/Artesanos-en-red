@@ -95,3 +95,7 @@ export const fetchArtLogin = (username, password) => async (dispatch) => {
     console.error("Error fetching artLogin data:", error);
   }
 };
+
+export const setArtLogin  = (estado) => (dispatch) => {
+  dispatch(setArtLoginData(estado));
+};

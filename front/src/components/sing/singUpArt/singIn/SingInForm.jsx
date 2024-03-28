@@ -1,15 +1,19 @@
-import sing from "../singUpForm.module.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { setArtLogin } from "../../../../store/ducks/artDuck";
+import { useDispatch } from "react-redux";
+import sing from "../singUpForm.module.css";
 
 const SingInForm = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const endpoint = import.meta.env.VITE_LOGIN_ART;
 
   const [signInData, setSignInData] = useState({
     singInUsername: "",
     signInPassword: "",
   });
-  const [response, setResponse] = useState({
+  const [responseAPI, setResponseAPI] = useState({
     status: null,
     message: "",
   });
@@ -29,7 +33,7 @@ const SingInForm = () => {
       //   console.log(signInData.signInPassword);
       //   console.log("signInData", signInData);
       setFormSubmitted(true);
-      const response = await fetch("http://localhost:3001/art/login", {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,13 +44,14 @@ const SingInForm = () => {
       if (response.ok) {
         const { status, message, art } = await response.json();
         console.log("status", status, "message", message, "art", art);
-        setResponse({
+        setResponseAPI({
           status: status,
           message: message,
           art: art,
         });
 
         if (status) {
+          dispatch(setArtLogin(art));
           navigate("/homeart", { state: { art: art } });
         }
       } else {
@@ -79,8 +84,8 @@ const SingInForm = () => {
           onChange={handleSignInChange}
           required
         />
-        {!response.status ? (
-          <span className={sing["span-alert"]}>{response.message}</span>
+        {!responseAPI.status ? (
+          <span className={sing["span-alert"]}>{responseAPI.message}</span>
         ) : null}
         <button
           className={sing["button"]}
