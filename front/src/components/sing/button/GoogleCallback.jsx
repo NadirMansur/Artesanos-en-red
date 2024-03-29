@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import LoadingSinper from "../../loading/LoadingSinper.jsx";
 import { connect, useSelector } from "react-redux";
 import { fetchUserData } from "../../../store/ducks/userDuck.js";
@@ -12,12 +12,12 @@ const GoogleCallback = ({ fetchUserData }) => {
     console.log("entro el useEffect");
     const googleId = new URLSearchParams(window.location.search).get(
       "googleId"
-      );
-      if (googleId) {
+    );
+    if (googleId) {
       console.log("entro al IF");
       fetchUserData(googleId)
         .then((userData) => {
-          console.log("fetchUserData return userData",userData)
+          console.log("fetchUserData return userData", userData);
           setUserData(userData);
           console.log("Datos del usuario cargados exitosamente.");
         })
@@ -50,11 +50,13 @@ const GoogleCallback = ({ fetchUserData }) => {
           <span>
             Tendrás la capacidad de guardar tus productos favoritos, y los
             mismos se guardaran en tu perfil de usuario{" "}
-           { userData && <UserButton
-              id={userData.googleId}
-              displayName={userData.displayName}
-              photo={userData.photo}
-            />}
+            {userData && (
+              <UserButton
+                id={userData.googleId}
+                displayName={userData.displayName}
+                photo={userData.photo}
+              />
+            )}
           </span>
           <span>
             ¡Explora, guarda y disfruta una experiencia única acompañada por

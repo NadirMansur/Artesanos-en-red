@@ -28,11 +28,11 @@ const SingInUp = () => {
     intro: "",
   });
 
-  const [statusResponse, setStatusResponse] = useState(false);
+  const [statusResponse, setStatusResponse] = useState(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
-
+  const [messageResponse, setMessageResponse] = useState(null);
   const isMountedRef = useRef(null);
 
   useEffect(() => {
@@ -44,6 +44,8 @@ const SingInUp = () => {
   }, []);
 
   const handleSignUpChange = (e) => {
+    setStatusResponse(false);
+    setFormSubmitted(false);
     const { name, value } = e.target;
     setSignUpData({ ...signUpData, [name]: value });
     validate(e, signUpData.password, dispatch, errors);
@@ -76,23 +78,34 @@ const SingInUp = () => {
       //console.log(signUpData);
       //console.log(selectedFile);
 
-      const response = await fetch(endpoint, {
-        method: "POST",
-        body: formData,
-      });
-
       if (isMountedRef.current) {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.status === 409) {
+          // Manejar el error cuando el nombre de usuario ya existe
+          const errorMessage = await response.text();
+          setMessageResponse(errorMessage)
+          setStatusResponse(false);
+         return console.error(errorMessage);
+        }
+
         if (response.ok) {
           const { status, message, newArt } = await response.json();
+          // checkear correcta
           if (status) {
-            <Message message={message} />;
+           setStatusResponse(status)
+           setMessageResponse(message)
           }
-          setStatusResponse(status);
           navigate("/login", { state: { newArt: newArt } });
         }
       }
     } catch (error) {
       if (isMountedRef.current) {
+        // componente de manejo de error
+        setStatusResponse(false);
         console.error("Error de red:", error);
       }
     }
@@ -131,101 +144,99 @@ const SingInUp = () => {
 
   return (
     <>
-      {!statusResponse ? (
-        <div className={sing["container"]}>
-          <span className={sing["span"]}>
-            Si no tienes usuario emprendedor puedes crearte una aquí. El usuario
-            debe ser dado de alta para publicar y poder ser mostrado en la
-            pagina principal.
-          </span>
-          <h2 className={sing["h2"]}>Crear Usuario Emprendedor</h2>
-          <form onSubmit={handleSignUpSubmit} className={sing["form"]}>
-            <input
-              className={sing["input"]}
-              type='text'
-              name='name'
-              placeholder='Nombre de Usuario'
-              value={signUpData.name}
-              onChange={handleSignUpChange}
-              required
-            />
-            <input
-              className={sing["input"]}
-              type='email'
-              name='email'
-              placeholder='Email'
-              defaultValue={signUpData.email}
-              onChange={handleSignUpChange}
-              required
-            />
-            {errors.email != "" ? (
-              <span className={sing["span-alert"]}>{errors.email}</span>
-            ) : null}
-            <input
-              className={sing["input"]}
-              type='password'
-              name='password'
-              placeholder='Password'
-              value={signUpData.password}
-              onChange={handleSignUpChange}
-              required
-            />
-            <input
-              className={sing["input"]}
-              type='password'
-              name='passwordRepeat'
-              placeholder='Repeti la Password'
-              value={signUpData.passwordRepeat}
-              onChange={handleSignUpChange}
-              required
-            />
-            {errors.passwordRepeat != "" ? (
-              <span className={sing["span-alert"]}>
-                {errors.passwordRepeat}
-              </span>
-            ) : null}
-            <input
-              className={sing["input"]}
-              type='text'
-              name='tel'
-              placeholder='tel'
-              defaultValue={signUpData.tel}
-              onChange={handleSignUpChange}
-              required
-            />
-            {errors.tel != "" ? (
-              <span className={sing["span-alert"]}>{errors.tel}</span>
-            ) : null}
-            <input
-              className={sing["input"]}
-              type='text'
-              name='intro'
-              placeholder='Introduccion a tu perfil'
-              defaultValue={signUpData.intro}
-              onChange={handleSignUpChange}
-              required
-            />
-            {errors.intro != "" ? (
-              <span className={sing["span-alert"]}>{errors.intro}</span>
-            ) : null}
-            <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
-            {errors.img != "" ? (
-              <span className={sing["span-alert"]}>{errors.img}</span>
-            ) : null}
-            <button
-              className={sing["button"]}
-              type='submit'
-              disabled={formSubmitted}
-            >
-              {!statusResponse
-                ? formSubmitted
-                  ? "Enviando..."
-                  : "Sign Up"
-                : "Usuario creado!"}
-            </button>
-          </form>
-        </div>
-      ) : null}
+      <div className={sing["container"]}>
+        <span className={sing["span"]}>
+          Si no tienes usuario emprendedor puedes crearte una aquí. El usuario
+          debe ser dado de alta para publicar y poder ser mostrado en la pagina
+          principal.
+        </span>
+        <h2 className={sing["h2"]}>Crear Usuario Emprendedor</h2>
+        <form onSubmit={handleSignUpSubmit} className={sing["form"]}>
+          <input
+            className={sing["input"]}
+            type='text'
+            name='name'
+            placeholder='Nombre de Usuario'
+            value={signUpData.name}
+            onChange={handleSignUpChange}
+            required
+          />
+          <input
+            className={sing["input"]}
+            type='email'
+            name='email'
+            placeholder='Email'
+            defaultValue={signUpData.email}
+            onChange={handleSignUpChange}
+            required
+          />
+          {errors.email != "" ? (
+            <span className={sing["span-alert"]}>{errors.email}</span>
+          ) : null}
+          <input
+            className={sing["input"]}
+            type='password'
+            name='password'
+            placeholder='Password'
+            value={signUpData.password}
+            onChange={handleSignUpChange}
+            required
+          />
+          <input
+            className={sing["input"]}
+            type='password'
+            name='passwordRepeat'
+            placeholder='Repeti la Password'
+            value={signUpData.passwordRepeat}
+            onChange={handleSignUpChange}
+            required
+          />
+          {errors.passwordRepeat != "" ? (
+            <span className={sing["span-alert"]}>{errors.passwordRepeat}</span>
+          ) : null}
+          <input
+            className={sing["input"]}
+            type='text'
+            name='tel'
+            placeholder='tel'
+            defaultValue={signUpData.tel}
+            onChange={handleSignUpChange}
+            required
+          />
+          {errors.tel != "" ? (
+            <span className={sing["span-alert"]}>{errors.tel}</span>
+          ) : null}
+          <input
+            className={sing["input"]}
+            type='text'
+            name='intro'
+            placeholder='Introduccion a tu perfil'
+            defaultValue={signUpData.intro}
+            onChange={handleSignUpChange}
+            required
+          />
+          {errors.intro != "" ? (
+            <span className={sing["span-alert"]}>{errors.intro}</span>
+          ) : null}
+          <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
+          {errors.img != "" ? (
+            <span className={sing["span-alert"]}>{errors.img}</span>
+          ) : null}
+          <button
+            className={sing["button"]}
+            type='submit'
+            disabled={formSubmitted}
+          >
+            {!statusResponse
+              ? formSubmitted
+                ? "Enviando..."
+                : "Sign Up"
+              : "Usuario creado!"}
+          </button>
+        </form>
+      </div>
+
+      {!statusResponse && formSubmitted && <Message message={messageResponse} />}
     </>
   );
 };

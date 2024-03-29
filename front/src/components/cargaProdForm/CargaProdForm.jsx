@@ -39,6 +39,7 @@ const CargaProdForm = (props) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
+  const [messageResponse, setMessageResponse] = useState(null);
 
   const isMountedRef = useRef(null);
 
@@ -63,6 +64,8 @@ const CargaProdForm = (props) => {
   }, [statusResponse]);
 
   const handleChange = (e) => {
+    setStatusResponse(false);
+    setFormSubmitted(false);
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     validate(e, dispatch, errors);
@@ -142,7 +145,11 @@ const CargaProdForm = (props) => {
       console.log(rubro);
       console.log(art.id);
       console.log(selectedFile);
-
+//revisar persistencia de datos al recargar la pagina, como id de usuario
+//revisar persistencia de datos al recargar la pagina, como id de usuario
+//revisar persistencia de datos al recargar la pagina, como id de usuario
+//revisar persistencia de datos al recargar la pagina, como id de usuario
+//revisar persistencia de datos al recargar la pagina, como id de usuario
       const formDataBody = new FormData();
       formDataBody.append("title", formData.title);
       formDataBody.append("description", formData.description);
@@ -169,9 +176,9 @@ const CargaProdForm = (props) => {
         if (response.ok) {
           const { status, message } = await response.json();
           if (status) {
-            // <Message message={message} />;
+            setStatusResponse(status);
+            setMessageResponse(message);
           }
-          setStatusResponse(status);
         }
       }
     } catch (error) {
@@ -279,11 +286,15 @@ const CargaProdForm = (props) => {
         {errors.img != "" ? (
           <span className={styles["span-alert"]}>{errors.img}</span>
         ) : null}
-        <button type='submit' className={styles["button"]}>
+        <button
+          type='submit'
+          className={styles["button"]}
+          disabled={formSubmitted}
+        >
           {!statusResponse
-            ? formSubmitted
+            ? (formSubmitted
               ? "Enviando..."
-              : "Crear Producto"
+              : "Crear Producto")
             : "Producto creado!"}
         </button>
       </form>

@@ -1,26 +1,27 @@
 "use client";
+import { useState, useEffect } from 'react';
 import { Heart } from "phosphor-react";
-import { Avatar, Card } from "keep-react";
+import { Card } from "keep-react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import {fetchProdsById} from "../../store/ducks/artDuck";
 import art from "./art.module.css";
 import perfil from "../../assets/Club_Sol_de_mayo.png";
-import CartaProd from "../card/cartaProducto/CartaProd.jsx";
 import ProdCard from "../card/prodCard/ProdCard.jsx";
 const Art = () => {
-  "";
+
   const { id } = useParams();
 
-  // useEffect(() => {
-  //     axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
-  //        if (data.name) {
-  //           setCharacter(data);
-  //        } else {
-  //           window.alert('No hay personajes con ese ID');
-  //        }
-  //     });
-  //     return setCharacter({});
-  //  }, [id]);
+    const [prods, setProds] = useState(null);
+    
+    useEffect(() => {
+      fetchProdsById(id).then((data) =>{
+        setProds(data)
+      })
+      // eslint-disable-next-line
+    }, []);
+
+    // Rest of the code...
 
   return (
     <div className={art["page"]}>
@@ -49,13 +50,18 @@ const Art = () => {
         </div>
       </div>
       <div className={art["prod"]}>
-        <ProdCard />
-        <ProdCard />
-        <ProdCard />
-        <ProdCard />
-        <ProdCard />
-        <ProdCard />
-        <ProdCard />
+        {prods && prods.map((prod, index) =>{
+          return  <ProdCard
+          key={index}
+          title={prod.prod_name}
+          name={prod.Artesano.username}
+          rubro={prod.Rubro.name}
+          description={prod.description}
+          img={prod.img_1}
+          tel={prod.Artesano.tel}
+          tags={prod.Tags}
+        ></ProdCard>
+        })}
       </div>
       <Link to={`/`} /*className={styles.volver}*/>
         <div>VOLVER ATRAS</div>

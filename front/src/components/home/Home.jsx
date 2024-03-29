@@ -4,13 +4,17 @@ import Cards from "../cards/Cards";
 import home from "./home.module.css";
 import SignUpButton from "../sing/SignUpButton";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect } from "react";
+import { fetchArtsData } from "../../store/ducks/artesanosDuck";
+import { useEffect } from "react";
 import UserButton from "../user/userButton";
 import GoogleButtonComponent from "../sing/button/GoogleButtonComponent";
+
+
 
 const Home = () => {
   const userInfo = useSelector((state) => state.rootReducer.user.user);
   console.log(userInfo);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Este useEffect se ejecutará cada vez que userInfo cambie
@@ -23,6 +27,12 @@ const Home = () => {
       // Puedes realizar acciones específicas cuando la información del usuario es nula
     }
   }, [userInfo]);
+
+  useEffect(() => {
+    //fetch data artesanos
+  dispatch(fetchArtsData());
+  // eslint-disable-next-line
+  }, []);
 
   return (
     <div className={home["container"]}>

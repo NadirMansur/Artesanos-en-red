@@ -21,6 +21,7 @@ const SingInForm = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSignInChange = (e) => {
+    setFormSubmitted(false);
     const { name, value } = e.target;
     setSignInData({ ...signInData, [name]: value });
   };
@@ -29,9 +30,6 @@ const SingInForm = () => {
     e.preventDefault();
     try {
       //////////////////////logica de envio de formulario///////////////////////
-      //   console.log(signInData.singInUsername);
-      //   console.log(signInData.signInPassword);
-      //   console.log("signInData", signInData);
       setFormSubmitted(true);
       const response = await fetch(endpoint, {
         method: "POST",
@@ -84,7 +82,7 @@ const SingInForm = () => {
           onChange={handleSignInChange}
           required
         />
-        {!responseAPI.status ? (
+        {!responseAPI.status && formSubmitted ? (
           <span className={sing["span-alert"]}>{responseAPI.message}</span>
         ) : null}
         <button

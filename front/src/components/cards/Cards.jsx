@@ -1,38 +1,21 @@
-import CardComponent from "../card/perfilCard/CardComponent";
 import cards from "./cards.module.css";
 import ArtCard from "../card/perfilCard/ArtCard";
+import { useSelector } from "react-redux";
+
 const Cards = () => {
+  const artesanos = useSelector((state) => state.rootReducer.arts.arts);
+
+  console.log(artesanos);
   return (
-    <div className={cards["container"]}>
-      <ArtCard
-      intro="El siguiente componente es un ejemplo del mensaje que debe colocar el Emprendedor para invitar a su perfil"
-      name="PEPE"
-      rubro="Joyeria"/>
-      <ArtCard
-      intro="El siguiente componente es un ejemplo del mensaje que debe colocar el Emprendedor para invitar a su perfil"
-      name="PEPE"
-      rubro="Joyeria"/>
-      <ArtCard
-      intro="El siguiente componente es un ejemplo del mensaje que debe colocar el Emprendedor para invitar a su perfil"
-      name="PEPE"
-      rubro="Joyeria"/>
-      <ArtCard
-      intro="El siguiente componente es un ejemplo del mensaje que debe colocar el Emprendedor para invitar a su perfil"
-      name="PEPE"
-      rubro="Joyeria"/>
-      <ArtCard
-      intro="El siguiente componente es un ejemplo del mensaje que debe colocar el Emprendedor para invitar a su perfil"
-      name="PEPE"
-      rubro="Joyeria"/>
-      <ArtCard
-      intro="El siguiente componente es un ejemplo del mensaje que debe colocar el Emprendedor para invitar a su perfil"
-      name="PEPE"
-      rubro="Joyeria"/>
-      <ArtCard
-      intro="El siguiente componente es un ejemplo del mensaje que debe colocar el Emprendedor para invitar a su perfil"
-      name="PEPE"
-      rubro="Joyeria"/>
-    </div>
+    <>
+      {artesanos ? (
+        <div className={cards["container"]}>
+          {artesanos.map((card, index) => {
+            return <ArtCard key={index + card.id} id={card.id}></ArtCard>;
+          })}
+        </div>
+      ) : null}
+    </>
   );
 };
 
