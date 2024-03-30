@@ -1,13 +1,13 @@
-import "./App.css";
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import Home from "./components/home/Home";
+import { Route, Routes, useLocation } from "react-router-dom";
+import "./App.css";
 import Art from "./components/art/Art";
-import GoogleCallback from "./components/sing/button/GoogleCallback";
-import User from "./components/user/user";
-import Sing from "./components/sing/singUpArt/Sing";
 import HomeArt from "./components/art/homeArt/HomeArt";
 import Header from "./components/header/Header";
+import Home from "./components/home/Home";
+import GoogleCallback from "./components/sing/button/GoogleCallback";
+import Sing from "./components/sing/singUpArt/Sing";
+import User from "./components/user/user";
 
 function App() {
   const location = useLocation();

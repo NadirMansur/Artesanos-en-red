@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AvatarPerfil from "./avatarPerfil/AvatarPerfil";
-import card from "./artCard.module.css";
 import { fetchArtData, fetchRubrosById } from "../../../store/ducks/artDuck";
+import card from "./artCard.module.css";
+import AvatarPerfil from "./avatarPerfil/AvatarPerfil";
 
 const ArtCard = (props) => {
   const [art, setArt] = useState(null);
@@ -21,7 +20,7 @@ const ArtCard = (props) => {
       if (Array.isArray(data)) {
         setRubros(data);
       }
-    }); 
+    });
     // eslint-disable-next-line
   }, []);
 
@@ -29,18 +28,27 @@ const ArtCard = (props) => {
     <>
       {art && rubros && (
         <div className={card["container"]}>
-          <span className={card["intro"]}>{art.intro}</span>
           <div className={card["card-container"]}>
-            <AvatarPerfil img={art.img_perfil} />
             <div className={card["card-container-column"]}>
-              <Link to={`/detail/${id}`}>
-                <p className={card["name"]}>{art.username}</p>
-              </Link>
-              {rubros.map((rubro, index) => {
-                return <p key={index+rubro} className={card["rubro"]}> {rubro}</p>
-              })}
+              <div className={card["img-name-container-row"]}>
+                <AvatarPerfil img={art.img_perfil} />
+                <Link to={`/detail/${id}`}>
+                  <p className={card["name"]}>{art.username}</p>
+                </Link>
+              </div>
+              <div className={card["rubros"]}>
+                {rubros.map((rubro, index) => {
+                  return (
+                    <p key={index + rubro} className={card["rubro"]}>
+                      {rubro}
+                      {","}
+                    </p>
+                  );
+                })}
+              </div>
             </div>
           </div>
+          <span className={card["intro"]}>{art.intro}</span>
         </div>
       )}
     </>

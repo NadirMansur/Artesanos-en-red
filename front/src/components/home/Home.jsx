@@ -1,37 +1,28 @@
-import Header from "../header/Header";
-import TituloSolDeMayo from "../header/TituloSolDeMayo/TituloSolDeMayo";
-import Cards from "../cards/Cards";
-import home from "./home.module.css";
-import SignUpButton from "../sing/SignUpButton";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchArtsData } from "../../store/ducks/artesanosDuck";
-import { useEffect } from "react";
+import Cards from "../cards/Cards";
+import TituloSolDeMayo from "../header/TituloSolDeMayo/TituloSolDeMayo";
+import SignUpButton from "../sing/SignUpButton";
 import UserButton from "../user/userButton";
-import GoogleButtonComponent from "../sing/button/GoogleButtonComponent";
-
-
+import home from "./home.module.css";
 
 const Home = () => {
   const userInfo = useSelector((state) => state.rootReducer.user.user);
-  console.log(userInfo);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Este useEffect se ejecutará cada vez que userInfo cambie
-
     if (userInfo) {
       console.log("Data del usuario cargada:", userInfo);
-      // Puedes realizar más acciones aquí si es necesario
     } else {
       console.log("La información del usuario es nula.");
-      // Puedes realizar acciones específicas cuando la información del usuario es nula
     }
   }, [userInfo]);
 
   useEffect(() => {
     //fetch data artesanos
-  dispatch(fetchArtsData());
-  // eslint-disable-next-line
+    dispatch(fetchArtsData());
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -50,6 +41,7 @@ const Home = () => {
       </div>
       <Cards></Cards>
     </div>
+      // <Parallax></Parallax>
   );
 };
 export default Home;

@@ -3,13 +3,17 @@
   border-radius: 1rem;
   padding: 2rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
+  max-width: fit-content;
+  max-height: fit-content;
 }
 .intro {
   display: inline-block;
-  width: 30rem;
+  max-width: 21rem;
+  max-height: fit-content;
   color: #666e76;
+  align-self: center;
 }
 .name {
   display: inline-block;
@@ -18,6 +22,7 @@
 
 .card-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   align-self: flex-start;
@@ -26,9 +31,26 @@
 .card-container-column {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 1rem;
 }
 .rubro {
   font-size: small;
   color: #666e76;
+}
+
+.rubros {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 8rem;
+}
+
+.img-name-container-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
