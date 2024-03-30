@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
-import prod from "./prodCard.module.css";
+import { useEffect, useState } from "react";
 import ws from "../../../assets/ws/ChatOnWhatsAppButton/WhatsAppButtonGreenSmall.png";
+import prod from "./prodCard.module.css";
 
 const ProdCard = ({
   tag1,
@@ -87,7 +87,11 @@ const ProdCard = ({
           href={
             "https://wa.me/" +
             tel +
-            "?text=Hola%2C%20como%20estas%3F%2C%20te%20vi%20en%20la%20pagina%20Sol%20de%20Mayo%2C%20y%20tengo%20interés%20en%20tus%20productos."
+            "?text=Hola%2C%20como%20estas%3F%2C%20te%20vi%20en%20la%20pagina%20*Artesanos*%20*en*%20*Red*%2C%20y%20tengo%20interés%20en%20tu%20Producto%20" +
+            "*" +
+            title +
+            "*" +
+            "."
           }
         >
           <img className={prod["prod-image"]} alt='Chat on WhatsApp' src={ws} />
