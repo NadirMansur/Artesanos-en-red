@@ -13,19 +13,27 @@
 }
 
 .photo-profile-container {
-  height: 10rem;
-  width: 10rem;
-  border-radius: 5rem;
+  position: relative;
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
   border: 0.1rem solid;
   border-color: aliceblue;
   overflow: hidden;
+  display: flex;
+}
+
+.photo {
+  margin-top: 0px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .info {
   display: flex;
   gap: 2rem;
   align-self: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
 }
 

@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchArtsData } from "../../store/ducks/artesanosDuck";
 import Cards from "../cards/Cards";
 import TituloSolDeMayo from "../header/TituloSolDeMayo/TituloSolDeMayo";
-import SignUpButton from "../sing/SignUpButton";
-import UserButton from "../user/userButton";
 import home from "./home.module.css";
 
 const Home = () => {
@@ -29,7 +28,7 @@ const Home = () => {
     <div className={home["container"]}>
       <div className={home["logo-singup"]}>
         <TituloSolDeMayo></TituloSolDeMayo>
-        {userInfo ? (
+        {/* {userInfo ? (
           <UserButton
             id={userInfo.googleId}
             displayName={userInfo.displayName}
@@ -37,7 +36,13 @@ const Home = () => {
           />
         ) : (
           <SignUpButton />
-        )}
+        )} */}
+
+        <Link to='/login'>
+          <button className={home["button"]} >
+            Ingresar
+          </button>
+        </Link>
       </div>
       <Cards></Cards>
     </div>

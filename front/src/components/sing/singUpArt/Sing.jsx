@@ -2,11 +2,11 @@ import sing from "./sing.module.css";
 
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import SingInForm from "./singIn/SingInForm";
-import SingUpForm from "./SingUpForm";
-import ExportedSuccessCreate from "./success/SuccessLogin";
 import Galeria from "../../galeria/Galeria";
 import Menu from "../../menu/Menu";
+import SingUpForm from "./SingUpForm";
+import SingInForm from "./singIn/SingInForm";
+import ExportedSuccessCreate from "./success/SuccessLogin";
 
 import img1 from "../../../assets/galeriaLogin/1.jpg";
 import img2 from "../../../assets/galeriaLogin/2.jpg";
@@ -26,15 +26,17 @@ const Sing = () => {
     setSingIn(boolean);
   };
 
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
   return (
     <div className={sing["fila"]}>
-      <Galeria
-        galeria={[
-          [img1, img2, img3],
-          [img4, img5, img6],
-          [img7, img8, img9],
-        ]}
-      />
+        {isMobile ? null : <Galeria
+          galeria={[
+            [img1, img2, img3],
+            [img4, img5, img6],
+            [img7, img8, img9],
+          ]}
+        />}
       <div className={sing["container-menu-comp"]}>
         <Menu link={["/"]} text={["Home"]} />
         {location.state && location.state.newArt && (

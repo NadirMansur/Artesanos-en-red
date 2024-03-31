@@ -1,6 +1,6 @@
 "use client";
 //import bandera from "../../assets/Flag_of_Argentina.svg.png";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import header from "./header.module.css";
 
 const Header = () => {
@@ -32,13 +32,13 @@ const Header = () => {
         <div
           className={`${isFixed ? header[["fixed-caption"]] : header["caption-none"]}`}
         >
-          <span className={header["border"]}>Emprendedores en Red</span>
+          <span className={header["border"]}>Artesanos en Red</span>
         </div>
       <div ref={parallaxRef} className={header["bgimg-1"]}>
         <div
           className={`${isFixed ? header[["caption-none"]] : header["caption"]}`}
         >
-          <span className={header["border"]}>Emprendedores en Red</span>
+          <span className={header["border"]}>Artesanos en Red</span>
         </div>
       </div>
     </div>

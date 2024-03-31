@@ -1,10 +1,9 @@
-import cards from "./cards.module.css";
-import ArtCard from "../card/perfilCard/ArtCard";
 import { useSelector } from "react-redux";
+import ArtCard from "../card/perfilCard/ArtCard";
+import cards from "./cards.module.css";
 
 const Cards = () => {
   const artesanos = useSelector((state) => state.rootReducer.arts.arts);
-
   console.log(artesanos);
   return (
     <>

@@ -16,13 +16,11 @@
   border-color: aliceblue;
   overflow: hidden;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .photo {
+  margin-top: 0px;
   width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 

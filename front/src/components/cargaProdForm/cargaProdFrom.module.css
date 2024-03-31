@@ -1,50 +1,76 @@
 .form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.label {
+  margin-bottom: 10px;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.span-alert {
+  color: #f00d0d;
+  width: 20rem;
+  align-self: center;
+  padding: 0.5rem;
+}
+
+.form-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 780px) {
+  .form {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    width: 300px;
-    margin: 0 auto;
-  }
-  
-  .label {
-    margin-bottom: 10px;
-  }
-  
-  .input,
-  .textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #0056b3;
   }
   .form-container {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
-    position: relative;
+    width: 100%;
   }
-  
-
-  .span-alert {
-    color: #f00d0d;
-    width: 20rem;
-    align-self: center;
-    padding: 0.5rem;
+  .input {
+    width: 9rem;
   }
-  
+}

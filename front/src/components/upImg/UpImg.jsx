@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import AvatarPerfil from "../card/perfilCard/avatarPerfil/AvatarPerfil";
 import sing from "./upImg.module.css";
 
@@ -14,13 +15,18 @@ const UpImg = (props) => {
         <input
           id='file-input'
           type='file'
-          onChange={(onChange)}
+          onChange={onChange}
           className={sing["file"]}
         />
         {thumbnail ? <AvatarPerfil img={thumbnail} /> : null}
       </div>
     </div>
   );
+};
+
+UpImg.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  thumbnail: PropTypes.string,
 };
 
 export default UpImg;

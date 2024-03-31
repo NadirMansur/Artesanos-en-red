@@ -1,9 +1,9 @@
 "use client";
-import { Button, Popover } from "keep-react";
+import { Popover } from "keep-react";
 import React from "react";
-import button from "./singUpButton.module.css";
-import GoogleButtonComponent from "./button/GoogleButtonComponent";
 import { Link } from "react-router-dom";
+import GoogleButtonComponent from "./button/GoogleButtonComponent";
+import button from "./singUpButton.module.css";
 
 const SignUpButton = ({ onClick, onClickIngresar }) => {
   return (
@@ -16,7 +16,7 @@ const SignUpButton = ({ onClick, onClickIngresar }) => {
         </Popover.Description>
         <Popover.Container>
           <Link to='/login'>
-            <button className={button["button"]} onClick={onClick}>
+            <button className={button["button"]}>
               Cómo Emprendedor
             </button>
           </Link>

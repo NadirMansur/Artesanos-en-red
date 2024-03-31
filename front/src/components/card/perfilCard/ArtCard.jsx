@@ -8,6 +8,7 @@ import AvatarPerfil from "./avatarPerfil/AvatarPerfil";
 const ArtCard = (props) => {
   const [art, setArt] = useState(null);
   const [rubros, setRubros] = useState(null);
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const { id } = props;
 
@@ -26,7 +27,7 @@ const ArtCard = (props) => {
 
   return (
     <>
-      {art && rubros && (
+      {art && rubros && art.status && (
         <div className={card["container"]}>
           <div className={card["card-container"]}>
             <div className={card["card-container-column"]}>
@@ -47,8 +48,13 @@ const ArtCard = (props) => {
                 })}
               </div>
             </div>
+            <span className={`${isMobile ? card["intro"] : card["hiden"]}`}>
+            {art.intro}
+          </span>
           </div>
-          <span className={card["intro"]}>{art.intro}</span>
+          <span className={`${isMobile ? card["hiden"] : card["intro"]}`}>
+            {art.intro}
+          </span>
         </div>
       )}
     </>

@@ -11,7 +11,9 @@
   align-items: center;
   gap: 1rem;
 }
-
+.hiden{
+  display: none !important;
+}
 .container-options {
   display: flex;
   flex-direction: column;
@@ -34,4 +36,24 @@
   color: #007bff;
   border-color: #007bff;
   background-color: #fff;
+}
+
+@media (max-width: 768px) {
+  .fila {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container-menu-comp {
+    gap: 0.5rem;
+  }
+
+  .container-options {
+    align-items: center;
+  }
+
+  .container-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }

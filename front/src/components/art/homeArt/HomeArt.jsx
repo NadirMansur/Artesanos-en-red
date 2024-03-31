@@ -1,17 +1,16 @@
 import PropTypes from "prop-types";
-import { useState, useEffect, useRef } from "react";
-import emp from "./homeArt.module.css";
-import { useLocation } from "react-router-dom";
-import CreateRubro from "../../createRubro/CreateRubro";
-import UpImg from "../../upImg/UpImg";
-import CargaProdForm from "../../cargaProdForm/CargaProdForm";
-import { validate } from "../../../utils/validations";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import {
-  setFormErrorsArtesano,
   cleanFormErrorsArtesano,
+  setFormErrorsArtesano,
 } from "../../../store/ducks/errorsDuck";
+import { validate } from "../../../utils/validations";
+import CargaProdForm from "../../cargaProdForm/CargaProdForm";
 import Menu from "../../menu/Menu";
+import UpImg from "../../upImg/UpImg";
+import emp from "./homeArt.module.css";
 
 const HomeArt = (props) => {
   const dispatch = useDispatch();
@@ -59,7 +58,7 @@ const HomeArt = (props) => {
       );
     } else {
       setSelectedFile(file);
-      generateThumbnail(file)
+      generateThumbnail(file);
       dispatch(
         setFormErrorsArtesano({
           ...errors,
@@ -120,15 +119,13 @@ const HomeArt = (props) => {
             <div className={emp["card-container-column"]}>
               <p className={emp["intro"]}>{art.intro}</p>
             </div>
-            <button className={emp["boton"]} onClick={handleEdit}>
+            {/* <button className={emp["boton"]} onClick={handleEdit}>
               Editar
-            </button>
+            </button> */}
           </div>
           <div>
-            <CargaProdForm
-              username={art.username}
-            ></CargaProdForm>
-            <CreateRubro></CreateRubro>
+            <CargaProdForm username={art.username}></CargaProdForm>
+            {/* <CreateRubro></CreateRubro> */}
           </div>
         </div>
       ) : null}

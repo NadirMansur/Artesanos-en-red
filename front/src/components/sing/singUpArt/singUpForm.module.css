@@ -32,7 +32,7 @@ TEMPOSRALMENTE ANTES DE MODULARIZAR SING IG
 
 .span {
   color: #181717;
-  width: 20rem;
+  width: 18rem;
   align-self: center;
 }
 
@@ -80,4 +80,42 @@ TEMPOSRALMENTE ANTES DE MODULARIZAR SING IG
 .button:hover {
   color: #fff;
   background-color: #007bff;
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .span {
+    width: 100%;
+  }
+
+  .h2 {
+    font-size: 1.5rem;
+  }
+
+  .input {
+    font-size: 0.8rem;
+  }
+
+  .button {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    gap: 0.5rem;
+  }
+
+  .h2 {
+    margin-bottom: 10px;
+  }
+
+  .input {
+    margin-bottom: 0.5rem;
+  }
 }
