@@ -28,7 +28,7 @@
   transform: scale(2); /* Puedes ajustar el valor según tu preferencia */
   transition: all 2s;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   /* Estilos para dispositivos móviles */
   /* Por ejemplo: */
 
