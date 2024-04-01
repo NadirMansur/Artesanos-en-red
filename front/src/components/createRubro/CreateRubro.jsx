@@ -1,10 +1,10 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 import rubro from "./createRubro.module.css";
 
 const CreateRubro = () => {
   
-  const endpoint = import.meta.env.VITE_CREATE_RUBRO;
+  const endpoint = import.meta.env.VITE_GET_RUBROS_ENDPOINT;
   
   console.log("antes endpoint: " + endpoint);
 
