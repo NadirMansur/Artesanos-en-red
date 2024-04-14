@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
-import styles from "./message.module.css";
 
-const Message = ({ message }) => {
+const Message = ({ message, color, fontSize, fontWeight }) => {
   return (
-    <div className={styles["error"]}>
+    <div
+      style={{
+        color: color,
+        fontSize: fontSize,
+        margin: "10px 0",
+        fontWeight: fontWeight,
+      }}
+    >
       <p>{message}</p>
     </div>
   );
@@ -11,6 +17,9 @@ const Message = ({ message }) => {
 
 Message.propTypes = {
   message: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  fontSize: PropTypes.string.isRequired,
+  fontWeight: PropTypes.string.isRequired,
 };
 
 export default Message;

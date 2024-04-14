@@ -4,7 +4,7 @@ import cards from "./cards.module.css";
 
 const Cards = () => {
   const artesanos = useSelector((state) => state.rootReducer.arts.arts);
-  console.log(artesanos);
+  // console.log(artesanos);
   return (
     <>
       {artesanos ? (

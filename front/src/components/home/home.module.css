@@ -1,8 +1,14 @@
 .container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
   gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo-singup{
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
