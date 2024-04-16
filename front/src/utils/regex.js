@@ -4,8 +4,8 @@ export const email = {
 };
 
 export const tel = {
-  regex: /^223\d{7}$/,
-  message: "El numero de telefono debe comenzar con 223, ej: 2235",
+  regex: /^(223|232)\d{7}$/,
+  message: "El número de teléfono debe comenzar con 223 o 232, por ejemplo: 2235 o 2323",
 };
 
 const introMaxLength = 570;
