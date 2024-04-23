@@ -1,17 +1,26 @@
+.form-component {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .label {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .input,
 .textarea {
-  width: 100%;
+  width: 80%;
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ddd;
@@ -47,31 +56,38 @@
 
 .span-alert {
   color: #f00d0d;
-  width: 20rem;
+  width: 15rem;
   align-self: center;
   padding: 0.5rem;
 }
 
-.form-component {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-@media (max-width: 780px) {
+@media (max-width: 320px) {
   .form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
   }
   .form-container {
-    width: 100%;
+    width: 90%;
+  }
+  .form-component {
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+    border-color: #dddddd;
   }
   .input {
-    width: 9rem;
+    width: 13rem;
+  }
+  .textarea {
+    width: 13rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  .label {
+    width: 80%;
   }
 }

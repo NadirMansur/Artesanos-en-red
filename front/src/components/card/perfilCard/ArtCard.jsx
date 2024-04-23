@@ -30,8 +30,8 @@ const ArtCard = (props) => {
       {art && rubros && art.status && (
         <div className={card["container"]}>
           <div className={card["card-container"]}>
-            <div className={card["card-container-column"]}>
-              <div className={card["img-name-container-row"]}>
+            <div className={card["card-container-row"]}>
+              <div className={card["img-name-container-column"]}>
                 <AvatarPerfil img={art.img_perfil} />
                 <Link to={`/detail/${id}`}>
                   <p className={card["name"]}>{art.username}</p>
@@ -49,12 +49,12 @@ const ArtCard = (props) => {
               </div>
             </div>
             <span className={`${isMobile ? card["intro"] : card["hiden"]}`}>
-            {art.intro}
-          </span>
+              {art.intro}
+            </span>
+            <span className={`${isMobile ? card["hiden"] : card["intro"]}`}>
+              {art.intro}
+            </span>
           </div>
-          <span className={`${isMobile ? card["hiden"] : card["intro"]}`}>
-            {art.intro}
-          </span>
         </div>
       )}
     </>

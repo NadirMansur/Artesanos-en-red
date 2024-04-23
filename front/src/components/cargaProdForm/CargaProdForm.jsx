@@ -192,8 +192,15 @@ const CargaProdForm = (props) => {
     <div className={styles["form-component"]}>
       <div className={styles["form-container"]}>
         <form className={styles["form"]} onSubmit={handleSubmit}>
+          <label htmlFor='combo' className={styles["label"]}>
+            <p>Rubro</p>
+            <SelectRubro />
+            {errors.rubro != "" ? (
+              <span className={styles["span-alert"]}>{errors.rubro}</span>
+            ) : null}
+          </label>
           <label htmlFor='title' className={styles["label"]}>
-            Título del Producto
+            <p>Título del Producto</p>
             <input
               type='text'
               id='title'
@@ -206,15 +213,8 @@ const CargaProdForm = (props) => {
               <span className={styles["span-alert"]}>{errors.title}</span>
             ) : null}
           </label>
-          <label htmlFor='combo' className={styles["label"]}>
-            Rubro
-            <SelectRubro />
-            {errors.rubro != "" ? (
-              <span className={styles["span-alert"]}>{errors.rubro}</span>
-            ) : null}
-          </label>
           <label htmlFor='description' className={styles["label"]}>
-            Descripción del Producto
+            <p>Descripción del Producto</p>
             <textarea
               id='description'
               name='description'
@@ -227,7 +227,7 @@ const CargaProdForm = (props) => {
             ) : null}
           </label>
           <label htmlFor='tag1' className={styles["label"]}>
-            Tag 1
+            <p>Tag 1</p>
             <input
               type='text'
               id='tag1'
@@ -241,7 +241,7 @@ const CargaProdForm = (props) => {
             ) : null}
           </label>
           <label htmlFor='tag2' className={styles["label"]}>
-            Tag 2
+            <p>Tag 2</p>
             <input
               type='text'
               id='tag2'
@@ -255,7 +255,7 @@ const CargaProdForm = (props) => {
             ) : null}
           </label>
           <label htmlFor='tag3' className={styles["label"]}>
-            Tag 3
+            <p>Tag 3</p>
             <input
               type='text'
               id='tag3'
@@ -269,7 +269,7 @@ const CargaProdForm = (props) => {
             ) : null}
           </label>
           <label htmlFor='tag4' className={styles["label"]}>
-            Tag 4
+            <p>Tag 4</p>
             <input
               type='text'
               id='tag4'
@@ -282,10 +282,12 @@ const CargaProdForm = (props) => {
               <span className={styles["span-alert"]}>{errors.tag4}</span>
             ) : null}
           </label>
-          <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
-          {errors.img != "" ? (
-            <span className={styles["span-alert"]}>{errors.img}</span>
-          ) : null}
+          <label>
+            <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
+            {errors.img != "" ? (
+              <span className={styles["span-alert"]}>{errors.img}</span>
+            ) : null}
+          </label>
         </form>
       </div>
       <ProdCard

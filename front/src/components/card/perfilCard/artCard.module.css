@@ -7,8 +7,17 @@
   gap: 1rem;
   max-width: fit-content;
   max-height: fit-content;
+  /* transform: scale(1); */
+  transition: transform 0.3s ease-in-out;
 }
-.hiden{
+
+.container:hover {
+  box-shadow: 0 0.6rem 0.6em rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  background-color: rgb(211, 211, 211);
+}
+
+.hiden {
   display: none !important;
 }
 .intro {
@@ -33,7 +42,7 @@
 }
 .card-container-column {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
 }
 .rubro {
@@ -50,9 +59,11 @@
   max-width: 8rem;
 }
 
-.img-name-container-row {
+.img-name-container-column {
   display: flex;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   justify-content: center;
   align-items: center;
