@@ -89,7 +89,7 @@
 }
 
 /* Responsive Styles */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
   .card-container-column {
     margin: 10px;
   }

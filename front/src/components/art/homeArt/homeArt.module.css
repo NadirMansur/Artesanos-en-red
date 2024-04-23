@@ -147,7 +147,7 @@
 }
 
 /* Responsive Styles */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
   .homeArt {
     width: 100;
   }
