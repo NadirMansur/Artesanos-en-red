@@ -8,6 +8,7 @@ import {
   fetchRubrosById,
 } from "../../store/ducks/artDuck";
 import ProdCard from "../card/prodCard/ProdCard.jsx";
+import ArtGalery from "../galeria/ArtGalery.jsx";
 import artDetail from "./art.module.css";
 const Art = () => {
   const { id } = useParams();
@@ -15,6 +16,41 @@ const Art = () => {
   const [prods, setProds] = useState(null);
   const [art, setArt] = useState(null);
   const [rubros, setRubros] = useState(null);
+  const [galeria, setGaleria] = useState([]);
+  const [visibleGaleria, setVisibleGaleria] = useState(false);
+
+  const enndpointGaleria = import.meta.env.VITE_GET_GALERY_BY_ID;
+
+  const fetchGaleryData = async (id) => {
+    try {
+      const response = await fetch(enndpointGaleria + `id=${id}`);
+      if (response.ok) {
+        const galeria = await response.json();
+        return galeria;
+      } else {
+        console.error(
+          "Error en la respuesta del servidor:",
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error fetching art data:", error);
+    }
+  };
+
+  const showGaleria = () => {
+    setVisibleGaleria(!visibleGaleria);
+  };
+
+  const createGalery = (array) => {
+    const rows = Math.ceil(array.length / 3);
+    const gallery = [];
+    for (let i = 0; i < rows; i++) {
+      const row = array.slice(i * 3, i * 3 + 3).map((obj) => obj.img);
+      gallery.push(row);
+    }
+    return gallery;
+  };
 
   useEffect(() => {
     fetchArtData(id).then((data) => {
@@ -28,6 +64,13 @@ const Art = () => {
     });
     fetchProdsById(id).then((data) => {
       setProds(data);
+    });
+    fetchGaleryData(id).then((data) => {
+      //despues revisar
+      console.log(data);
+      const galery = createGalery(data);
+      setGaleria(galery);
+      //despues revisar
     });
     // eslint-disable-next-line
   }, []);
@@ -71,6 +114,24 @@ const Art = () => {
               </Card.Container>
             </div>
           </div>
+          <button onClick={showGaleria}>
+            {!visibleGaleria ? "Mostrar Galeria" : "Ocultar Galeria"}
+          </button>
+          {visibleGaleria && (
+            <div>
+              <h1
+                style={{
+                  fontFamily: "Roboto, sans-serif",
+                  fontWeight: "bold",
+                  fontSize: "3rem",
+                }}
+              >
+                Galería
+              </h1>
+              <ArtGalery galeria={galeria} />
+            </div>
+          )}
+
           <div className={artDetail["prod"]}>
             {prods &&
               prods.map((prod, index) => {

@@ -69,7 +69,7 @@
     flex-direction: column;
   }
   .form-container {
-    width: 90%;
+    width: 100%
   }
   .form-component {
     display: flex;

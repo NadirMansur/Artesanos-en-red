@@ -5,6 +5,8 @@ import editIcon from "../../../assets/iconos/editar.png";
 import Icon from "../../Icon/Icon";
 import ProdCard from "../../card/prodCard/ProdCard";
 import CargaProdForm from "../../cargaProdForm/CargaProdForm";
+import ArtGalery from "../../galeria/ArtGalery";
+import CargaFotoGaleria from "../../galeria/CargaFotoGaleria";
 import Menu from "../../menu/Menu";
 import emp from "./homeArt.module.css";
 
@@ -13,8 +15,13 @@ const HomeArt = (props) => {
   const location = useLocation();
   const [art, setArt] = useState(null);
   const [visibleCreateProd, setVisibleCreateProd] = useState(false);
-  const endpointProds = import.meta.env.VITE_GET_PRODS_BY_ID;
+  const [visibleGaleria, setVisibleGaleria] = useState(false);
+  const [visibleCreateGaleria, setVisibleCreateGaleria] = useState(false);
   const [prods, setProds] = useState(null);
+  const [galeria, setGaleria] = useState([]);
+
+  const endpointProds = import.meta.env.VITE_GET_PRODS_BY_ID;
+  const enndpointGaleria = import.meta.env.VITE_GET_GALERY_BY_ID;
 
   const fetchProdData = async (id) => {
     try {
@@ -34,8 +41,43 @@ const HomeArt = (props) => {
     }
   };
 
+  const fetchGaleryData = async (id) => {
+    try {
+      const response = await fetch(enndpointGaleria + `id=${id}`);
+      if (response.ok) {
+        const galeria = await response.json();
+        return galeria;
+      } else {
+        console.error(
+          "Error en la respuesta del servidor:",
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error fetching art data:", error);
+    }
+  };
+
   const showCreateProd = () => {
     setVisibleCreateProd(!visibleCreateProd);
+  };
+
+  const showGaleria = () => {
+    setVisibleGaleria(!visibleGaleria);
+  };
+
+  const showCreateGaleria = () => {
+    setVisibleCreateGaleria(!visibleCreateGaleria);
+  };
+
+  const createGalery = (array) => {
+    const rows = Math.ceil(array.length / 3);
+    const gallery = [];
+    for (let i = 0; i < rows; i++) {
+      const row = array.slice(i * 3, i * 3 + 3).map((obj) => obj.img);
+      gallery.push(row);
+    }
+    return gallery;
   };
 
   useEffect(() => {
@@ -51,6 +93,13 @@ const HomeArt = (props) => {
       const id = art.id;
       fetchProdData(id).then((data) => {
         setProds(data);
+      });
+      fetchGaleryData(id).then((data) => {
+        //despues revisar
+        console.log(data);
+        const galery = createGalery(data);
+        setGaleria(galery);
+        //despues revisar
       });
     }
     // eslint-disable-next-line
@@ -71,37 +120,100 @@ const HomeArt = (props) => {
       {art ? (
         <div>
           <Menu link={["/"]} text={["Home"]} />
-          <button onClick={showCreateProd}>
-            {!visibleCreateProd ? "Crear Producto" : "Mi pagina"}
-          </button>
-          {visibleCreateProd ? (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "1rem",
+            }}
+          >
+            <button onClick={showCreateProd}>
+              {!visibleCreateProd ? "Crear Producto" : "Cerrar Crear Producto"}
+            </button>
+            <button onClick={showGaleria}>
+              {!visibleGaleria ? "Mostrar Galeria" : "Ocultar Galeria"}
+            </button>
+            <button onClick={showCreateGaleria}>
+              {!visibleCreateGaleria ? "Subir Foto" : "Ocultar subir Foto"}
+            </button>
+          </div>
+
+          {visibleCreateGaleria && (
             <div className={emp["div-CargaProdForm"]}>
-              <CargaProdForm username={art.username}></CargaProdForm>
-            </div>
-          ) : (
-            <div className={emp["profile-card"]}>
-              <div className={emp["basic-card"]}>
-                <div className={emp["photo-profile-container"]}>
-                  <img
-                    src={art.img_perfil}
-                    className={emp["photo-profile"]}
-                  ></img>
-                </div>
-                <div className={emp["basic-info"]}>
-                  <h2 className={emp["name"]}>{art.username}</h2>
-                  <p className={emp["rubro"]}>{art.rubro}</p>
-                  <p className={emp["tel"]}>{art.tel}</p>
-                  <p className={emp["email"]}>{art.email}</p>
-                </div>
-              </div>
-              <div className={emp["intro-container"]}>
-                <p className={emp["intro"]}>{art.intro}</p>
-              </div>
-              <Icon icon={editIcon} onClick={handleEdit}></Icon>
+              <h1
+                style={{
+                  fontFamily: "Roboto, sans-serif",
+                  fontWeight: "bold",
+                  fontSize: "3rem",
+                }}
+              >
+                Subir foto a Galeria
+              </h1>
+              <CargaFotoGaleria galeria={galeria} />
             </div>
           )}
+
+          {visibleCreateProd && (
+            <div className={emp["div-CargaProdForm"]}>
+              <h2
+                style={{
+                  fontFamily: "Roboto, sans-serif",
+                  fontWeight: "bold",
+                  fontSize: "3rem",
+                }}
+              >
+                Cargar Producto
+              </h2>
+              <CargaProdForm username={art.username}></CargaProdForm>
+            </div>
+          )}
+
+          <div className={emp["profile-card"]}>
+            <div className={emp["basic-card"]}>
+              <div className={emp["photo-profile-container"]}>
+                <img
+                  src={art.img_perfil}
+                  className={emp["photo-profile"]}
+                ></img>
+              </div>
+              <div className={emp["basic-info"]}>
+                <h2 className={emp["name"]}>{art.username}</h2>
+                <p className={emp["rubro"]}>{art.rubro}</p>
+                <p className={emp["tel"]}>{art.tel}</p>
+                <p className={emp["email"]}>{art.email}</p>
+              </div>
+            </div>
+            <div className={emp["intro-container"]}>
+              <p className={emp["intro"]}>{art.intro}</p>
+            </div>
+            <Icon icon={editIcon} onClick={handleEdit}></Icon>
+          </div>
         </div>
       ) : null}
+      {visibleGaleria && (
+        <div>
+          <h1
+            style={{
+              fontFamily: "Roboto, sans-serif",
+              fontWeight: "bold",
+              fontSize: "3rem",
+            }}
+          >
+            Tú Galeria
+          </h1>
+          <ArtGalery galeria={galeria} />
+        </div>
+      )}
+      <h1
+        style={{
+          fontFamily: "Roboto, sans-serif",
+          fontWeight: "bold",
+          fontSize: "3rem",
+        }}
+      >
+        Tus Productos
+      </h1>
       <div className={emp["prod"]}>
         {prods &&
           prods.map((prod, index) => {

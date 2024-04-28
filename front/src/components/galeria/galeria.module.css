@@ -8,10 +8,16 @@ img {
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
-  width: 50%;
+  width: 100%;
 }
 
 .column {
   flex: 25%;
   padding: 5px;
+}
+
+@media (max-width: 768px) {
+  .column {
+    flex: 1 2 200px;
+  }
 }
