@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    cleanFormErrorsProd,
-    setFormErrorsProducto,
+  cleanFormErrorsProd,
+  setFormErrorsProducto,
 } from "../../store/ducks/errorsDuck";
 import styles from "../cargaProdForm/cargaProdFrom.module.css";
 import UpImg from "../upImg/UpImg";
@@ -73,6 +73,10 @@ const CargaFotoGaleria = () => {
     reader.readAsDataURL(file);
   };
 
+  const resetButton = () => {
+    setFormSubmitted(false);
+    setStatusResponse(false);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(
@@ -156,6 +160,16 @@ const CargaFotoGaleria = () => {
             : "Subir a Galería"
           : "Subida!"}
       </button>
+      {statusResponse && (
+        <button
+          type='submit'
+          className={styles["button"]}
+          disabled={formSubmitted}
+          onClick={resetButton}
+        >
+          Subir otra
+        </button>
+      )}
     </div>
   );
 };

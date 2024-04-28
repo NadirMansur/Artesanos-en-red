@@ -101,6 +101,11 @@ const CargaProdForm = (props) => {
     reader.readAsDataURL(file);
   };
 
+  const resetButton = () => {
+    setFormSubmitted(false);
+    setStatusResponse(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (rubro === null) {
@@ -313,6 +318,16 @@ const CargaProdForm = (props) => {
             : "Crear Producto"
           : "Producto creado!"}
       </button>
+      {statusResponse && (
+        <button
+          type='submit'
+          className={styles["button"]}
+          disabled={formSubmitted}
+          onClick={resetButton}
+        >
+          Subir otro
+        </button>
+      )}
     </div>
   );
 };
