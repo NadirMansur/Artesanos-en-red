@@ -1,7 +1,7 @@
-import { setRubro } from "../../store/ducks/rubroDuck";
-import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setRubro } from "../../store/ducks/rubroDuck";
 import styles from "./selectRubro.module.css";
 
 const SelectRubro = () => {
@@ -16,7 +16,6 @@ const SelectRubro = () => {
       try {
         const response = await axios.get(endpoint);
         setRubros(response.data);
-        console.log("response", response.data);
       } catch (error) {
         console.error("Hubo un error al obtener los rubros:", error);
       }

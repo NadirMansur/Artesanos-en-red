@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const HOCMessage = (Component) => {
+const HOCContainer = (Component) => {
   const WithProps = (props) => {
     const { height, width, color, backgroundColor, fontSize } = props;
     return (
@@ -37,4 +37,4 @@ const HOCMessage = (Component) => {
   return WithProps;
 };
 
-export default HOCMessage;
+export default HOCContainer;

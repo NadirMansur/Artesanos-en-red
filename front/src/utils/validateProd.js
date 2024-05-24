@@ -1,5 +1,5 @@
 import { setFormErrorsProducto } from "../store/ducks/errorsDuck";
-import { title, description, tag } from "./regex";
+import { description, tag, title } from "./regex";
 
 export const validate = (e, dispatch, formErrorsProd) => {
   const { name, value } = e.target;

@@ -15,7 +15,6 @@ const initialState = {
 };
 
 export default function userReducer(state = initialState, action) {
-  console.log("action.type", action.type, "action.payload", action.payload);
   switch (action.type) {
     case SET_USER:
       console.log("Usuario actualizado en el estado:", action.payload);
@@ -28,7 +27,7 @@ export default function userReducer(state = initialState, action) {
   }
 }
 
-const endpointGetUserByGoogleId = import.meta.env.VITE_GET_USER_BY_GOOGLE_ID
+const endpointGetUserByGoogleId = import.meta.env.VITE_GET_USER_BY_GOOGLE_ID;
 
 // Thunks (acciones asíncronas)
 export const fetchUserData = (googleId) => async (dispatch) => {

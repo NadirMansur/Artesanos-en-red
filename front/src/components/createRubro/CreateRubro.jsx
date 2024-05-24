@@ -6,7 +6,6 @@ const CreateRubro = () => {
   
   const endpoint = import.meta.env.VITE_GET_RUBROS_ENDPOINT;
   
-  console.log("antes endpoint: " + endpoint);
 
   const [rubroValue, setRubro] = useState("");
 
@@ -14,7 +13,6 @@ const CreateRubro = () => {
     event.preventDefault();
 
     try {
-      console.log("endpoint: " + endpoint);
       const response = await axios.post(endpoint, {
         rubro: rubroValue,
       });
@@ -29,7 +27,7 @@ const CreateRubro = () => {
     <form onSubmit={handleSubmit} className={rubro["form"]}>
       <label className={rubro["label"]}>
         <p>Rubro:</p>
-        <input
+      <input
           type='text'
           value={rubroValue}
           onChange={(event) => setRubro(event.target.value)}
@@ -44,3 +42,4 @@ const CreateRubro = () => {
 };
 
 export default CreateRubro;
+  

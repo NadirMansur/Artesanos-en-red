@@ -33,6 +33,7 @@ const initialState = {
     intro: "",
     img: "Debes subir una imagen para continuar",
     signUpPasswordRepeat: "",
+    marca: "",
   },
   formErrorsProd: {
     title: "",
@@ -47,7 +48,6 @@ const initialState = {
 };
 
 export default function errorsReducer(state = initialState, action) {
-  console.log("action.type", action.type, "action.payload", action.payload);
   switch (action.type) {
     case SET_FORM_ERRORS_ART:
       return {
@@ -82,6 +82,7 @@ export default function errorsReducer(state = initialState, action) {
           intro: "",
           img: "",
           signUpPasswordRepeat: "",
+          marca: "",
         },
       };
     default:

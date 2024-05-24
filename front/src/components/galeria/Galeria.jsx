@@ -1,9 +1,7 @@
 import gal from "./galeria.module.css";
 
 const Galeria = (props) => {
-  //console.log(props);
   const { galeria } = props;
-  //console.log(galeria);
   return (
     <div className={gal["row"]}>
       {galeria.map((columna, i) => {

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { primaryColor } from "../../utils/constantes";
 import { mensajeCargaHome } from "../../utils/mensajes";
-import HOCMessage from "../HOC/HOCMessage";
+import HOCContainer from "../HOC/HOCContainer";
 import LoadingSpinner from "../loading/LoadingSinper";
 import Message from "./Message";
 
@@ -46,6 +46,6 @@ CargaGratuitaMessage.propTypes = {
   fontWeight: PropTypes.string,
 };
 
-const HOCcargaGratuitaMessage = HOCMessage(CargaGratuitaMessage);
+const HOCcargaGratuitaMessage = HOCContainer(CargaGratuitaMessage);
 
 export default HOCcargaGratuitaMessage;

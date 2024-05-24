@@ -26,7 +26,6 @@ const CargaFotoGaleria = () => {
 
   useEffect(() => {
     isMountedRef.current = true;
-    console.log(art);
     return () => (
       dispatch(cleanFormErrorsProd({})), (isMountedRef.current = false)
     );
@@ -103,17 +102,13 @@ const CargaFotoGaleria = () => {
     try {
       setFormSubmitted(true);
       //////////////////////logica de envio de formulario///////////////////////
-      console.log(selectedFile);
       const formDataBody = new FormData();
       formDataBody.append("id", art.id);
       formDataBody.append("file", selectedFile);
 
-      console.log("formDataBody");
-      console.log(formDataBody);
-
-      for (var pair of formDataBody.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      // for (var pair of formDataBody.entries()) {
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
       const response = await fetch(endpoint, {
         method: "POST",
         body: formDataBody,

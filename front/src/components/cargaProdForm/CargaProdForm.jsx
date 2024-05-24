@@ -5,7 +5,9 @@ import {
   cleanFormErrorsProd,
   setFormErrorsProducto,
 } from "../../store/ducks/errorsDuck";
+import { errorStyle, inputStyle, labelStyle } from "../../utils/constantes";
 import { validate } from "../../utils/validateProd";
+import InputText from "../Input.jsx/InputText";
 import ProdCard from "../card/prodCard/ProdCard";
 import SelectRubro from "../select/Select";
 import UpImg from "../upImg/UpImg";
@@ -44,8 +46,6 @@ const CargaProdForm = (props) => {
 
   useEffect(() => {
     isMountedRef.current = true;
-    console.log("art redfux");
-    console.log(art);
     return () => (
       dispatch(cleanFormErrorsProd({})), (isMountedRef.current = false)
     );
@@ -140,15 +140,6 @@ const CargaProdForm = (props) => {
     try {
       setFormSubmitted(true);
       //////////////////////logica de envio de formulario///////////////////////
-      console.log(formData.title);
-      console.log(formData.description);
-      console.log(formData.tag1);
-      console.log(formData.tag2);
-      console.log(formData.tag3);
-      console.log(formData.tag4);
-      console.log(rubro);
-      console.log(art.id);
-      console.log(selectedFile);
       //revisar persistencia de datos al recargar la pagina, como id de usuario
       //revisar persistencia de datos al recargar la pagina, como id de usuario
       //revisar persistencia de datos al recargar la pagina, como id de usuario
@@ -165,12 +156,9 @@ const CargaProdForm = (props) => {
       formDataBody.append("id", art.id);
       formDataBody.append("file", selectedFile);
 
-      console.log("formDataBody");
-      console.log(formDataBody);
-
-      for (var pair of formDataBody.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      // for (var pair of formDataBody.entries()) {
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
       const response = await fetch(endpoint, {
         method: "POST",
         body: formDataBody,
@@ -204,89 +192,66 @@ const CargaProdForm = (props) => {
               <span className={styles["span-alert"]}>{errors.rubro}</span>
             ) : null}
           </label>
-          <label htmlFor='title' className={styles["label"]}>
-            <p>Título del Producto</p>
-            <input
-              type='text'
-              id='title'
-              name='title'
-              value={formData.title}
-              onChange={handleChange}
-              className={styles["input"]}
-            />
-            {errors.title != "" ? (
-              <span className={styles["span-alert"]}>{errors.title}</span>
-            ) : null}
-          </label>
-          <label htmlFor='description' className={styles["label"]}>
-            <p>Descripción del Producto</p>
-            <textarea
-              id='description'
-              name='description'
-              value={formData.description}
-              onChange={handleChange}
-              className={styles["textarea"]}
-            />
-            {errors.description != "" ? (
-              <span className={styles["span-alert"]}>{errors.description}</span>
-            ) : null}
-          </label>
-          <label htmlFor='tag1' className={styles["label"]}>
-            <p>Tag 1</p>
-            <input
-              type='text'
-              id='tag1'
-              name='tag1'
-              value={formData.tag1}
-              onChange={handleChange}
-              className={styles["input"]}
-            />
-            {errors.tag1 != "" ? (
-              <span className={styles["span-alert"]}>{errors.tag1}</span>
-            ) : null}
-          </label>
-          <label htmlFor='tag2' className={styles["label"]}>
-            <p>Tag 2</p>
-            <input
-              type='text'
-              id='tag2'
-              name='tag2'
-              value={formData.tag2}
-              onChange={handleChange}
-              className={styles["input"]}
-            />
-            {errors.tag2 != "" ? (
-              <span className={styles["span-alert"]}>{errors.tag2}</span>
-            ) : null}
-          </label>
-          <label htmlFor='tag3' className={styles["label"]}>
-            <p>Tag 3</p>
-            <input
-              type='text'
-              id='tag3'
-              name='tag3'
-              value={formData.tag3}
-              onChange={handleChange}
-              className={styles["input"]}
-            />
-            {errors.tag3 != "" ? (
-              <span className={styles["span-alert"]}>{errors.tag3}</span>
-            ) : null}
-          </label>
-          <label htmlFor='tag4' className={styles["label"]}>
-            <p>Tag 4</p>
-            <input
-              type='text'
-              id='tag4'
-              name='tag4'
-              value={formData.tag4}
-              onChange={handleChange}
-              className={styles["input"]}
-            />
-            {errors.tag4 != "" ? (
-              <span className={styles["span-alert"]}>{errors.tag4}</span>
-            ) : null}
-          </label>
+          <InputText
+            p='Título del Producto'
+            htmlFor='title'
+            value={formData.title}
+            onChange={handleChange}
+            error={errors.title}
+            labelStyle={labelStyle}
+            inputStyle={inputStyle}
+            errorStyle={errorStyle}
+          />
+          <InputText
+            p='Descripción del Producto'
+            htmlFor='description'
+            value={formData.description}
+            onChange={handleChange}
+            error={errors.description}
+            labelStyle={labelStyle}
+            inputStyle={inputStyle}
+            errorStyle={errorStyle}
+          />
+          <InputText
+            p='Tag 1'
+            htmlFor='tag1'
+            value={formData.tag1}
+            onChange={handleChange}
+            error={errors.tag1}
+            labelStyle={labelStyle}
+            inputStyle={inputStyle}
+            errorStyle={errorStyle}
+          />
+          <InputText
+            p='Tag 2'
+            htmlFor='tag2'
+            value={formData.tag2}
+            onChange={handleChange}
+            error={errors.tag2}
+            labelStyle={labelStyle}
+            inputStyle={inputStyle}
+            errorStyle={errorStyle}
+          />
+          <InputText
+            p='Tag 3'
+            htmlFor='tag3'
+            value={formData.tag3}
+            onChange={handleChange}
+            error={errors.tag3}
+            labelStyle={labelStyle}
+            inputStyle={inputStyle}
+            errorStyle={errorStyle}
+          />
+          <InputText
+            p='Tag 4'
+            htmlFor='tag4'
+            value={formData.tag4}
+            onChange={handleChange}
+            error={errors.tag4}
+            labelStyle={labelStyle}
+            inputStyle={inputStyle}
+            errorStyle={errorStyle}
+          />
           <label>
             <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
             {errors.img != "" ? (

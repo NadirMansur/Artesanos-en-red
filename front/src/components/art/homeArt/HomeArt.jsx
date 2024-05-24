@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import editIcon from "../../../assets/iconos/editar.png";
-import Icon from "../../Icon/Icon";
+import HOCNameEditForm from "../../HOC/NameEditForm";
 import ProdCard from "../../card/prodCard/ProdCard";
+import ProfileCard from "../../card/profileCard/ProfileCard";
 import CargaProdForm from "../../cargaProdForm/CargaProdForm";
 import ArtGalery from "../../galeria/ArtGalery";
 import CargaFotoGaleria from "../../galeria/CargaFotoGaleria";
@@ -11,7 +11,6 @@ import Menu from "../../menu/Menu";
 import emp from "./homeArt.module.css";
 
 const HomeArt = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
   const [art, setArt] = useState(null);
   const [visibleCreateProd, setVisibleCreateProd] = useState(false);
@@ -25,7 +24,6 @@ const HomeArt = (props) => {
 
   const fetchProdData = async (id) => {
     try {
-      console.log(id);
       const response = await fetch(endpointProds + `id=${id}`);
       if (response.ok) {
         const prodsData = await response.json();
@@ -96,7 +94,6 @@ const HomeArt = (props) => {
       });
       fetchGaleryData(id).then((data) => {
         //despues revisar
-        console.log(data);
         const galery = createGalery(data);
         setGaleria(galery);
         //despues revisar
@@ -105,21 +102,12 @@ const HomeArt = (props) => {
     // eslint-disable-next-line
   }, [art]);
 
-  const handleEdit = () => {
-    setIsModalOpen(true);
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleSumbitModal = () => {
-    setIsModalOpen(false);
-  };
   return (
     <div className={emp["homeArt"]}>
       {art ? (
         <div>
           <Menu link={["/"]} text={["Home"]} />
+          <HOCNameEditForm />
           <div
             style={{
               display: "flex",
@@ -169,26 +157,7 @@ const HomeArt = (props) => {
             </div>
           )}
 
-          <div className={emp["profile-card"]}>
-            <div className={emp["basic-card"]}>
-              <div className={emp["photo-profile-container"]}>
-                <img
-                  src={art.img_perfil}
-                  className={emp["photo-profile"]}
-                ></img>
-              </div>
-              <div className={emp["basic-info"]}>
-                <h2 className={emp["name"]}>{art.username}</h2>
-                <p className={emp["rubro"]}>{art.rubro}</p>
-                <p className={emp["tel"]}>{art.tel}</p>
-                <p className={emp["email"]}>{art.email}</p>
-              </div>
-            </div>
-            <div className={emp["intro-container"]}>
-              <p className={emp["intro"]}>{art.intro}</p>
-            </div>
-            <Icon icon={editIcon} onClick={handleEdit}></Icon>
-          </div>
+          <ProfileCard art={art} />
         </div>
       ) : null}
       {visibleGaleria && (
@@ -231,12 +200,6 @@ const HomeArt = (props) => {
             );
           })}
       </div>
-      {/* {isModalOpen ? (
-        <EditModal
-          handleCloseModal={handleCloseModal}
-          handleSumbitModal={handleSumbitModal}
-        />
-      ) : null} */}
     </div>
   );
 };

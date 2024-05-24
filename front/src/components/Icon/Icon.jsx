@@ -1,7 +1,16 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-const Icon = ({ icon, onClick }) => {
+const Icon = ({
+  icon,
+  onClick,
+  position,
+  marginLeft,
+  marginBottom,
+  id,
+  width,
+  height,
+}) => {
   const [hobber, setHobber] = useState(false);
 
   useEffect(() => {
@@ -13,7 +22,7 @@ const Icon = ({ icon, onClick }) => {
       setHobber(false);
     };
 
-    const divElement = document.getElementById("icon-button");
+    const divElement = document.getElementById(id);
     divElement.addEventListener("mouseenter", handleMouseEnter);
     divElement.addEventListener("mouseleave", handleMouseLeave);
 
@@ -26,19 +35,19 @@ const Icon = ({ icon, onClick }) => {
 
   return (
     <div
-    onClick={onClick}
-      id='icon-button'
+      onClick={onClick}
+      id={id}
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "40px",
-        height: "40px",
+        width: width,
+        height: height,
         backgroundColor: hobber ? "white" : "grey",
         borderRadius: "50%",
-        position: "absolute",
-        marginLeft: "95%",
-        marginBottom: "18%",
+        position: position,
+        marginLeft: marginLeft,
+        marginBottom: marginBottom,
       }}
     >
       <img
@@ -57,6 +66,12 @@ const Icon = ({ icon, onClick }) => {
 Icon.propTypes = {
   icon: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  position: PropTypes.string.isRequired,
+  marginBottom: PropTypes.string,
+  marginLeft: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
 };
 
 export default Icon;

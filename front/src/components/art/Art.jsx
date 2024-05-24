@@ -67,7 +67,6 @@ const Art = () => {
     });
     fetchGaleryData(id).then((data) => {
       //despues revisar
-      console.log(data);
       const galery = createGalery(data);
       setGaleria(galery);
       //despues revisar
