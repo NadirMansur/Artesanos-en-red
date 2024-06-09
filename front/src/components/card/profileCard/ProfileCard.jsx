@@ -8,7 +8,7 @@ import {
 } from "../../../utils/constantes";
 import ContainerBase from "../../containers/containerBase";
 
-import emp from "./ProfileCard.module.css";
+import emp from "./profileCard.module.css";
 
 const ProfileCard = ({ art /* handleEditMarca */ }) => {
   const isMobile = useIsMobile();
