@@ -67,6 +67,7 @@ const HOCForm = (props) => {
           method: "POST",
           body: formDataBody,
         });
+        console.log("response: " + response);
         if (isMountedRef.current) {
           if (response.ok) {
             const { status } = await response.json();

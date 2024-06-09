@@ -1,22 +1,27 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { h2Style, secondaryColor } from "../../../utils/constantes";
 import HOCNameEditForm from "../../HOC/NameEditForm";
 import ProdCard from "../../card/prodCard/ProdCard";
 import ProfileCard from "../../card/profileCard/ProfileCard";
 import CargaProdForm from "../../cargaProdForm/CargaProdForm";
-import ArtGalery from "../../galeria/ArtGalery";
 import CargaFotoGaleria from "../../galeria/CargaFotoGaleria";
 import Menu from "../../menu/Menu";
+
+import Modal from "../../modal/Modal";
 import emp from "./homeArt.module.css";
 
 const HomeArt = (props) => {
   const location = useLocation();
   const [art, setArt] = useState(null);
   const [visibleCreateProd, setVisibleCreateProd] = useState(false);
-  const [visibleGaleria, setVisibleGaleria] = useState(false);
+  // const [visibleGaleria, setVisibleGaleria] = useState(false);
   const [visibleCreateGaleria, setVisibleCreateGaleria] = useState(false);
   const [prods, setProds] = useState(null);
+  const [openmodal, setOpenmodal] = useState(false);
+
+  const [showNameEditModal, setShowNameEditModal] = useState(false);
   const [galeria, setGaleria] = useState([]);
 
   const endpointProds = import.meta.env.VITE_GET_PRODS_BY_ID;
@@ -57,14 +62,17 @@ const HomeArt = (props) => {
   };
 
   const showCreateProd = () => {
+    setOpenmodal(true);
     setVisibleCreateProd(!visibleCreateProd);
   };
 
-  const showGaleria = () => {
-    setVisibleGaleria(!visibleGaleria);
-  };
+  // const showGaleria = () => {
+  //   setOpenmodal(true);
+  //   setVisibleGaleria(!visibleGaleria);
+  // };
 
   const showCreateGaleria = () => {
+    setOpenmodal(true);
     setVisibleCreateGaleria(!visibleCreateGaleria);
   };
 
@@ -105,85 +113,114 @@ const HomeArt = (props) => {
   return (
     <div className={emp["homeArt"]}>
       {art ? (
-        <div>
-          <Menu link={["/"]} text={["Home"]} />
-          <HOCNameEditForm />
+        <div style={{ display: "contents", gap: "1rem" }}>
+          <div style={{ display: "flex" }}>
+            <Menu
+              link={["/", `/detail/galeria/${art.id}`]}
+              text={["Home", "Galeria"]}
+            />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "1rem",
+                opacity: openmodal && "0.5",
+              }}
+            >
+              <button onClick={showCreateProd}>
+                {!visibleCreateProd
+                  ? "Crear Producto"
+                  : "Cerrar Crear Producto"}
+              </button>
+              {/* <button onClick={showGaleria}>
+                {!visibleGaleria ? "Mostrar Galeria" : "Ocultar Galeria"}
+              </button> */}
+              <button onClick={showCreateGaleria}>
+                {!visibleCreateGaleria ? "Subir Foto" : "Ocultar subir Foto"}
+              </button>
+            </div>
+          </div>
           <div
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "1rem",
+              opacity: openmodal && "0.5",
             }}
           >
-            <button onClick={showCreateProd}>
-              {!visibleCreateProd ? "Crear Producto" : "Cerrar Crear Producto"}
-            </button>
-            <button onClick={showGaleria}>
-              {!visibleGaleria ? "Mostrar Galeria" : "Ocultar Galeria"}
-            </button>
-            <button onClick={showCreateGaleria}>
-              {!visibleCreateGaleria ? "Subir Foto" : "Ocultar subir Foto"}
-            </button>
+            <ProfileCard
+              handleEditMarca={() => {
+                setOpenmodal(true);
+                setShowNameEditModal(true);
+              }}
+              art={art}
+            />
           </div>
 
-          {visibleCreateGaleria && (
-            <div className={emp["div-CargaProdForm"]}>
-              <h1
-                style={{
-                  fontFamily: "Roboto, sans-serif",
-                  fontWeight: "bold",
-                  fontSize: "3rem",
-                }}
-              >
-                Subir foto a Galeria
-              </h1>
-              <CargaFotoGaleria galeria={galeria} />
-            </div>
-          )}
+          <Modal
+            closePopup={() => {
+              setOpenmodal(false);
+              setShowNameEditModal(false);
+            }}
+            open={showNameEditModal}
+          >
+            <HOCNameEditForm />
+          </Modal>
 
-          {visibleCreateProd && (
+          <Modal
+            closePopup={() => {
+              setOpenmodal(false);
+              setVisibleCreateGaleria(false);
+            }}
+            open={visibleCreateGaleria}
+          >
+            <h2 style={{ ...h2Style, fontSize: "3rem", color: secondaryColor }}>
+              Subir foto a Galeria
+            </h2>
+            <CargaFotoGaleria galeria={galeria} />
+          </Modal>
+
+          <Modal
+            closePopup={() => {
+              setOpenmodal(false);
+              setVisibleCreateProd(false);
+            }}
+            open={visibleCreateProd}
+          >
             <div className={emp["div-CargaProdForm"]}>
               <h2
-                style={{
-                  fontFamily: "Roboto, sans-serif",
-                  fontWeight: "bold",
-                  fontSize: "3rem",
-                }}
+                style={{ ...h2Style, fontSize: "3rem", color: secondaryColor }}
               >
                 Cargar Producto
               </h2>
               <CargaProdForm username={art.username}></CargaProdForm>
             </div>
-          )}
-
-          <ProfileCard art={art} />
+          </Modal>
+          {/* 
+          <Modal
+            closePopup={() => {
+              setOpenmodal(false);
+              setVisibleGaleria(false);
+            }}
+            open={visibleGaleria}
+          >
+            <h2 style={{ ...h2Style, fontSize: "3rem", color: secondaryColor }}>
+              Tú Galeria
+            </h2>
+            <ContainerBase style={secondaryContainer}>
+              <ArtGalery galeria={galeria} />
+            </ContainerBase>
+          </Modal> */}
         </div>
       ) : null}
-      {visibleGaleria && (
-        <div>
-          <h1
-            style={{
-              fontFamily: "Roboto, sans-serif",
-              fontWeight: "bold",
-              fontSize: "3rem",
-            }}
-          >
-            Tú Galeria
-          </h1>
-          <ArtGalery galeria={galeria} />
-        </div>
-      )}
-      <h1
-        style={{
-          fontFamily: "Roboto, sans-serif",
-          fontWeight: "bold",
-          fontSize: "3rem",
-        }}
-      >
+
+      <h1 style={{ ...h2Style, fontSize: "3rem", color: secondaryColor }}>
         Tus Productos
       </h1>
-      <div className={emp["prod"]}>
+      <div
+        style={{
+          opacity: openmodal && "0.5",
+        }}
+        className={emp["prod"]}
+      >
         {prods &&
           prods.map((prod, index) => {
             return (

@@ -1,102 +1,98 @@
+.profile-card {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  position: relative;
+}
 
+.basic-card {
+  display: flex;
+}
+
+.photo-profile-container {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.photo-profile {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.basic-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.relative-container {
+  position: relative;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #9b64f5;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  position: relative;
+}
+
+.rubro,
+.tel,
+.email,
+.intro {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.boton {
+  color: #ffffff;
+  bottom: 10px;
+  right: 10px;
+}
+
+.span-alert {
+  color: #f00d0d;
+  width: 20rem;
+  align-self: center;
+  padding: 0.5rem;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
   .profile-card {
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
-    position: relative;
-  }
-  
-  .basic-card {
-    display: flex;
-  }
-  
-  .photo-profile-container {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
-    position: relative;
-  }
-
-  .photo-profile {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+    width: 80%;
   }
 
   .basic-info {
-    display: flex;
-    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
   }
-
-  .relative-container {
-    position: relative;
-  }
-  
-  .name {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .intro-container {
-    display: flex;
+  .basic-card {
     flex-direction: column;
     align-items: center;
-    border: 1px solid #9b64f5;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
-    position: relative;
+    justify-content: center;
   }
-  
-
-  .rubro,
-  .tel,
-  .email,
-  .intro {
-    font-size: 16px;
-    margin-bottom: 5px;
+  .intro-container {
+    margin: 1rem;
+    padding: 0.3rem;
+    width: 100%;
   }
-  
-  .boton {
-    color: #ffffff;
-    bottom: 10px;
-    right: 10px;
-  }
-  
-  .span-alert {
-    color: #f00d0d;
-    width: 20rem;
-    align-self: center;
-    padding: 0.5rem;
-  }
-
-  /* Responsive Styles */
-  @media screen and (max-width: 768px) {
-
-    .profile-card {
-      flex-direction: column;
-      align-items: center;
-      width: 80%;
-    }
-  
-    .basic-info {
-      margin-top: 20px;
-      width: 100%;
-    }
-    .basic-card {
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .intro-container {
-      margin: 1rem;
-      padding: 0.3rem;
-      width: 100%;
-    }
-  }
-  
+}

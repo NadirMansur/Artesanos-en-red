@@ -11,7 +11,7 @@ import InputText from "../Input.jsx/InputText";
 import HOCForm from "./HOCForm";
 import MyForm from "./MyForm";
 
-const endpoint = " pepe "; // CREAR ENPOINT QUE SIRVA PARA TODOS LOS INPUTS DE INFO import.meta.env.VITE_CREATE_PROD;
+const endpoint = import.meta.env.VITE_PUT_ART_INFO;
 const selector = (state) => state.rootReducer.art.artLoginData;
 const errorSelector = (state) => state.rootReducer.errors.formErrorsArt;
 const NameEditForm = ({
@@ -34,8 +34,8 @@ const NameEditForm = ({
       >
         <InputText
           p='Marca'
-          htmlFor='marca'
-          value={formData["marca"]}
+          htmlFor='username'
+          value={formData["username"]}
           onChange={handleChange}
           error={errors.marca}
           labelStyle={labelStyle}

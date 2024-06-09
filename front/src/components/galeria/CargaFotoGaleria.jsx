@@ -4,7 +4,9 @@ import {
   cleanFormErrorsProd,
   setFormErrorsProducto,
 } from "../../store/ducks/errorsDuck";
+import { secondaryContainer } from "../../utils/constantes";
 import styles from "../cargaProdForm/cargaProdFrom.module.css";
+import ContainerBase from "../containers/containerBase";
 import UpImg from "../upImg/UpImg";
 
 const CargaFotoGaleria = () => {
@@ -132,17 +134,15 @@ const CargaFotoGaleria = () => {
   };
 
   return (
-    <div className={styles["form-component"]}>
-      <div className={styles["form-container"]}>
-        <form className={styles["form"]} onSubmit={handleSubmit}>
-          <label>
-            <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
-            {errors.img != "" ? (
-              <span className={styles["span-alert"]}>{errors.img}</span>
-            ) : null}
-          </label>
-        </form>
-      </div>
+    <ContainerBase style={{ ...secondaryContainer, width: "40vh" }}>
+      <form className={styles["form"]} onSubmit={handleSubmit}>
+        <label>
+          <UpImg thumbnail={thumbnail} onChange={handleFileChange} />
+          {errors.img != "" ? (
+            <span className={styles["span-alert"]}>{errors.img}</span>
+          ) : null}
+        </label>
+      </form>
       <button
         type='submit'
         className={styles["button"]}
@@ -165,7 +165,7 @@ const CargaFotoGaleria = () => {
           Subir otra
         </button>
       )}
-    </div>
+    </ContainerBase>
   );
 };
 

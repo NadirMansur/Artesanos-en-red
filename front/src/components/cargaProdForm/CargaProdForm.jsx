@@ -1,19 +1,29 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useIsMobile from "../../hooks/useIsMobile";
+
 import {
   cleanFormErrorsProd,
   setFormErrorsProducto,
 } from "../../store/ducks/errorsDuck";
-import { errorStyle, inputStyle, labelStyle } from "../../utils/constantes";
+import {
+  errorStyle,
+  inputStyle,
+  labelStyle,
+  primaryContainer,
+  secondaryContainer,
+} from "../../utils/constantes";
 import { validate } from "../../utils/validateProd";
 import InputText from "../Input.jsx/InputText";
 import ProdCard from "../card/prodCard/ProdCard";
+import ContainerBase from "../containers/containerBase";
 import SelectRubro from "../select/Select";
 import UpImg from "../upImg/UpImg";
 import styles from "./cargaProdFrom.module.css";
 
 const CargaProdForm = (props) => {
+  const isMobile = useIsMobile();
   const endpoint = import.meta.env.VITE_CREATE_PROD;
   const art = useSelector((state) => state.rootReducer.art.artLoginData);
 
@@ -182,9 +192,31 @@ const CargaProdForm = (props) => {
   };
 
   return (
-    <div className={styles["form-component"]}>
-      <div className={styles["form-container"]}>
-        <form className={styles["form"]} onSubmit={handleSubmit}>
+    <ContainerBase
+      style={
+        isMobile
+          ? {
+              ...primaryContainer,
+              flexDirection: "column",
+              justifyContent: "center",
+              alingItems: "center",
+            }
+          : {
+              ...primaryContainer,
+              flexDirection: "row",
+              justifyContent: "center",
+              alingItems: "center",
+            }
+      }
+    >
+      <ContainerBase
+        style={{
+          ...secondaryContainer,
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <form onSubmit={handleSubmit}>
           <label htmlFor='combo' className={styles["label"]}>
             <p>Rubro</p>
             <SelectRubro />
@@ -259,41 +291,43 @@ const CargaProdForm = (props) => {
             ) : null}
           </label>
         </form>
-      </div>
-      <ProdCard
-        tag1={formData.tag1}
-        tag2={formData.tag2}
-        tag3={formData.tag3}
-        tag4={formData.tag4}
-        title={formData.title}
-        name={username}
-        rubro={rubro}
-        description={formData.description}
-        img={thumbnail}
-      ></ProdCard>
-      <button
-        type='submit'
-        className={styles["button"]}
-        disabled={formSubmitted}
-        onClick={handleSubmit}
-      >
-        {!statusResponse
-          ? formSubmitted
-            ? "Enviando..."
-            : "Crear Producto"
-          : "Producto creado!"}
-      </button>
-      {statusResponse && (
+      </ContainerBase>
+      <ContainerBase style={{ ...secondaryContainer }}>
+        <ProdCard
+          tag1={formData.tag1}
+          tag2={formData.tag2}
+          tag3={formData.tag3}
+          tag4={formData.tag4}
+          title={formData.title}
+          name={username}
+          rubro={rubro}
+          description={formData.description}
+          img={thumbnail}
+        ></ProdCard>
         <button
           type='submit'
           className={styles["button"]}
           disabled={formSubmitted}
-          onClick={resetButton}
+          onClick={handleSubmit}
         >
-          Subir otro
+          {!statusResponse
+            ? formSubmitted
+              ? "Enviando..."
+              : "Crear Producto"
+            : "Producto creado!"}
         </button>
-      )}
-    </div>
+        {statusResponse && (
+          <button
+            type='submit'
+            className={styles["button"]}
+            disabled={formSubmitted}
+            onClick={resetButton}
+          >
+            Subir otro
+          </button>
+        )}
+      </ContainerBase>
+    </ContainerBase>
   );
 };
 
