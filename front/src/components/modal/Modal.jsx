@@ -28,6 +28,9 @@ const Modal = (props) => {
             style={{
               overflowY: !hideScrollbar ? "scroll" : "hidden",
               maxHeight: "48rem",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
             }}
           >
             {props.children && props.children}

@@ -48,6 +48,7 @@ const Icon = ({
         position: position,
         marginLeft: marginLeft,
         marginBottom: marginBottom,
+        zIndex: 2,
       }}
     >
       <img

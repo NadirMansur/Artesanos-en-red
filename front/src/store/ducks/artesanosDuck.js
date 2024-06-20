@@ -28,10 +28,10 @@ const endpointgetArts = import.meta.env.VITE_GET_ARTS;
 
 // Thunks (acciones asíncronas)
 export const fetchArtsData = () => async (dispatch) => {
-  console.log("ingrese a fetchArtsData de thunks");
+// console.log("ingrese a fetchArtsData de thunks");
   try {
     const response = await fetch(endpointgetArts);
-    console.log("response", response);
+   // console.log("response", response);
     if (response.ok) {
       const artsData = await response.json();
       localStorage.setItem("ArtsData", JSON.stringify(artsData));

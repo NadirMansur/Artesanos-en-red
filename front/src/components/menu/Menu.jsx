@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import menu from "./menu.module.css";
 const Menu = (props) => {
@@ -17,3 +18,8 @@ const Menu = (props) => {
 };
 
 export default Menu;
+
+Menu.propTypes = {
+  link: PropTypes.string,
+  text: PropTypes.string,
+};

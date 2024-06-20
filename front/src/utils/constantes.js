@@ -24,6 +24,20 @@ export const primaryModalContainer = {
   zIndex: 3,
 };
 
+export const photo_profile_container = {
+  width: "100px",
+  height: "100px",
+  marginBottom: 2,
+  position: "relative",
+};
+
+export const photoProfile = {
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  borderRadius: "50%",
+};
+
 export const primaryContainer = {
   color: primaryColor,
   backgroundColor: backgroundColor,

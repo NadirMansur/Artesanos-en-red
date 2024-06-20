@@ -50,7 +50,7 @@ const CargaProdForm = (props) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
-  const [messageResponse, setMessageResponse] = useState(null);
+  // const [messageResponse, setMessageResponse] = useState(null);
 
   const isMountedRef = useRef(null);
 
@@ -176,10 +176,10 @@ const CargaProdForm = (props) => {
 
       if (isMountedRef.current) {
         if (response.ok) {
-          const { status, message } = await response.json();
+          const { status /* message */ } = await response.json();
           if (status) {
             setStatusResponse(status);
-            setMessageResponse(message);
+            //  setMessageResponse(message);
           }
         }
       }
@@ -200,6 +200,7 @@ const CargaProdForm = (props) => {
               flexDirection: "column",
               justifyContent: "center",
               alingItems: "center",
+              width: "20em",
             }
           : {
               ...primaryContainer,
@@ -210,11 +211,20 @@ const CargaProdForm = (props) => {
       }
     >
       <ContainerBase
-        style={{
-          ...secondaryContainer,
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
+        style={
+          isMobile
+            ? {
+                ...secondaryContainer,
+                flexDirection: "column",
+                justifyContent: "center",
+                border: "none",
+              }
+            : {
+                ...secondaryContainer,
+                flexDirection: "column",
+                justifyContent: "center",
+              }
+        }
       >
         <form onSubmit={handleSubmit}>
           <label htmlFor='combo' className={styles["label"]}>
@@ -292,7 +302,17 @@ const CargaProdForm = (props) => {
           </label>
         </form>
       </ContainerBase>
-      <ContainerBase style={{ ...secondaryContainer }}>
+      <ContainerBase
+        style={
+          isMobile
+            ? {
+                ...secondaryContainer,
+                justifyContent: "flex-start",
+                border: "none",
+              }
+            : { ...secondaryContainer, justifyContent: "flex-start" }
+        }
+      >
         <ProdCard
           tag1={formData.tag1}
           tag2={formData.tag2}

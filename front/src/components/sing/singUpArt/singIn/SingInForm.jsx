@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setArtLogin } from "../../../../store/ducks/artDuck";
-import { useDispatch } from "react-redux";
 import sing from "../singUpForm.module.css";
 
 const SingInForm = () => {
@@ -50,7 +50,7 @@ const SingInForm = () => {
 
         if (status) {
           dispatch(setArtLogin(art));
-          navigate("/homeart", { state: { art: art } });
+          navigate("/homeart");
         }
       } else {
         console.error("Error al iniciar secion");

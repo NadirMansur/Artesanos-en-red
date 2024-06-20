@@ -4,6 +4,7 @@ import "./App.css";
 import Art from "./components/art/Art";
 import HomeArt from "./components/art/homeArt/HomeArt";
 import ArtesanoGalery from "./components/artGalery/ArtGalery";
+import EditGalery from "./components/editGalery/EditGalery";
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import GoogleCallback from "./components/sing/button/GoogleCallback";
@@ -21,6 +22,10 @@ function App() {
         <Route exact path='/' element={<Home />}></Route>
         <Route exact path='/detail/:id' element={<Art />}></Route>
         <Route path='/detail/galeria/:id/' element={<ArtesanoGalery />}></Route>
+        <Route
+          path='/detail/galeria/edit/:id/'
+          element={<EditGalery />}
+        ></Route>
         <Route path='/auth/google' />
         <Route path='/auth/google/callback' element={<GoogleCallback />} />
         <Route path='/user/:id' element={<User />} />

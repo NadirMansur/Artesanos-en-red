@@ -1,13 +1,12 @@
 "use client";
-//import bandera from "../../assets/Flag_of_Argentina.svg.png";
-import { useRef, useState } from "react";
+import portada from "../../assets/Manualistas_en _ed.png";
 import header from "./header.module.css";
 
 const Header = () => {
-   const parallaxRef = useRef();
-   const captionRef = useRef();
+  // const parallaxRef = useRef();
+  // const captionRef = useRef();
 
-  const [isFixed, setIsFixed] = useState(false);
+  // const [isFixed, setIsFixed] = useState(false);
 
   // useEffect(() => {
   //   const handleScroll = () => {
@@ -26,10 +25,9 @@ const Header = () => {
   // }, []);
 
   return (
-    <div
-      className={header["header-container"]}
-    >
-        <div
+    <div className={header["header-container"]}>
+      <img src={portada} />
+      {/* <div
           className={`${isFixed ? header[["fixed-caption"]] : header["caption-none"]}`}
         >
           <span className={header["border"]}>Artesanos en Red</span>
@@ -40,7 +38,7 @@ const Header = () => {
         >
           <span className={header["border"]}>Artesanos en Red</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

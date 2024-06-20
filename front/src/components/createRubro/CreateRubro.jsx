@@ -16,7 +16,7 @@ const CreateRubro = () => {
       const response = await axios.post(endpoint, {
         rubro: rubroValue,
       });
-      console.log(response.data);
+     // console.log(response.data);
       setRubro("");
     } catch (error) {
       console.error("Hubo un error al crear el Rubro:", error);

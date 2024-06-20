@@ -1,6 +1,8 @@
+import Cookies from "js-cookie";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setArtLogin } from "../../../store/ducks/artDuck";
 import { h2Style, secondaryColor } from "../../../utils/constantes";
 import HOCNameEditForm from "../../HOC/NameEditForm";
 import ProdCard from "../../card/prodCard/ProdCard";
@@ -8,21 +10,20 @@ import ProfileCard from "../../card/profileCard/ProfileCard";
 import CargaProdForm from "../../cargaProdForm/CargaProdForm";
 import CargaFotoGaleria from "../../galeria/CargaFotoGaleria";
 import Menu from "../../menu/Menu";
-
 import Modal from "../../modal/Modal";
 import emp from "./homeArt.module.css";
 
-const HomeArt = (props) => {
-  const location = useLocation();
+const HomeArt = () => {
+  const dispatch = useDispatch();
   const [art, setArt] = useState(null);
   const [visibleCreateProd, setVisibleCreateProd] = useState(false);
-  // const [visibleGaleria, setVisibleGaleria] = useState(false);
   const [visibleCreateGaleria, setVisibleCreateGaleria] = useState(false);
   const [prods, setProds] = useState(null);
   const [openmodal, setOpenmodal] = useState(false);
-
   const [showNameEditModal, setShowNameEditModal] = useState(false);
   const [galeria, setGaleria] = useState([]);
+
+  const artInfo = useSelector((state) => state.rootReducer.art.artLoginData);
 
   const endpointProds = import.meta.env.VITE_GET_PRODS_BY_ID;
   const enndpointGaleria = import.meta.env.VITE_GET_GALERY_BY_ID;
@@ -86,14 +87,27 @@ const HomeArt = (props) => {
     return gallery;
   };
 
+  const getArtLoginFromCookies = () => {
+    const artLogin = Cookies.get("artLogin");
+    return artLogin ? JSON.parse(artLogin) : null;
+  };
+
   useEffect(() => {
-    if (location.state) {
-      setArt(location.state.art);
-    } else if (props.name) {
-      setArt(props);
+    const artLogin = getArtLoginFromCookies();
+
+    if (artInfo) {
+      setArt(artInfo);
+      const artInfoCoockies = JSON.stringify(artInfo);
+      Cookies.set("artLogin", artInfoCoockies);
+    }
+
+    if (artLogin) {
+      setArt(artLogin);
+      dispatch(setArtLogin(artLogin));
     }
     // eslint-disable-next-line
   }, []);
+
   useEffect(() => {
     if (art?.id) {
       const id = art.id;
@@ -114,10 +128,14 @@ const HomeArt = (props) => {
     <div className={emp["homeArt"]}>
       {art ? (
         <div style={{ display: "contents", gap: "1rem" }}>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <Menu
-              link={["/", `/detail/galeria/${art.id}`]}
-              text={["Home", "Galeria"]}
+              link={[
+                "/",
+                `/detail/galeria/${art.id}`,
+                `/detail/galeria/edit/${art.id}`,
+              ]}
+              text={["Home", "Galería", "Editar Galería"]}
             />
             <div
               style={{
@@ -128,17 +146,11 @@ const HomeArt = (props) => {
                 opacity: openmodal && "0.5",
               }}
             >
-              <button onClick={showCreateProd}>
-                {!visibleCreateProd
-                  ? "Crear Producto"
-                  : "Cerrar Crear Producto"}
-              </button>
+              <button onClick={showCreateProd}>{"Crear Producto"}</button>
               {/* <button onClick={showGaleria}>
                 {!visibleGaleria ? "Mostrar Galeria" : "Ocultar Galeria"}
               </button> */}
-              <button onClick={showCreateGaleria}>
-                {!visibleCreateGaleria ? "Subir Foto" : "Ocultar subir Foto"}
-              </button>
+              <button onClick={showCreateGaleria}>{"Subir Foto"}</button>
             </div>
           </div>
           <div
@@ -182,6 +194,7 @@ const HomeArt = (props) => {
             closePopup={() => {
               setOpenmodal(false);
               setVisibleCreateProd(false);
+              window.location.reload();
             }}
             open={visibleCreateProd}
           >
@@ -194,6 +207,7 @@ const HomeArt = (props) => {
               <CargaProdForm username={art.username}></CargaProdForm>
             </div>
           </Modal>
+
           {/* 
           <Modal
             closePopup={() => {
@@ -225,6 +239,7 @@ const HomeArt = (props) => {
           prods.map((prod, index) => {
             return (
               <ProdCard
+                id={prod.id}
                 key={index}
                 title={prod.prod_name}
                 name={prod.Artesano.username}
@@ -233,6 +248,7 @@ const HomeArt = (props) => {
                 img={prod.img_1}
                 tel={prod.Artesano.tel}
                 tags={prod.Tags}
+                isHomeArt
               ></ProdCard>
             );
           })}

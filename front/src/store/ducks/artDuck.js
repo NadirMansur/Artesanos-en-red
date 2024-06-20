@@ -47,13 +47,13 @@ const endpointProdArt = import.meta.env.VITE_GET_PRODS_BY_ID
 
 // Thunks (acciones asíncronas)
 export const fetchArtData = async (id) => {
-  console.log("ingrese a fetchUserArt de thunks");
+  // console.log("ingrese a fetchUserArt de thunks");
   try {
     const response = await fetch(`${endpointById}id=${id}`);
-    console.log("response", response);
+    // console.log("response", response);
     if (response.ok) {
       const artData = await response.json();
-      console.log("artData", artData);
+      // console.log("artData", artData);
       localStorage.setItem("ArtData", JSON.stringify(artData));
       //console.log("antes dispatch con userData", artData);
       //console.log("después dispatch con userData", artData);
@@ -113,7 +113,7 @@ export const fetchProdsById = async (id) => {
 };
 
 export const fetchArtLogin = (username, password) => async (dispatch) => {
-  console.log("ingrese a fetchArtLogin de thunks");
+  // console.log("ingrese a fetchArtLogin de thunks");
   try {
     const response = await fetch(
       //se esta realizando la ruta de Login art

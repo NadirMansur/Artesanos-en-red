@@ -3,6 +3,8 @@ import useIsMobile from "../../../hooks/useIsMobile";
 import {
   h2Style,
   pStyle,
+  photoProfile,
+  photo_profile_container,
   primaryContainer,
   secondaryContainer,
 } from "../../../utils/constantes";
@@ -17,12 +19,18 @@ const ProfileCard = ({ art /* handleEditMarca */ }) => {
     <ContainerBase
       style={
         isMobile
-          ? { ...primaryContainer, flexDirection: "column" }
+          ? { ...primaryContainer, flexDirection: "column", width: "20em" }
           : primaryContainer
       }
     >
-      <ContainerBase style={{ ...secondaryContainer, flexDirection: "row" }}>
-        <div className={emp["photo-profile-container"]}>
+      <ContainerBase
+        style={
+          isMobile
+            ? secondaryContainer
+            : { ...secondaryContainer, flexDirection: "row" }
+        }
+      >
+        <div style={photo_profile_container}>
           {/* <Icon
             icon={editIcon}
             onClick={() => {}}
@@ -33,7 +41,7 @@ const ProfileCard = ({ art /* handleEditMarca */ }) => {
             width='1.5rem'
             height='1.5rem'
           ></Icon> */}
-          <img src={art.img_perfil} className={emp["photo-profile"]}></img>
+          <img src={art.img_perfil} style={photoProfile}></img>
         </div>
         <div className={emp["basic-info"]}>
           <div className={emp["relative-container"]}>
