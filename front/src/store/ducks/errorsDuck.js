@@ -33,7 +33,8 @@ const initialState = {
     intro: "",
     img: "Debes subir una imagen para continuar",
     signUpPasswordRepeat: "",
-    marca: "",
+    username: "",
+    email: "",
   },
   formErrorsProd: {
     title: "",

@@ -11,6 +11,8 @@ const HOCForm = (props) => {
     validate,
     Component,
     errorSelector,
+    method,
+    callback,
   } = props;
 
   return () => {
@@ -50,6 +52,7 @@ const HOCForm = (props) => {
     };
     const handleSubmit = async (e) => {
       e.preventDefault();
+      console.log("aprete el boton");
 
       const hasErrors = Object.values(errors).some((error) => error !== "");
       if (hasErrors) {
@@ -59,20 +62,32 @@ const HOCForm = (props) => {
       try {
         setFormSubmitted(true);
         const formDataBody = new FormData();
-        Object.entries(formData).forEach(([key, value]) => {
-          formDataBody.append(key, value);
-        });
+        for (const [key, value] of Object.entries(formData)) {
+          console.log(`${key}: ${value}`);
+          formDataBody.append(`${key}`, value);
+        }
         formDataBody.append("id", obj.id);
+        console.log(formData, formDataBody, endpoint);
+
+        // // Verificar el contenido de formDataBody
+        // for (let pair of formDataBody.entries()) {
+        //   console.log(`${pair[0]}: ${pair[1]}`);
+        // }
+
+        console.log(",method", method);
         const response = await fetch(endpoint, {
-          method: "POST",
+          method: method,
           body: formDataBody,
         });
         console.log("response: " + response);
         if (isMountedRef.current) {
           if (response.ok) {
-            const { status } = await response.json();
-            if (status) {
-              setStatusResponse(status);
+            const data = await response.json();
+            console.log("data: ", data);
+            const { success } = data;
+            if (success) {
+              setStatusResponse(success);
+              callback();
             }
           }
         }

@@ -2,8 +2,9 @@ import Cookies from "js-cookie";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { setArtLogin } from "../../../store/ducks/artDuck";
-import { h2Style, secondaryColor } from "../../../utils/constantes";
+import { h2Style, secondaryColor, secondaryContainer } from "../../../utils/constantes";
 import HOCNameEditForm from "../../HOC/NameEditForm";
 import ProdCard from "../../card/prodCard/ProdCard";
 import ProfileCard from "../../card/profileCard/ProfileCard";
@@ -22,7 +23,8 @@ const HomeArt = () => {
   const [openmodal, setOpenmodal] = useState(false);
   const [showNameEditModal, setShowNameEditModal] = useState(false);
   const [galeria, setGaleria] = useState([]);
-
+  const [showNameMessageLoginModal, setShowNameMessageLoginModal] =
+    useState(false);
   const artInfo = useSelector((state) => state.rootReducer.art.artLoginData);
 
   const endpointProds = import.meta.env.VITE_GET_PRODS_BY_ID;
@@ -96,12 +98,11 @@ const HomeArt = () => {
     const artLogin = getArtLoginFromCookies();
 
     if (artInfo) {
+      console.log("aca", artInfo);
       setArt(artInfo);
       const artInfoCoockies = JSON.stringify(artInfo);
       Cookies.set("artLogin", artInfoCoockies);
-    }
-
-    if (artLogin) {
+    } else if (artLogin) {
       setArt(artLogin);
       dispatch(setArtLogin(artLogin));
     }
@@ -147,9 +148,6 @@ const HomeArt = () => {
               }}
             >
               <button onClick={showCreateProd}>{"Crear Producto"}</button>
-              {/* <button onClick={showGaleria}>
-                {!visibleGaleria ? "Mostrar Galeria" : "Ocultar Galeria"}
-              </button> */}
               <button onClick={showCreateGaleria}>{"Subir Foto"}</button>
             </div>
           </div>
@@ -171,10 +169,32 @@ const HomeArt = () => {
             closePopup={() => {
               setOpenmodal(false);
               setShowNameEditModal(false);
+              setShowNameMessageLoginModal(true);
             }}
             open={showNameEditModal}
+            scroll={true}
           >
+            <h2 style={{ ...h2Style, fontSize: "3rem", color: secondaryColor }}>
+              Editar Información
+            </h2>
             <HOCNameEditForm />
+          </Modal>
+
+          <Modal
+            closePopup={() => {
+              setOpenmodal(false);
+              setShowNameMessageLoginModal(false);
+            }}
+            open={showNameMessageLoginModal}
+          >
+            <h2 style={{ ...h2Style, fontSize: "3rem", color: secondaryColor }}>
+              Para ver la tú info cambiada debes iniciar sesión nuevamente
+            </h2>
+            <Link to='/login'>
+              <div style={secondaryContainer}>
+                <p>Inicar sesión</p>
+              </div>
+            </Link>
           </Modal>
 
           <Modal
@@ -207,22 +227,6 @@ const HomeArt = () => {
               <CargaProdForm username={art.username}></CargaProdForm>
             </div>
           </Modal>
-
-          {/* 
-          <Modal
-            closePopup={() => {
-              setOpenmodal(false);
-              setVisibleGaleria(false);
-            }}
-            open={visibleGaleria}
-          >
-            <h2 style={{ ...h2Style, fontSize: "3rem", color: secondaryColor }}>
-              Tú Galeria
-            </h2>
-            <ContainerBase style={secondaryContainer}>
-              <ArtGalery galeria={galeria} />
-            </ContainerBase>
-          </Modal> */}
         </div>
       ) : null}
 

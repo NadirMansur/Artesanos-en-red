@@ -40,10 +40,8 @@ export default function artReducer(state = initialState, action) {
 }
 
 const endpointById = import.meta.env.VITE_GET_ART_BY_ID;
-const endpointLoginArt = import.meta.env.VITE_LOGIN_ART;
 const endpointRubroById = import.meta.env.VITE_GET_RUBROS_BY_ID;
-const endpointProdArt = import.meta.env.VITE_GET_PRODS_BY_ID
-
+const endpointProdArt = import.meta.env.VITE_GET_PRODS_BY_ID;
 
 // Thunks (acciones asíncronas)
 export const fetchArtData = async (id) => {
@@ -109,38 +107,6 @@ export const fetchProdsById = async (id) => {
   } catch (error) {
     console.error("Error fetching art data:", error);
     return { status: false, message: error.message };
-  }
-};
-
-export const fetchArtLogin = (username, password) => async (dispatch) => {
-  // console.log("ingrese a fetchArtLogin de thunks");
-  try {
-    const response = await fetch(
-      //se esta realizando la ruta de Login art
-      endpointLoginArt,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username: username, password: password }),
-      }
-    );
-    //se esta realizando la ruta de Login art
-
-    //console.log("response", response);
-    if (response.ok) {
-      const artLoginData = await response.json();
-      //console.log("antes dispatch con userData", artData);
-      dispatch(setArtLoginData(artLoginData));
-      //console.log("después dispatch con userData", artData);
-      return artLoginData;
-    } else {
-      // Manejar el caso de respuesta no exitosa (puedes lanzar un error o realizar alguna acción específica)
-      console.error("Error en la respuesta del servidor:", response.statusText);
-    }
-  } catch (error) {
-    console.error("Error fetching artLogin data:", error);
   }
 };
 

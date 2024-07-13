@@ -13,7 +13,7 @@ const MyForm = ({
   statusResponse,
   formSubmitted,
   handleSubmit,
-  cancelButton,
+  // cancelButton,
   children,
 }) => {
   return (
@@ -27,7 +27,7 @@ const MyForm = ({
         <button
           type='submit'
           className={styles["button"]}
-          disabled={formSubmitted}
+          disabled={formSubmitted || statusResponse}
           onClick={handleSubmit}
         >
           {!statusResponse
@@ -36,7 +36,7 @@ const MyForm = ({
               : "Cambiar Info"
             : "Info Cambiada"}
         </button>
-        {!statusResponse && (
+        {/* {!statusResponse && (
           <button
             type='submit'
             className={styles["button"]}
@@ -45,7 +45,7 @@ const MyForm = ({
           >
             {!statusResponse ? "Cancelar" : "Cerrar"}
           </button>
-        )}
+        )} */}
       </div>
     </div>
   );

@@ -9,13 +9,17 @@ const Modal = (props) => {
 
   useLayoutEffect(() => {
     if (divRef.current) {
-      const checkOverflow = () => {
-        const hasOverflow =
-          divRef.current.scrollHeight > divRef.current.clientHeight;
-        setHideScrollbar(!hasOverflow);
-      };
-      if (divRef.current.scrollHeight !== 226) checkOverflow();
-      window.addEventListener("resize", checkOverflow);
+      if (props.scroll) {
+        setHideScrollbar(false);
+      } else {
+        const checkOverflow = () => {
+          const hasOverflow =
+            divRef.current.scrollHeight > divRef.current.clientHeight;
+          setHideScrollbar(!hasOverflow);
+        };
+        if (divRef.current.scrollHeight !== 226) checkOverflow();
+        window.addEventListener("resize", checkOverflow);
+      }
     }
   }, [props.children]);
 
@@ -46,6 +50,7 @@ Modal.propTypes = {
   open: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
   children: PropTypes.object,
+  scroll: PropTypes.bool,
 };
 
 export default Modal;

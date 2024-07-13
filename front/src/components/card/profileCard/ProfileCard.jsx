@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import editIcon from "../../../assets/iconos/editar.png";
 import useIsMobile from "../../../hooks/useIsMobile";
 import {
   h2Style,
@@ -9,12 +10,13 @@ import {
   secondaryContainer,
 } from "../../../utils/constantes";
 import ContainerBase from "../../containers/containerBase";
+import Icon from "../../Icon/Icon";
 
 import emp from "./profileCard.module.css";
 
-const ProfileCard = ({ art /* handleEditMarca */ }) => {
+const ProfileCard = ({ art, handleEditMarca }) => {
   const isMobile = useIsMobile();
-
+  const marginLeft = isMobile ? "15em" : "0rem";
   return (
     <ContainerBase
       style={
@@ -23,6 +25,16 @@ const ProfileCard = ({ art /* handleEditMarca */ }) => {
           : primaryContainer
       }
     >
+      <Icon
+        icon={editIcon}
+        onClick={handleEditMarca}
+        position='absolute'
+        marginLeft={marginLeft}
+        marginBottom='0%'
+        id='personal-info-edit'
+        width='3rem'
+        height='3rem'
+      ></Icon>
       <ContainerBase
         style={
           isMobile
@@ -45,16 +57,6 @@ const ProfileCard = ({ art /* handleEditMarca */ }) => {
         </div>
         <div className={emp["basic-info"]}>
           <div className={emp["relative-container"]}>
-            {/* <Icon
-              icon={editIcon}
-              onClick={handleEditMarca}
-              position='absolute'
-              marginLeft='90%'
-              // marginBottom='0%'
-              id='name-edit'
-              width='1.5rem'
-              height='1.5rem'
-            ></Icon> */}
             <h2 style={h2Style}>{art.username}</h2>
           </div>
           <p style={pStyle}>{art.rubro}</p>

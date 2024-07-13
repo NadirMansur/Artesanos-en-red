@@ -68,7 +68,7 @@ const SingInForm = () => {
           className={sing["input"]}
           type='text'
           name='singInUsername'
-          placeholder='Nombre'
+          placeholder='Nombre de la Marca'
           value={signInData.singInUsername}
           onChange={handleSignInChange}
           required
@@ -77,7 +77,7 @@ const SingInForm = () => {
           className={sing["input"]}
           type='password'
           name='signInPassword'
-          placeholder='Password'
+          placeholder='Contraseña'
           value={signInData.signInPassword}
           onChange={handleSignInChange}
           required
