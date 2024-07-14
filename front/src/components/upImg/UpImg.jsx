@@ -7,10 +7,10 @@ const UpImg = (props) => {
 
   return (
     <div className={sing["container"]}>
-      <h2 className={sing["h2"]}>Subir imagen</h2>
+      <h2 className={sing["h2"]}>Elegir la foto</h2>
       <div className={sing["upload"]}>
         <label className={sing["button"]} htmlFor='file-input'>
-          Subir Archivo
+          Subir la foto
         </label>
         <input
           id='file-input'
