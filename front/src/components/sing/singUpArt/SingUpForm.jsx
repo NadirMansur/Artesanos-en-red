@@ -1,15 +1,14 @@
-import UpImg from "../../upImg/UpImg";
-import { useState } from "react";
-import sing from "./singUpForm.module.css";
+import { useEffect, useRef, useState } from "react";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useRef, useEffect } from "react";
-import Message from "../../message/Message";
-import { useDispatch, useSelector, connect } from "react-redux";
 import {
-  setFormErrorsArtesano,
   cleanFormErrorsArtesano,
+  setFormErrorsArtesano,
 } from "../../../store/ducks/errorsDuck";
 import { validate } from "../../../utils/validations";
+import Message from "../../message/Message";
+import UpImg from "../../upImg/UpImg";
+import sing from "./singUpForm.module.css";
 
 const SingInUp = () => {
   const dispatch = useDispatch();
@@ -156,7 +155,7 @@ const SingInUp = () => {
             className={sing["input"]}
             type='text'
             name='name'
-            placeholder='Nombre de Usuario'
+            placeholder='Nombre de la Marca'
             value={signUpData.name}
             onChange={handleSignUpChange}
             required
@@ -165,7 +164,7 @@ const SingInUp = () => {
             className={sing["input"]}
             type='email'
             name='email'
-            placeholder='Email'
+            placeholder='Tú Email'
             defaultValue={signUpData.email}
             onChange={handleSignUpChange}
             required
@@ -177,7 +176,7 @@ const SingInUp = () => {
             className={sing["input"]}
             type='password'
             name='password'
-            placeholder='Password'
+            placeholder='Contraseña'
             value={signUpData.password}
             onChange={handleSignUpChange}
             required
@@ -186,7 +185,7 @@ const SingInUp = () => {
             className={sing["input"]}
             type='password'
             name='passwordRepeat'
-            placeholder='Repeti la Password'
+            placeholder='Repeti la contraseña'
             value={signUpData.passwordRepeat}
             onChange={handleSignUpChange}
             required
@@ -198,7 +197,7 @@ const SingInUp = () => {
             className={sing["input"]}
             type='text'
             name='tel'
-            placeholder='tel'
+            placeholder='tú tel'
             defaultValue={signUpData.tel}
             onChange={handleSignUpChange}
             required
